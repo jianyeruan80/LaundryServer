@@ -18,8 +18,11 @@ item:{type: mongoose.Schema.Types.ObjectId, ref: 'items' }
 
 var ordersSchema = new Schema({
 orderNo:String,
+invoiceNo:String, 
+notes:String,
+pickUpTime:Date,
 
-
+merchantId:{type:String,lowercase: true, trim: true},
 subTotal:Number,
 
 taxRate:Number,

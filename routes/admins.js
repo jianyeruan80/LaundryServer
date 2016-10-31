@@ -123,6 +123,9 @@ for(var i =0; i< perms.length; i++){
           returnData.storeName=data.storeName;
           returnData.merchantId=info.merchantId;
           returnData.accessToken=accessToken;
+        console.log("------------------");
+console.log(returnData);
+console.log("=================");
           res.json(returnData);
   }); 
         

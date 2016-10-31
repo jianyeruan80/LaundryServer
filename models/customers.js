@@ -13,6 +13,15 @@ var addressSchema = new Schema({
       zipcode: String,
       description:String
 });
+var creditCardsSchema=new Schema({
+   cardNo:String,
+   holderName:String,
+   expirationYear:String,
+   expirationMonth:String,
+   ccv:String,
+   cardType:String,
+   
+})
 
 var customersSchema = new mongoose.Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
@@ -25,6 +34,7 @@ var customersSchema = new mongoose.Schema({
 	  phoneNum2:String,
 	  email:{type:String,lowercase:true},
     password:String,
+    creditCard:[creditCardsSchema],
     token:String,
 	  facebook:String,
   	wechat:String,

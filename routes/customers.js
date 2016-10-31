@@ -5,6 +5,42 @@ var express = require('express'),
     security = require('../modules/security'),
     customers = require('../models/customers');
     
+router.get('/test',  function(req, res, next) {
+
+       var info=req.query;
+       var search=info.search || "";
+
+       var query={
+           $and:[
+            {"merchantId":"fs4i"},
+            {
+              $or:[
+                      {"email":{$regex:search,$options: "i"}},//'email':new RegExp("^"+req.body.email+"$", 'i'),
+                      {"phoneNum1":{$regex:search,$options: "i"}},
+                      {"phoneNum2":{$regex:search,$options: "i"}},
+                      {"firstName":{$regex:search,$options: "i"}},
+                      {"lastName":{$regex:search,$options: "i"}},
+                ]
+            }
+           ]
+       }
+
+customers.aggregate(
+   [ { $match: query },
+      {$lookup:
+     {
+       from: "orders",
+       localField:"_id" ,
+       foreignField:"customer.id",
+       as: "ordersDocs"
+     }}
+
+ ]).exec( function (err, data) {
+        if (err) return next(err);
+         res.json(data);
+})
+});
+    
 router.get('/', function(req, res, next) {
      log.debug(req.token);
        customers.find({}, function (err, data) {

@@ -25,13 +25,15 @@ router.post('/decrypt',  function(req, res, next) {
         if(keyJSON.merchantId==info.merchantId && keyJSON.active==true){
             var currentDate=new Date();
             var expires=new Date(keyJSON.expires);
-            if(currentDate>expires){
+         
+               keyJSON.expiresTotal=Math.ceil(new Date(currentDate-expires).getTime()/(24*60*60*1000));
+   if(currentDate>expires){
                keyJSON.active=false;
                
-               keyJSON.expiresTotal=Math.ceil(new Date(currentDate-expires).getTime()/(24*60*60*1000));
+             //  keyJSON.expiresTotal=Math.ceil(new Date(currentDate-expires).getTime()/(24*60*60*1000));
                res.json(keyJSON);
             }else{
-              keyJSON.expiresTotal=0;
+             // keyJSON.expiresTotal=0;
               res.json(keyJSON);
             }
         }else{

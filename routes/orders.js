@@ -12,21 +12,44 @@ var express = require('express'),
     stores = require('../models/stores');
     
 router.get('/',  security.ensureAuthorized,function(req, res, next) {
+     console.log("----xx-----");
         var info=req.query;
          var query={"merchantId":req.token.merchantId}
         if(info.status){query.status=info.status;}
           console.log(query)
         orders.find(query).sort({orderNo: 1, _id:1 }).exec(function(err,data){
            if (err) return next(err);
+         console.log("xxxxxxxxxxxxxx====xxxxx");
            console.log(data)
+console.log("---xxx----");
            res.json(data);
         })
 
 
 })
+
+router.post('/invoice/:id',  security.ensureAuthorized,function(req, res, next) {
+       
+       var id=req.params.id;
+       var query={
+           $and:[
+            {"merchantId":req.token.merchantId},
+            {
+              $or:[
+                      {"invoiceNo":{$regex:id,$options: "i"}}
+                     
+                ] 
+            }
+           ]
+       }       
+       orders.find(query, function (err, data) {
+        if (err) return next(err);
+         res.json(data);
+      });
+})
 router.get('/bills',  security.ensureAuthorized,function(req, res, next) {
         var info=req.query;
-         var query={"merchantId":req.token.merchantId}
+         var query={"merchantId":req.token.merchantId};
         if(info.status){query.status=info.status;}
 
         bills.find(query).sort({orderNo: 1, _id:1 }).exec(function(err,data){
@@ -35,7 +58,7 @@ router.get('/bills',  security.ensureAuthorized,function(req, res, next) {
         })
 })
 router.put('/void/:id',  security.ensureAuthorized,function(req, res, next) {
-        var query={"_id":req.params.id}
+	 var query={"_id":req.params.id}
         var info={status:"void"}
         bills.findOneAndUpdate(query,info,{},function (err, data) {
                if (err) return next(err);
@@ -70,13 +93,16 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
    info.operator.id=req.token.id;
    info.operator.user=req.token.user;
    info.createdBy=info.operator;
-   info.createdAt=new Date();
-   info.updatedAt=new Date();
+   var d=new Date();
+   info.createdAt=d;//new Date();
+   info.updatedAt=d;//new Date();
    info.status="unpaid"; //paid ,void
 
    var p1=tools.getNextSequence(query);
    p1.then(function(n){
    info.orderNo=n.seqNo;
+    var pre=d.getMonth()+1+""+d.getDate()+(""+d.getFullYear()).substr(2,2);
+   info.invoiceNo=pre+n.seqNo;
    var arvind = new orders(info);
    arvind.save(function (err, data) {
    if (err) return next(err);
