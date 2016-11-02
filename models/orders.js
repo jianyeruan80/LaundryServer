@@ -36,7 +36,8 @@ discountRate:Number,//-
 discount:Number,//-
 
 grandTotal:Number,
-
+uppaid:Number,
+reason:String,
 status:{type:String,default:"unpaid"},//uppaid,paid,close
 createdAt: {type:Date,default:Date.now},
 updatedAt: Date,
