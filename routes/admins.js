@@ -36,16 +36,7 @@ router.post('/login', function(req, res, next) {
       "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}
    };
    
-/*     query={
-      "password":security.encrypt(md5(info.password)),
-      "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}
-   };
-   */
-/*     query={
 
-       "token":"xxxxxxxxxxxxxxxxxxxxx";
-     }
-*/
     users.aggregate([
       { $match: query},
       { $lookup: {from: 'permissions', localField: 'defaultPerm', foreignField: 'perm', as: 'perms'} },
@@ -95,10 +86,12 @@ perms=security.unique5(cloneOfA,"_id");
 var jobsSortObject = {}; 
   for(var i =0; i< perms.length; i++){
    var job = perms[i],
-   mark = job.permissionGroup+job.subject,
+   mark = job.permissionGroup+'-'+job.subject,
    jobItem = jobsSortObject[mark];
+
   if(jobItem){
-   jobsSortObject[mark].perm=jobsSortObject[mark].perm+jobItem.perm;
+    
+   jobsSortObject[mark]=jobItem+job.perm;
   }else{
    jobsSortObject[mark] = job.perm;
   }
@@ -123,9 +116,7 @@ for(var i =0; i< perms.length; i++){
           returnData.storeName=data.storeName;
           returnData.merchantId=info.merchantId;
           returnData.accessToken=accessToken;
-        console.log("------------------");
-console.log(returnData);
-console.log("=================");
+
           res.json(returnData);
   }); 
         
@@ -144,7 +135,7 @@ router.get('/perms', security.ensureAuthorized,function(req, res, next) {
      var merchantId=req.token.merchantId;
       var merchant=new RegExp(merchantId,"i");
        var query= {"$and":
-                  [    {"status":true},
+                  [    {"status":true,perm:{$gt:1}},
                        { "$or" : [
                                     {"merchantIds": {$size: 0}},
 
@@ -304,14 +295,10 @@ router.get('/users', security.ensureAuthorized,function(req, res, next) {
              "merchantIds":new RegExp(req.token.merchantId,"i"),
               "type":""
             }
-            console.log("---AAA----");
-            console.log(query);
-            console.log("---AAA----");
+
      users.find(query,function (err, data) {
         if (err) return next(err);
-          console.log("---AAA----");
-          console.log(data);
-          console.log("---bbb----");
+
           res.json(data);
       });
  });
