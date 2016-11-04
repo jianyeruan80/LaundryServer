@@ -15,11 +15,100 @@ router.get('/',  security.ensureAuthorized,function(req, res, next) {
     
         var info=req.query;
          var query={"merchantId":req.token.merchantId}
-        if(info.status){query.status=info.status;}
-          console.log(query)
-    
+         if(info.status){query.status=info.status;}
+         if(info.startDate){
+            var startDate=new Date(info.startDate);
+            startDate=new Date(startDate.getUTCFullYear(), startDate.getMonth(), startDate.getDate(), 0, 0, 0, 0);
+            query.createdAt={"$gte":startDate};
+         }
+         if(info.endtDate){
+          var endtDate=new Date(info.endtDate);
+              endtDate=new Date(endtDate.getUTCFullYear(), endtDate.getMonth(), endtDate.getDate(), 23, 59, 59, 999);
+              query.createdAt={"$lte":endtDate};
+         }   
+
+    orders.aggregate([
+    {
+      $match:query
+    },
+    {
+      $lookup:
+        {
+          from: "bills",
+          localField: "_id",
+          foreignField: "order",
+          as: "bills"
+        }
+   },
+    {
+      $lookup:
+        {
+          from: "customers",
+          localField: "customer.id",
+          foreignField: "_id",
+          as: "customers"
+        }
+   }
+]).exec(function(err,data){
 
 
+res.json(data);
+
+
+})
+
+
+})
+/**
+[
+{_id:xx,timer:xxx,min:20}
+]
+**/
+router.post('/updateTimer',  security.ensureAuthorized,function(req, res, next) {
+    var info=req.query;
+    var len=info.length;
+     for(var i=0;i<len;i++){
+         var query={"_id":info[i]._id};
+          var timer=new Date(info[i].timer),min=info[i].min;
+              timer.setTime(timer.getTime() - min*60*1000);
+         var update={
+             "alert":true,
+             "timer":timer
+         }
+         
+          orders.findOneAndUpdate(query,info,{},function (err, data) {
+               if (err) return next(err);
+               if(i>=len){
+                res.json(data);  
+                }
+                
+               
+        })
+     }
+})
+router.post('/timer',  security.ensureAuthorized,function(req, res, next) {
+     var info=req.query;
+     var timer=info.timer;
+     var startDate=new Date(timer);
+     var endDate=new Date(timer);
+          startDate.setTime(startDate.getTime() - 2*60*1000);
+          endDate.setTime(endDate.getTime() + 2*60*1000);
+    var query={
+      $and:[
+           {
+             "status":{ "$in":["Unpaid","Paid"]}
+           },
+            {
+              $or:
+              [
+              {"pickUpTime":{ "$lte":startDate , "$alert":false } },
+               {"pickUpTime":{ "$gt":startDate , "$lte":endDate } },
+               {"timer":{ "$gt":startDate , "$lte":endDate } },
+             
+              ]
+            }
+        ]
+}
 orders.aggregate([
     {
       $match:query
@@ -32,35 +121,20 @@ orders.aggregate([
           foreignField: "order",
           as: "bills"
         }
+   },
+    {
+      $lookup:
+        {
+          from: "customers",
+          localField: "customer.id",
+          foreignField: "_id",
+          as: "customers"
+        }
    }
 ]).exec(function(err,data){
-console.log("xxxxxxxxxxssssssssssssssssssssssssssssxxxx");
-console.log(data);
 res.json(data);
-console.log("xxxxxxvvvvvvvvvvvvvvvvxxxxxxxx")
-
 })
-
-
-
-
-
-
-
-
-
-
-    /*orders.find(query).sort({invoiceNo: -1, _id:1 }).exec(function(err,data){
-           if (err) return next(err);
-         console.log("xxxxxxxxxxxxxx====xxxxx");
-           console.log(data)
-            console.log("---xxx----");
-           res.json(data);
-        })
-
-*/
 })
-
 router.post('/invoice/:id',  security.ensureAuthorized,function(req, res, next) {
        
        var id=req.params.id;
@@ -139,12 +213,12 @@ router.put('/billvoid/:id',  security.ensureAuthorized,function(req, res, next) 
                      console.log(billData);
                      console.log("6666666666666666666666666666666666666666666666");*/
                                var billResult=billResult?billResult[0]:null;
-                                console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                                
                                 var orderQuery={"_id":billData.order};
                                  var orderUpdata={};
                                     orderUpdata.status="Unpaid";
                                      orderUpdata.uppaid=billData.grandTotal;
-                                     console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                                     
                                if(billResult){
                                 orderUpdata.status="Demi-Paid";
                                 orderUpdata.uppaid=toFixed(billData.grandTotal-(billResult.receiveTotal-billResult.change-billResult.tip),2);
@@ -241,10 +315,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                var orderQuery={"_id":billData._id};
 
                                var orderUpdata={};
-                               console.log(orderData.grandTotal);
-                               console.log(billData.receiveTotal);
-                               console.log(billData.change);
-                               console.log(billData.tip);
+
                                
                                orderUpdata.uppaid=toFixed(orderData.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
                                orderUpdata.status="Paid";
@@ -321,11 +392,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                var orderQuery={"_id":billData._id};
 
                                var orderUpdata={};
-                               console.log(data.grandTotal);
-                               console.log(billData.receiveTotal);
-                               console.log(billData.change);
-                               console.log(billData.tip);
-                               
+
                                orderUpdata.uppaid=toFixed(data.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
                                orderUpdata.status="Paid";
                                if(orderUpdata.uppaid>0){

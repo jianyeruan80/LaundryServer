@@ -21,7 +21,8 @@ orderNo:String,
 invoiceNo:String, 
 notes:String,
 pickUpTime:Date,
-
+timer:Date,
+alert:{type:Boolean,default:false},
 merchantId:{type:String,lowercase: true, trim: true},
 subTotal:Number,
 
@@ -38,7 +39,7 @@ discount:Number,//-
 grandTotal:Number,
 uppaid:Number,
 reason:String,
-status:{type:String,default:"unpaid"},//uppaid,paid,close
+status:{type:String,default:"Unpaid"},//uppaid,paid,close
 createdAt: {type:Date,default:Date.now},
 updatedAt: Date,
 createdBy:{
