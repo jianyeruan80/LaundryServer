@@ -61,7 +61,7 @@ res.json(data);
 })
 /**
 [
-{_id:xx,timer:xxx,min:20}
+{_id:xx,min:20}
 ]
 **/
 router.post('/updateTimer',  security.ensureAuthorized,function(req, res, next) {
@@ -69,14 +69,15 @@ router.post('/updateTimer',  security.ensureAuthorized,function(req, res, next) 
     var len=info.length;
      for(var i=0;i<len;i++){
          var query={"_id":info[i]._id};
-          var timer=new Date(info[i].timer),min=info[i].min;
-              timer.setTime(timer.getTime() - min*60*1000);
-         var update={
-             "alert":true,
-             "timer":timer
-         }
+          var timer=new Date(),min=info[i].min;
+           var update={"timer":null};
+              if(min>0){
+	         
+              timer.setTime(timer.getTime() + min*60*1000);
+               update.timer=timer;
+     }
          
-          orders.findOneAndUpdate(query,info,{},function (err, data) {
+         orders.findOneAndUpdate(query,update,{},function (err, data) {
                if (err) return next(err);
                if(i>=len){
                 res.json(data);  
@@ -87,26 +88,17 @@ router.post('/updateTimer',  security.ensureAuthorized,function(req, res, next) 
      }
 })
 router.post('/timer',  security.ensureAuthorized,function(req, res, next) {
-     var info=req.query;
-     var timer=info.timer;
-     var startDate=new Date(timer);
-     var endDate=new Date(timer);
-          startDate.setTime(startDate.getTime() - 2*60*1000);
-          endDate.setTime(endDate.getTime() + 2*60*1000);
+    var alertDate=new Date();
+
     var query={
       $and:[
            {
              "status":{ "$in":["Unpaid","Paid"]}
            },
-            {
-              $or:
-              [
-              {"pickUpTime":{ "$lte":startDate , "$alert":false } },
-               {"pickUpTime":{ "$gt":startDate , "$lte":endDate } },
-               {"timer":{ "$gt":startDate , "$lte":endDate } },
-             
-              ]
-            }
+            {"timer":{ "$lte":alertDate}  },
+           {
+	    "timer":{"$ne" : [null] } 
+           }
         ]
 }
 orders.aggregate([

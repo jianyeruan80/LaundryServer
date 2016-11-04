@@ -22,7 +22,6 @@ invoiceNo:String,
 notes:String,
 pickUpTime:Date,
 timer:Date,
-alert:{type:Boolean,default:false},
 merchantId:{type:String,lowercase: true, trim: true},
 subTotal:Number,
 
