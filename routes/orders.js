@@ -4,13 +4,11 @@ var express = require('express'),
     security = require('../modules/security'),
     tools = require('../modules/tools'),
     seqs = require('../models/seqs'),
-    
     util = require('util'),
     orders = require('../models/orders'),
     bills = require('../models/bills'),
     stores = require('../models/stores');
-    
-router.get('/',  security.ensureAuthorized,function(req, res, next) {
+    router.get('/',  security.ensureAuthorized,function(req, res, next) {
          var info=req.query;
          log.info('orders',info);
          var query={"merchantId":req.token.merchantId}
@@ -64,8 +62,9 @@ res.json(data);
 ]
 **/
 router.post('/updateTimer',  security.ensureAuthorized,function(req, res, next) {
-    var info=req.query;
-    var len=info.length;
+    var info=req.body;
+    log.info("updateTime",info);
+   var len=info.length;
      for(var i=0;i<len;i++){
          var query={"_id":info[i]._id};
           var timer=new Date(),min=info[i].min;
@@ -127,8 +126,8 @@ res.json(data);
 })
 })
 router.post('/invoice/:id',  security.ensureAuthorized,function(req, res, next) {
-       
        var id=req.params.id;
+      log.info("invoice",id);
        var query={
            $and:[
             {"merchantId":req.token.merchantId},
@@ -147,6 +146,7 @@ router.post('/invoice/:id',  security.ensureAuthorized,function(req, res, next) 
 })
 router.get('/bills',  security.ensureAuthorized,function(req, res, next) {
         var info=req.query;
+        log.info("bills",info);
          var query={"merchantId":req.token.merchantId};
         if(info.status){query.status=info.status;}
 
@@ -158,6 +158,7 @@ router.get('/bills',  security.ensureAuthorized,function(req, res, next) {
 router.put('/void/:id',  security.ensureAuthorized,function(req, res, next) {
        var query={"_id":req.params.id}
         var info=req.body;
+        log.info("void",info);
         var upData={status:"Void"};
             upData.reason=info.reason || "";
         orders.findOneAndUpdate(query,info,{},function (err, data) {
@@ -172,6 +173,7 @@ router.put('/void/:id',  security.ensureAuthorized,function(req, res, next) {
 })
 router.put('/billvoid/:id',  security.ensureAuthorized,function(req, res, next) {
 	 var query={"_id":req.params.id}
+         log.info("billVoid",query);  
         var info={status:"Void"}
         bills.findOneAndUpdate(query,info,{},function (err, billData) {
                if (err) return next(err);
@@ -246,9 +248,7 @@ router.put('/billvoid/:id',  security.ensureAuthorized,function(req, res, next) 
 router.get('/:id',  security.ensureAuthorized,function(req, res, next) {
         var info=req.query;
          var query={"_id":req.params.id};
-        
-
-        orders.findOne(query).sort({orderNo: 1, _id:1 }).exec(function(err,data){
+                orders.findOne(query).sort({orderNo: 1, _id:1 }).exec(function(err,data){
            if (err) return next(err);
            res.json(data);
         })
