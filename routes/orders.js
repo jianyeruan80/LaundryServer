@@ -159,12 +159,12 @@ router.get('/bills',  security.ensureAuthorized,function(req, res, next) {
 router.put('/void/:id',  security.ensureAuthorized,function(req, res, next) {
        var query={"_id":req.params.id}
         var info=req.body;
-        var upData={status:"void"};
+        var upData={status:"Void"};
             upData.reason=info.reason || "";
         orders.findOneAndUpdate(query,info,{},function (err, data) {
                if (err) return next(err);
                query={"order":req.params.id};
-               info={"status":"void"};
+               info={"status":"Void"};
                bills.findOneAndUpdate(query,info,{},function (err, data) {
                 if (err) return next(err);
                  res.json(data);
@@ -173,7 +173,7 @@ router.put('/void/:id',  security.ensureAuthorized,function(req, res, next) {
 })
 router.put('/billvoid/:id',  security.ensureAuthorized,function(req, res, next) {
 	 var query={"_id":req.params.id}
-        var info={status:"void"}
+        var info={status:"Void"}
         bills.findOneAndUpdate(query,info,{},function (err, billData) {
                if (err) return next(err);
           /*   var billData=billData;
@@ -209,11 +209,11 @@ router.put('/billvoid/:id',  security.ensureAuthorized,function(req, res, next) 
                                 var orderQuery={"_id":billData.order};
                                  var orderUpdata={};
                                     orderUpdata.status="Unpaid";
-                                     orderUpdata.uppaid=billData.grandTotal;
+                                     orderUpdata.unpaid=billData.grandTotal;
                                      
                                if(billResult){
                                 orderUpdata.status="Demi-Paid";
-                                orderUpdata.uppaid=toFixed(billData.grandTotal-(billResult.receiveTotal-billResult.change-billResult.tip),2);
+                                orderUpdata.unpaid=toFixed(billData.grandTotal-(billResult.receiveTotal-billResult.change-billResult.tip),2);
                                }
                            
                                  orders.findOneAndUpdate(orderQuery,orderUpdata,{},function (err, orderData) {
@@ -309,9 +309,9 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                var orderUpdata={};
 
                                
-                               orderUpdata.uppaid=toFixed(orderData.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
+                               orderUpdata.unpaid=toFixed(orderData.grandTotal-(billData.receiveTotal-billData.change),2);
                                orderUpdata.status="Paid";
-                               if(orderUpdata.uppaid>0){
+                               if(orderUpdata.unpaid>0){
                                 orderUpdata.status="Demi-Paid";   
                                   
                                }
@@ -385,9 +385,9 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
 
                                var orderUpdata={};
 
-                               orderUpdata.uppaid=toFixed(data.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
+                               orderUpdata.unpaid=toFixed(data.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
                                orderUpdata.status="Paid";
-                               if(orderUpdata.uppaid>0){
+                               if(orderUpdata.unpaid>0){
                                 orderUpdata.status="Demi-Paid";   
                                   
                                }
@@ -431,7 +431,7 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
    info.createdAt=d;//new Date();
    info.updatedAt=d;//new Date();
    info.status="Unpaid"; //paid ,void
-   info.uppaid=info.grandTotal;
+   info.unpaid=info.grandTotal;
    var p1=tools.getNextSequence(query);
    p1.then(function(n){
    info.orderNo=n.seqNo;

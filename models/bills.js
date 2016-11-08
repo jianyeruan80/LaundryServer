@@ -16,7 +16,7 @@ grandTotal:Number,
    change:Number,
 createdAt: {type:Date,default:Date.now},
 updatedAt: Date,
-status:String, //paid,void
+status:{type:String,default:"Paid"}, //paid,void
 operator:{
 	id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
 	user:String
