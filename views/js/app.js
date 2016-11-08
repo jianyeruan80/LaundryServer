@@ -50,7 +50,12 @@ angular.module('server', ['ionic', 'server.controllers'])
         }
       }
     })
-
+    .state('logs', {
+    url: '/logs',
+        templateUrl: 'templates/logs.html',
+        controller: 'LogsCtrl'
+   
+  })
   .state('login', {
     url: '/login',
         templateUrl: 'templates/login.html',

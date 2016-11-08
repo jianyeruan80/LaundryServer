@@ -1,4 +1,3 @@
-
 var express = require('express'),
     router = express.Router(),
     log = require('../modules/logs'),
@@ -12,8 +11,8 @@ var express = require('express'),
     stores = require('../models/stores');
     
 router.get('/',  security.ensureAuthorized,function(req, res, next) {
-    
-        var info=req.query;
+         var info=req.query;
+         log.info('orders',info);
          var query={"merchantId":req.token.merchantId}
          if(info.status){query.status=info.status;}
          if(info.startDate){
@@ -212,7 +211,7 @@ router.put('/billvoid/:id',  security.ensureAuthorized,function(req, res, next) 
                                      orderUpdata.unpaid=billData.grandTotal;
                                      
                                if(billResult){
-                                orderUpdata.status="Demi-Paid";
+                                orderUpdata.status="Semi-Paid";
                                 orderUpdata.unpaid=toFixed(billData.grandTotal-(billResult.receiveTotal-billResult.change-billResult.tip),2);
                                }
                            
@@ -258,6 +257,7 @@ router.get('/:id',  security.ensureAuthorized,function(req, res, next) {
 })
 router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
    var info=req.body;
+   log.info("pay",info);
    var name="orderNo";
    info.merchantId=req.token.merchantId; 
    var query={"merchantId":info.merchantId,"name":name};
@@ -312,7 +312,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                orderUpdata.unpaid=toFixed(orderData.grandTotal-(billData.receiveTotal-billData.change),2);
                                orderUpdata.status="Paid";
                                if(orderUpdata.unpaid>0){
-                                orderUpdata.status="Demi-Paid";   
+                                orderUpdata.status="Semi-Paid";   
                                   
                                }
                                  orders.findOneAndUpdate(orderQuery,orderUpdata,{},function (err, orderData) {
@@ -388,7 +388,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                orderUpdata.unpaid=toFixed(data.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
                                orderUpdata.status="Paid";
                                if(orderUpdata.unpaid>0){
-                                orderUpdata.status="Demi-Paid";   
+                                orderUpdata.status="Semi-Paid";   
                                   
                                }
                                  orders.findOneAndUpdate(orderQuery,orderUpdata,{},function (err, orderData) {
@@ -420,6 +420,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
 })
 router.post('/',  security.ensureAuthorized,function(req, res, next) {
    var info=req.body;
+   log.info("NewOrder",info);
    var name="orderNo";
    info.merchantId=req.token.merchantId; 
    var query={"merchantId":info.merchantId,"name":name};
@@ -453,6 +454,7 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
 
 router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
      var info=req.body;
+     log.info("updateOrder",info);
      info.operator={};
     info.operator.id=req.token.id;
     info.operator.user=req.token.user;

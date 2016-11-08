@@ -403,6 +403,9 @@
    }
    $scope.getChainStores();
 })
+.controller('LogsCtrl', function($scope, $stateParams,$http,$location,$ionicPopup,CONFIG) {
+  alert("OK")
+})
 .controller('ManagerCtrl', function($scope,$ionicModal,$http,CONFIG) {
   
   // $scope.getSettings();

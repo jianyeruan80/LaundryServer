@@ -15,6 +15,7 @@ var groups = require('./routes/groups');
 var globalOptionGroups = require('./routes/globalOptionGroups');
 var categorys = require('./routes/categorys');
 var items = require('./routes/items');
+var debug = require('./routes/debug');
 var orders = require('./routes/orders');
 var seqs = require('./routes/seqs');
 var ejs = require('ejs');
@@ -74,6 +75,7 @@ app.get('/', function (req, res) {
 app.use('/superadmin', superAdmin);
 /*app.use('/api/seqs', seqs);*/
 app.use('/api/admin', admins);
+app.use('/api/logs', debug);
 app.use('/api/stores', stores);
 app.use('/api/customers', customers);
 app.use('/api/storehours', storeHours);

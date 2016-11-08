@@ -1,4 +1,33 @@
 var seqs = require('../models/seqs');
+var fs = require('fs');
+var path = require('path');
+var root_path=path.join(__dirname, '../logs');
+
+module.exports.logsList = function(path) {
+  return new Promise(function(resolve, reject) {
+         var currentPath = path || root_path;
+        var w_content=getAllFiles(currentPath);
+        resolve(w_content);
+  })
+  
+}
+
+function getAllFiles(root){
+  var res = [] , files = fs.readdirSync(root);
+  files.forEach(function(file){
+    var pathname = root+'/'+file
+    , stat = fs.lstatSync(pathname);
+
+    if (!stat.isDirectory()){
+        
+       res.push(pathname.replace(root_path+"/",""));
+    } else {
+       res = res.concat(getAllFiles(pathname));
+    }
+  });
+  return res
+}
+
 
 module.exports.getNextSequence = function(query) {
   return new Promise(function(resolve, reject) {
