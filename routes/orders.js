@@ -161,7 +161,7 @@ router.put('/void/:id',  security.ensureAuthorized,function(req, res, next) {
         log.info("void",info);
         var upData={status:"Void"};
             upData.reason=info.reason || "";
-        orders.findOneAndUpdate(query,info,{},function (err, data) {
+        orders.findOneAndUpdate(query,upData,{},function (err, data) {
                if (err) return next(err);
                query={"order":req.params.id};
                info={"status":"Void"};
@@ -307,15 +307,15 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                var orderQuery={"_id":billData._id};
 
                                var orderUpdata={};
-
-                               
-                               orderUpdata.unpaid=toFixed(orderData.grandTotal-(billData.receiveTotal-billData.change),2);
+                               var unpaid=toFixed(orderData.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
                                orderUpdata.status="Paid";
-                               if(orderUpdata.unpaid>0){
+                               
+                               if(unpaid>0){
                                 orderUpdata.status="Semi-Paid";   
-                                  
                                }
-                                 orders.findOneAndUpdate(orderQuery,orderUpdata,{},function (err, orderData) {
+                                
+                               orderUpdata.unpaid=unpaid==0?-billData.change:unpaid;
+                                  orders.findOneAndUpdate(orderQuery,orderUpdata,{},function (err, orderData) {
                                              if (err) return next(err);
                                              var initOrder={
                                                subTotal:0,
@@ -384,13 +384,15 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                var orderQuery={"_id":billData._id};
 
                                var orderUpdata={};
+                               var unpaid=toFixed(data.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
+                                 orderUpdata.status="Paid";
 
-                               orderUpdata.unpaid=toFixed(data.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
-                               orderUpdata.status="Paid";
                                if(orderUpdata.unpaid>0){
                                 orderUpdata.status="Semi-Paid";   
                                   
                                }
+				
+					orderUpdata.unpaid=unpaid==0?-billData.change:unpaid;
                                  orders.findOneAndUpdate(orderQuery,orderUpdata,{},function (err, orderData) {
                                              if (err) return next(err);
                                              var initOrder={
