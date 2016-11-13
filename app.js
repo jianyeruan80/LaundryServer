@@ -18,6 +18,7 @@ var items = require('./routes/items');
 var debug = require('./routes/debug');
 var orders = require('./routes/orders');
 var seqs = require('./routes/seqs');
+var settings=require('./routes/settings');
 var ejs = require('ejs');
 var multiparty = require('multiparty');
 var log=require('./modules/logs');
@@ -84,7 +85,7 @@ app.use('/api/globalOptionGroups', globalOptionGroups);
 app.use('/api/categorys', categorys);
 app.use('/api/items', items);
 app.use('/api/orders', orders);
-
+app.use('/api/settings',settings);
 /*app.use('/api/background', background);*/
 /*app.use('/api/menuitem', menuitem);*/
 

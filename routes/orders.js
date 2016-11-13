@@ -1,6 +1,7 @@
 var express = require('express'),
     router = express.Router(),
-    log = require('../modules/logs'),
+   mongoose = require('mongoose'), 
+   log = require('../modules/logs'),
     security = require('../modules/security'),
     tools = require('../modules/tools'),
     seqs = require('../models/seqs'),
@@ -12,6 +13,17 @@ var express = require('express'),
          var info=req.query;
          log.info('orders',info);
          var query={"merchantId":req.token.merchantId}
+         if(info.invoiceNo){query.invoiceNo={$regex:query.invoiceNo,$options: "i"}};
+         if(info.pickUpTime){
+            var startDate=new Date(info.pickUpTime);
+            startDate=new Date(startDate.getUTCFullYear(), startDate.getMonth(), startDate.getDate(), 0, 0, 0, 0);
+            query.pickUpTime={"$gte":startDate};
+         }
+         if(info.pickUpTime){
+          var endtDate=new Date(info.pickUpTime);
+              endtDate=new Date(endtDate.getUTCFullYear(), endtDate.getMonth(), endtDate.getDate(), 23, 59, 59, 999);
+              query.pickUpTime={"$lte":endtDate};
+         }   
          if(info.status){query.status=info.status;}
          if(info.startDate){
             var startDate=new Date(info.startDate);
@@ -214,7 +226,7 @@ router.put('/billvoid/:id',  security.ensureAuthorized,function(req, res, next) 
                                      
                                if(billResult){
                                 orderUpdata.status="Semi-Paid";
-                                orderUpdata.unpaid=toFixed(billData.grandTotal-(billResult.receiveTotal-billResult.change-billResult.tip),2);
+                                orderUpdata.unpaid=toFixed(billResult.grandTotal-(billResult.receiveTotal-billResult.change-billResult.tip),2);
                                }
                            
                                  orders.findOneAndUpdate(orderQuery,orderUpdata,{},function (err, orderData) {
@@ -269,7 +281,10 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
    info.createdAt=d;//new Date();
    info.updatedAt=d;//new Date();
    info.status="Unpaid"; //paid ,void
-
+   if(info.pickUpTime){
+   
+   try{info.pickUpTime=new Date(info.pickUpTime) } catch(ex){}
+   }
    if(info._id){
         orders.findOneAndUpdate({"_id":info._id},info,{},function (err, orderData) {
              if (err) return next(err);
@@ -307,7 +322,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                var orderQuery={"_id":billData._id};
 
                                var orderUpdata={};
-                               var unpaid=toFixed(orderData.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
+                               var unpaid=toFixed(info.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
                                orderUpdata.status="Paid";
                                
                                if(unpaid>0){
@@ -384,10 +399,10 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                var orderQuery={"_id":billData._id};
 
                                var orderUpdata={};
-                               var unpaid=toFixed(data.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
+                               var unpaid=toFixed(info.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
                                  orderUpdata.status="Paid";
 
-                               if(orderUpdata.unpaid>0){
+                               if(unpaid>0){
                                 orderUpdata.status="Semi-Paid";   
                                   
                                }
@@ -422,6 +437,8 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
 })
 router.post('/',  security.ensureAuthorized,function(req, res, next) {
    var info=req.body;
+ console.log("---------------------sssssssssss-------------");
+   console.log(info);
    log.info("NewOrder",info);
    var name="orderNo";
    info.merchantId=req.token.merchantId; 
@@ -430,6 +447,12 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
    info.operator.id=req.token.id;
    info.operator.user=req.token.user;
    info.createdBy=info.operator;
+   if(info.pickUpTime){
+   try{info.pickUpTime=new Date(info.pickUpTime) } catch(ex){ console.log(ex)}}
+   console.log("=====================================");
+console.log(info);
+
+ 
    var d=new Date();
    info.createdAt=d;//new Date();
    info.updatedAt=d;//new Date();
@@ -455,44 +478,67 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
 })
 
 router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
-     var info=req.body;
+var info=req.body;
      log.info("updateOrder",info);
      info.operator={};
     info.operator.id=req.token.id;
     info.operator.user=req.token.user;
     info.updatedAt=new Date();
+    info.status="Unpaid";
     var query={"_id":req.params.id};
-      var options = {new: true};  
-      orders.findOneAndUpdate(query,info,options,function (err, data) {
-                   if (err) return next(err);
-                         if(info.sign=="saveOrder") return res.json(data);  
-                          info.order=data._id;
-                          var b=new bills(info);
-                           b.save(function (err, data3) {
-                              if (err) return next(err);
-                               query={"_id":data3.order};
-                               var update={"status":"Paid"};
-                               orders.findOneAndUpdate(query,update,{},function (err, data2) {
-                                  if (err) return next(err);
-                                  var initOrder={
-                                    subTotal:0,
-                                    tax:0,
-                                     taxRate:0,
-                                     tip:0,
-                                     tipRate:0,
-                                     discount:0,
-                                     discountRate:0,
-                                     grandTotal:0,
-                                    receiveTotal:0,
-                                    orderDetails:[]
-                                  };
-                                  res.json(initOrder);
-                               })
-                           })
+    var options = {new: true};
+ console.log("==========================");
+console.log(req.params.id);
+console.log("===============");   
+  if(info.pickUpTime){
+   try{info.pickUpTime=new Date(info.pickUpTime) } catch(ex){}}
+info.unpaid=info.grandTotal;
+         bills.aggregate([
+                               { $match: { "order":mongoose.Types.ObjectId(req.params.id),"status":"Paid" } },
+                               {
+                                $project:
+                                {
+                                   order:1,receiveTotal:1,tip:1,
+                                   change:{$cond: [ { $gte: [ "$change", 0 ] }, "$change", 0 ]}
+                                }
+                               },
+                               {  $group: {
+                                  _id: "$order",
+                                  receiveTotal: { $sum: "$receiveTotal" } ,
+                                  change: { $sum:"$change"}   ,
+                                  tip: { $sum: "$tip" } ,
 
-                  }) 
+                                }
+                               }
+
+
+                           ]).exec(function(err,billData){
+                              if (err) return next(err);
+                               console.log(billData);
+              
+                               var billData=billData[0];
+                               if(billData){
+                               console.log("=================AAA=================");
+                                   var orderQuery={"_id":billData.order};
+                                   var unpaid=toFixed(info.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
+                                   info.status="Paid";
+                                    if(unpaid>0){
+                                    info.status="Semi-Paid";
+
+                                   }
+                                    info.unpaid=unpaid==0?-billData.change:unpaid;
+                                  }
+                                   console.log(info);
+
+                                                        orders.findOneAndUpdate(query,info,options,function (err, orderData) {
+                                             if (err) return next(err);
+
+                                             res.json(orderData);
+                                    })
+ })
+
+})                           
     
-});
 
 
 module.exports = router;

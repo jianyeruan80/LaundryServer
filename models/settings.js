@@ -7,7 +7,7 @@ var settingsSchema = new mongoose.Schema({
  createdAt:{type:Date,default:Date.now},
  updatedAt:Date,
  merchantId:{type:String,lowercase: true, trim: true},
- group:name,
+ group:String,
  settingInfo:Schema.Types.Mixed,
  operator:{
   id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
