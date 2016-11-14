@@ -126,7 +126,12 @@ try{
           res.json(data);
     });
 })
-
+router.delete('/',function(req, res, next) {
+     stores.remove({}, function (err, data) {
+        if (err) return next(err);
+          res.json(data);
+      });
+});
 router.delete('/:id', security.ensureAuthorized,function(req, res, next) {
      stores.remove({"_id":req.params.id}, function (err, data) {
         if (err) return next(err);
