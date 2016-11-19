@@ -25,6 +25,7 @@ var express = require('express'),
               query.pickUpTime={"$lte":endtDate};
          }   
          if(info.status){query.status=info.status;}
+         
          if(info.startDate){
             var startDate=new Date(info.startDate);
             startDate=new Date(startDate.getUTCFullYear(), startDate.getMonth(), startDate.getDate(), 0, 0, 0, 0);
@@ -35,7 +36,9 @@ var express = require('express'),
               endtDate=new Date(endtDate.getUTCFullYear(), endtDate.getMonth(), endtDate.getDate(), 23, 59, 59, 999);
               query.createdAt={"$lte":endtDate};
          }   
-
+         if(info.number){
+             
+         }
     orders.aggregate([
     {
       $match:query
@@ -55,12 +58,18 @@ var express = require('express'),
           from: "customers",
           localField: "customer.id",
           foreignField: "_id",
-          as: "customers"
+          as: "customer"
         }
-   }
+   },
+{
+  $unwind:{path:"$customer",preserveNullAndEmptyArrays:true}
+}
+
 ]).exec(function(err,data){
 
-
+console.log("======================aaaaaaaaaaaaaa");
+console.log(data);
+console.log("xxxxxxxxxxxxxxx");
 res.json(data);
 
 
