@@ -35,9 +35,12 @@ var express = require('express'),
           var endtDate=new Date(info.endtDate);
               endtDate=new Date(endtDate.getUTCFullYear(), endtDate.getMonth(), endtDate.getDate(), 23, 59, 59, 999);
               query.createdAt={"$lte":endtDate};
-         }   
+         } 
+         var queryArray=[];
          if(info.number){
-             
+             queryArray.push({"invoiceNo":{$regex:number,$options: "i"}});
+             queryArray.push({"customer.phoneNum1":{$regex:number,$options: "i"}};
+              queryArray.push({"customer.phoneNum2":{$regex:number,$options: "i"}});
          }
     orders.aggregate([
     {
@@ -63,8 +66,13 @@ var express = require('express'),
    },
 {
   $unwind:{path:"$customer",preserveNullAndEmptyArrays:true}
-}
-
+},
+{
+  $match:{
+          $or:queryArray
+        }
+},
+{ $sort : { updatedAt : -1, pickUpTime: -1 } }
 ]).exec(function(err,data){
 
 console.log("======================aaaaaaaaaaaaaa");
@@ -146,8 +154,60 @@ orders.aggregate([
 res.json(data);
 })
 })
-router.post('/invoice/:id',  security.ensureAuthorized,function(req, res, next) {
-       var id=req.params.id;
+router.post('/invoice/:number',  security.ensureAuthorized,function(req, res, next) {
+   var info=req.query;
+         log.info('orders',info);
+         var query={"merchantId":req.token.merchantId}
+        
+         var number=req.params.number;
+    orders.aggregate([
+    {
+      $match:query
+    },
+    {
+      $lookup:
+        {
+          from: "bills",
+          localField: "_id",
+          foreignField: "order",
+          as: "bills"
+        }
+   },
+    {
+      $lookup:
+        {
+          from: "customers",
+          localField: "customer.id",
+          foreignField: "_id",
+          as: "customer"
+        }
+   },
+{
+  $unwind:{path:"$customer",preserveNullAndEmptyArrays:true}
+},
+{
+  $match:{
+          $or:[
+                      {"invoiceNo":{$regex:number,$options: "i"}},
+                      {"customer.phoneNum1":{$regex:number,$options: "i"}},
+                       {"customer.phoneNum2":{$regex:number,$options: "i"}},
+                     
+            ] 
+        }
+},
+ { $sort : { updatedAt : -1, pickUpTime: -1 } },
+{ $limit : 50 }
+
+]).exec(function(err,data){
+
+console.log("======================aaaaaaaaaaaaaa");
+console.log(data);
+console.log("xxxxxxxxxxxxxxx");
+res.json(data);
+
+
+})
+     /*  var id=req.params.id;
       log.info("invoice",id);
        var query={
            $and:[
@@ -163,7 +223,7 @@ router.post('/invoice/:id',  security.ensureAuthorized,function(req, res, next) 
        orders.find(query, function (err, data) {
         if (err) return next(err);
          res.json(data);
-      });
+      });*/
 })
 router.get('/bills',  security.ensureAuthorized,function(req, res, next) {
         var info=req.query;
