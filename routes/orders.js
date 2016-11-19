@@ -43,7 +43,7 @@ var express = require('express'),
               queryArray.push({"customer.phoneNum2":{$regex:number,$options: "i"}});
          }else{
         	queryArray.push({});  
-	}
+         }
     orders.aggregate([
     {
       $match:query
