@@ -39,9 +39,11 @@ var express = require('express'),
          var queryArray=[];
          if(info.number){
              queryArray.push({"invoiceNo":{$regex:number,$options: "i"}});
-             queryArray.push({"customer.phoneNum1":{$regex:number,$options: "i"}};
+             queryArray.push({"customer.phoneNum1":{$regex:number,$options: "i"}});
               queryArray.push({"customer.phoneNum2":{$regex:number,$options: "i"}});
-         }
+         }else{
+        	queryArray.push({});  
+	}
     orders.aggregate([
     {
       $match:query
@@ -68,9 +70,9 @@ var express = require('express'),
   $unwind:{path:"$customer",preserveNullAndEmptyArrays:true}
 },
 {
-  $match:{
-          $or:queryArray
-        }
+$match:{
+$or:queryArray
+}
 },
 { $sort : { updatedAt : -1, pickUpTime: -1 } }
 ]).exec(function(err,data){
