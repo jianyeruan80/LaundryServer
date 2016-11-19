@@ -39,8 +39,10 @@ var express = require('express'),
          var queryArray=[];
          if(info.number){
              queryArray.push({"invoiceNo":{$regex:number,$options: "i"}});
-             queryArray.push({"customer.phoneNum1":{$regex:number,$options: "i"}};
+             queryArray.push({"customer.phoneNum1":{$regex:number,$options: "i"}});
               queryArray.push({"customer.phoneNum2":{$regex:number,$options: "i"}});
+         }else{
+          queryArray.push({});
          }
     orders.aggregate([
     {
