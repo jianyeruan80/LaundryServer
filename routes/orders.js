@@ -38,13 +38,16 @@ var express = require('express'),
          } 
          var queryArray=[];
          if(info.number){
-             queryArray.push({"invoiceNo":{$regex:number,$options: "i"}});
-             queryArray.push({"customer.phoneNum1":{$regex:number,$options: "i"}});
-              queryArray.push({"customer.phoneNum2":{$regex:number,$options: "i"}});
+             queryArray.push({"invoiceNo":{$regex:info.number,$options: "i"}});
+             queryArray.push({"customer.phoneNum1":{$regex:info.number,$options: "i"}});
+              queryArray.push({"customer.phoneNum2":{$regex:info.number,$options: "i"}});
          }else{
         	queryArray.push({});  
          }
+  console.log(queryArray);
+
     orders.aggregate([
+
     {
       $match:query
     },
@@ -71,7 +74,7 @@ var express = require('express'),
 },
 {
 $match:{
-$or:queryArray
+ $and:[{"$or":queryArray}]
 }
 },
 { $sort : { updatedAt : -1, pickUpTime: -1 } }
@@ -188,14 +191,14 @@ router.post('/invoice/:number',  security.ensureAuthorized,function(req, res, ne
   $unwind:{path:"$customer",preserveNullAndEmptyArrays:true}
 },
 {
-  $match:{
+  $match:{$and:[{
           $or:[
                       {"invoiceNo":{$regex:number,$options: "i"}},
                       {"customer.phoneNum1":{$regex:number,$options: "i"}},
                        {"customer.phoneNum2":{$regex:number,$options: "i"}},
                      
             ] 
-        }
+        }]}
 },
  { $sort : { updatedAt : -1, pickUpTime: -1 } },
 { $limit : 50 }
