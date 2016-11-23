@@ -9,7 +9,7 @@ var express = require('express'),
     orders = require('../models/orders'),
     bills = require('../models/bills'),
     stores = require('../models/stores');
-    router.post('/',  security.ensureAuthorized,function(req, res, next) {
+    router.post('/query',  security.ensureAuthorized,function(req, res, next) {
          var info=req.body;
          log.info('orders',info);
          var query={"merchantId":req.token.merchantId}

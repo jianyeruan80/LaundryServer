@@ -18,9 +18,9 @@ item:{type: mongoose.Schema.Types.ObjectId, ref: 'items' }
 
 var ordersSchema = new Schema({
 orderNo:String,
-invoiceNo:String, 
+invoiceNo:{type:String, index: true, required: true},
 notes:String,
-pickUpTime:Date,
+pickUpTime:{type:Date,index:true},
 timer:Date,
 merchantId:{type:String,lowercase: true, trim: true},
 subTotal:Number,
@@ -38,8 +38,8 @@ discount:Number,//-
 grandTotal:Number,
 unpaid:Number,
 reason:String,
-status:{type:String,default:"Unpaid"},//uppaid,paid,close
-createdAt: {type:Date,default:Date.now},
+status:{type:String,default:"Unpaid",index:true},//uppaid,paid,close
+createdAt: {type:Date,default:Date.now,index:true},
 updatedAt: Date,
 createdBy:{
 	id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },

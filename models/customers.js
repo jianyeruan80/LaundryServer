@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-require('mongoose-schematypes-extend')(mongoose);
 var Schema = mongoose.Schema;
 var lauguagesSchema = new Schema({
     "second":String,
@@ -30,7 +29,7 @@ var customersSchema = new mongoose.Schema({
   	lastName:String,
 	  birthDay:Date,
 	  addressInfo:[addressSchema],
-	  phoneNum1:String,
+	  phoneNum1:{type:String,trim: true, index: true, required: true},
 	  phoneNum2:String,
 	  email:{type:String,lowercase:true},
     password:String,
@@ -54,7 +53,7 @@ var customersSchema = new mongoose.Schema({
          description:lauguagesSchema
     },
 });
-customersSchema.index({ email: 1 ,merchantId:1}, { unique: true,sparse:true });
+customersSchema.index({ phoneNum1: 1 ,merchantId:1}, { unique: true,sparse:true });
 
 module.exports = mongoose.model('customers', customersSchema);
 
