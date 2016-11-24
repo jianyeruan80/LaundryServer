@@ -1,6 +1,12 @@
 var seqs = require('../models/seqs');
 var fs = require('fs');
 var path = require('path');
+var S3FS = require('s3fs');
+var options={
+  "accessKeyId":"AKIAIOEFE7NF2ZAPDNAA",
+  "secretAccessKey":"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"
+}
+var filePath="C:/jayruanwork/app/node/test/test1.rar";
 var root_path=path.join(__dirname, '../logs');
 
 module.exports.logsList = function(path) {
@@ -29,7 +35,7 @@ function getAllFiles(root){
 }
 
 
-module.exports.getNextSequence = function(query) {
+ module.exports.getNextSequence = function(query) {
   return new Promise(function(resolve, reject) {
             var options = {new: false,upsert: true};
             var rightNow=new Date();
@@ -59,9 +65,7 @@ module.exports.getNextSequence = function(query) {
             var currentData=data[0];
             if(!currentData){reject("");return false};
             var seqNo=currentData.pre || "";
-           
-           
-              currentData.seq++
+             currentData.seq++
 
               if(!!currentData.seqEnd && currentData.seqStart && currentData.seqEnd>0 && currentData.seq>currentData.seqEnd){
                     currentData.seq=currentData.seqStart;
@@ -78,32 +82,13 @@ module.exports.getNextSequence = function(query) {
                    "seq":currentData.seq,"updatedAt":new Date()
               }
               resolve({"seqNo":seqNo,"updateData":update});
-          /*seqs.findOneAndUpdate(query,currentData,options,function (err, data2) {
-          if (err){reject(err);return false};
-             
-         });*/
-              
+       
 })
                
-  
-          
-        /*  seqs.findOneAndUpdate(tableColumn,query,options,function(err, data) {
-                          if (err) resolve(value);
-                          
-                          if(!!maxvalue && data.seq>maxvalue){
-                                      seqs.findOneAndUpdate(tableColumn,{"seq":value},options,function(err, data) {
-                                         if (err) resolve(value);
-                                         resolve(data.seq); 
-                                      })
-                          }else{
-                            resolve(data.seq);  
-                          }
-          });*/
-  })
+})
 };
 
 module.exports.upload = function(req, res, next) {
-  
     var fold=req.token.merchantId;
     var photoPath=path.join(__dirname, 'public')+'/'+fold;
     mkdirp(photoPath, function (err) {
@@ -120,8 +105,53 @@ module.exports.upload = function(req, res, next) {
 
 }
 
+module.exports.upload = function(req, res, next,fileName) {
+var fsImpl = new S3FS('amazondb', options);
+var fold=getYearMonthDate();
+fsImpl.exists(flod).then(function(files) {
+        if(files){
+            fsImpl.mkdirp(flod).then(function() {
+               fsImpl=new S3FS('amazondb/'+flod, options);
 
+            }) 
+        }else{
+              fsImpl=new S3FS('amazondb/'+flod, options);
 
+        }
+               var fileName=fileName || new Date().getTime();
+               var readStream = fs.createReadStream(filePath);
+               fsImpl.writeFile(fileName,readStream).then(function(){
+                   console.log(reason);
+               })
+},function(reason) {
+  console.log(reason);
+        
+});
+/*    var fold=req.token.merchantId;
+    var photoPath=path.join(__dirname, 'public')+'/'+fold;
+    mkdirp(photoPath, function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+    var form = new multiparty.Form({uploadDir:  photoPath});
+    var  store={};
+         store.success=true;
+       form.parse(req, function(err, fields, files) {
+        store.message=files;
+        res.json(store);
+     })*/
+
+}
+
+function getYearMonthDate(dateStr){
+var d=dateStr?new Date(dateStr):new Date();
+var date=d.getDate();
+date=date>=10?date:'0'+date;
+var month=d.getMonth();
+month=month>=10?month:'0'+month;
+var year=d.getFullYear();
+return ''+month+date+year;
+}
 /*   
   PersonModel.update({_id:_id},{$set:{name:'MDragon'}},function(err){});
 Person.findByIdAndUpdate(_id,{$set:{name:'MDragon'}},function(err,person){
