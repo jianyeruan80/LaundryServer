@@ -1,32 +1,46 @@
-var fs = require('fs');
-var path = require('path');
 var S3FS = require('s3fs');
+var path = require('path');
+var fs = require('fs');
 var options={
   "accessKeyId":"AKIAIOEFE7NF2ZAPDNAA",
   "secretAccessKey":"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"
 }
+
+
 var filePath="/home/jianyeruan/app/mongotar/ALL.2016112421.tar.gz";
 var fsImpl = new S3FS('amazondb', options);
+var fileName="A"+new Date().getTime();
 var fold=getYearMonthDate();
-fsImpl.exists(flod).then(function(files) {
-        if(files){
-            fsImpl.mkdirp(flod).then(function() {
-               fsImpl=new S3FS('amazondb/'+flod, options);
+fsImpl.exists(fold).then(function(files) {
+    if(files){
+    fsImpl.mkdirp(fold).then(function() {
+      fsImpl=new S3FS('amazondb/'+fold, options);
+      var readStream = fs.createReadStream(filePath);
+         fsImpl.writeFile(fileName,readStream).then(function(){
+            console.log("sucessful");
+         })
+    }, function(reason) {
+     console.log(reason);
+    });
+  }else{
+     fsImpl=new S3FS('amazondb/'+fold, options);
+       var readStream = fs.createReadStream(filePath);
+     fsImpl.writeFile(fileName,readStream).then(function(){
+        console.log("sucessful");
+      })
 
-            }) 
-        }else{
-              fsImpl=new S3FS('amazondb/'+flod, options);
 
-        }
-               var fileName=fileName || new Date().getTime();
-               var readStream = fs.createReadStream(filePath);
-               fsImpl.writeFile(fileName,readStream).then(function(){
-                   console.log(reason);
-               })
-},function(reason) {
+  }
+}, function(reason) {
   console.log(reason);
-        
 });
-/*
-docker run -it --volumes-from=data  --link mongo:mongo -e APPPATH="jaynode" --rm jianyeruan/node /run.sh node modules/createSuper.js
-*/
+
+function getYearMonthDate(dateStr){
+var d=dateStr?new Date(dateStr):new Date();
+var date=d.getDate();
+date=date>=10?date:'0'+date;
+var month=d.getMonth();
+month=month>=10?month:'0'+month;
+var year=d.getFullYear();
+return ''+month+date+year;
+}
