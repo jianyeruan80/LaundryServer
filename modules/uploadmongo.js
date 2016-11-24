@@ -7,9 +7,9 @@ var options={
 }
 
 
-var filePath="/home/jianyeruan/app/mongotar/ALL.2016112421.tar.gz";
+var filePath="/usr/share/app/mongotar/ALL.2016112421.tar.gz";
 var fsImpl = new S3FS('amazondb', options);
-var fileName="A"+new Date().getTime();
+var fileName=getYearMonthDate(true,'A')+'.tar.gz';
 var fold=getYearMonthDate();
 fsImpl.exists(fold).then(function(files) {
     if(files){
@@ -35,12 +35,19 @@ fsImpl.exists(fold).then(function(files) {
   console.log(reason);
 });
 
-function getYearMonthDate(dateStr){
+function getYearMonthDate(sign,pre,dateStr){
+var pre=pre || "";
 var d=dateStr?new Date(dateStr):new Date();
 var date=d.getDate();
 date=date>=10?date:'0'+date;
 var month=d.getMonth();
 month=month>=10?month:'0'+month;
 var year=d.getFullYear();
-return ''+month+date+year;
+var longStr='-'+d.getHours()+d.getMinutes();
+if(sign){
+longStr=pre+year+month+date+longStr;
+}else{
+longStr=pre+year+month+date;
+}
+return longStr;
 }
