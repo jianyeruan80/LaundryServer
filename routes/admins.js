@@ -29,11 +29,20 @@ var users=admins.users;
  */
 router.post('/login', function(req, res, next) {
      var info=req.body;
+  var password=info.password || "";
+ var token=info.token || "";
 
    var query={
-    //  "userName":new RegExp("^"+info.userName+"$", 'i'), //new RegExp("^"+info.userName+"$", 'i'),
-      "password":security.encrypt(md5(info.password)),
-      "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}
+      $and:[
+         { "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}},
+         { $or:[
+           {"password":security.encrypt(md5(password))},
+           {"token":security.encrypt(md5(token))}
+         ]}
+        ]
+
+        
+     
    };
    
 

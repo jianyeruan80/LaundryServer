@@ -52,7 +52,7 @@ var usersSchema = new Schema({
    email:{type:String,lowercase: true, trim: true},
    phoneNum1:String,
    phoneNum2:String,
-   birthday: String, 
+   birthday: Date, 
    address:addressSchema,
    token:{type:String,default:""},
    type:{type:String,default:""},
@@ -61,6 +61,7 @@ var usersSchema = new Schema({
    createdAt: {type:Date,default:Date.now},
    updatedAt: Date,
    storeName:String,
+   token:String,
    operator:{
   id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
   user:String
