@@ -265,7 +265,7 @@ router.put('/void/:id',  security.ensureAuthorized,function(req, res, next) {
                if (err) return next(err);
                query={"order":req.params.id};
                info={"status":"Void"};
-               bills.findOneAndUpdate(query,info,{},function (err, data) {
+               bills.findOneAndUpdate(query,info,{},function (err, billData) {
                 if (err) return next(err);
                  res.json(data);
                 })
