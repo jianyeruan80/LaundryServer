@@ -50,7 +50,21 @@ var express = require('express'),
 
     {
       $match:query
-    },
+    }
+
+,
+    {
+      $project:
+      {
+     orderNo:1,invoiceNo:1,notes:1,pickUpTime:1,timer:1,merchantId:1,
+    subTotal:1,taxRate:1,tax:1,tip:1,tipTotal:1,orderDetails:1,grandTotal:1,
+    reason:1,status:1,createdAt:1,updatedAt:1,createdBy:1,operator:1,customer:1,
+    unpaid:{
+        $cond: [ { $eq: [ "$status", "Void" ] }, "$grandTotal", "$unpaid" ]
+      }
+    }
+}
+,
     {
       $lookup:
         {
