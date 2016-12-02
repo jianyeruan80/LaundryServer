@@ -7,6 +7,7 @@ category:String,
 price:Number,
 qty:Number,
 name:String,
+charge:Number,
 currentPrice:Number,//-
 discount:Number,//-
 discountRate:Number,//-
