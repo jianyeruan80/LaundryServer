@@ -27,7 +27,8 @@ var users=admins.users;
 
  * @apiSuccess {object} success:true,message:{}
  */
-router.post('/login', function(req, res, next) {
+
+router.post('/loginBak', function(req, res, next) {
      var info=req.body;
   var password=info.password || "";
  var token=info.token || "";
@@ -44,21 +45,16 @@ router.post('/login', function(req, res, next) {
         
      
    };
-   
-
     users.aggregate([
       { $match: query},
       { $lookup: {from: 'permissions', localField: 'defaultPerm', foreignField: 'perm', as: 'perms'} },
+      {$unwind:"$merchantIds"},
+      
       { $lookup: {from: 'stores', localField: 'merchantId', foreignField: 'merchantId', as: 'stores'} },
-      {
-        $project:{
-         userName:1,status: 1,defaultPerm: 1,roles:1,admin:1,perms:1,storeName:1,
-         permissions:1,
-         stores_docs :{ $cond : [ { $eq : [ "$stores", [] ] }, [0], '$stores' ] }
-      }
-    },
+      
       { 
-        $unwind:"$stores_docs"
+         $unwind: {path: "$stores",preserveNullAndEmptyArrays: true
+            }
       }]
       
        ).exec( function (err, result) {
@@ -127,6 +123,109 @@ for(var i =0; i< perms.length; i++){
           returnData.accessToken=accessToken;
 
           res.json(returnData);
+  }); 
+        
+   });
+});
+
+router.post('/login', function(req, res, next) {
+     var info=req.body;
+  var password=info.password || "";
+ var token=info.token || "";
+
+   var query={
+      $and:[
+         { "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}},
+         { $or:[
+           {"password":security.encrypt(md5(password))},
+           {"token":security.encrypt(md5(token))}
+         ]}
+        ]
+
+        
+     
+   };
+   
+
+    users.aggregate([
+      { $match: query},
+      {$unwind:"$merchantIds"},
+/*      { $lookup: {from: 'permissions', localField: 'defaultPerm', foreignField: 'perm', as: 'perms'} },*/
+      { $lookup: {from: 'stores', localField: 'merchantId', foreignField: 'merchantId', as: 'stores'} },
+      { 
+	$unwind: {path: "$stores",preserveNullAndEmptyArrays: true }      
+}]
+      
+       ).exec( function (err, result) {
+        if (err) return next(err);
+          if (!result || result.length<1) return next({"code":"90002"});
+          if(result[0].status==false) return next({"code":"90004"});
+          users.populate(result,[
+         { path:'roles',populate:{ path: 'permissions'}},
+         { path:'permissions'}],
+          function (err, datas) {
+          if (err) return next(err);
+
+           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":datas[0]._id,"user":datas[0].userName},req.app.get("superSecret"), {
+          expiresIn: '120m',
+          algorithm: 'HS256'
+          });
+
+          var data=datas[0];
+/*          var perms=data.permissions?data.permissions:[];
+                     
+            if(!!data.roles){
+                for(var j=0;j<data.roles.length;j++) {
+                  perms = perms.concat(data.roles[j].permissions);
+                }
+            }
+            if(!!data.perms){
+              for(var j=0;j<data.perms.length;j++) {
+                  perms = perms.concat(data.perms[j]);
+              }
+            }
+       
+          var cloneOfA = JSON.parse(JSON.stringify(perms));
+perms=security.unique5(cloneOfA,"_id");
+
+var jobsSortObject = {}; 
+  for(var i =0; i< perms.length; i++){
+   var job = perms[i],
+   mark = job.permissionGroup+'-'+job.subject,
+   jobItem = jobsSortObject[mark];
+
+  if(jobItem){
+    
+   jobsSortObject[mark]=jobItem+job.perm;
+  }else{
+   jobsSortObject[mark] = job.perm;
+  }
+}
+
+var jobsSortObjectList = {}; 
+for(var i =0; i< perms.length; i++){
+   var job = perms[i],
+   mark = job.permissionGroup,
+   jobItem = jobsSortObjectList[mark];
+  if(jobItem){
+   jobsSortObjectList[mark].push(job);
+  }else{
+   jobsSortObjectList[mark] = [job];
+  }
+}
+         var returnData={};
+
+          returnData.perms=jobsSortObject;
+          returnData.permsList=jobsSortObjectList;
+          returnData.username=data.userName;
+          returnData.storeName=data.storeName;
+          returnData.merchantId=info.merchantId;
+          returnData.accessToken=accessToken;
+
+          res.json(returnData);*/
+data.accessToken=accessToken;
+console.log(data);
+res.json(data);
   }); 
         
    });
@@ -382,12 +481,20 @@ var options = {new: true};
  info.operator.user=req.token.user;
 try{info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex){}
 
-users.findOneAndUpdate(query,info,options,function (err, data) {
+ var query={
+            "merchantIds":req.token.merchantId,
+            "password":info.password,
+            "_id":{$ne:id}
+      }
+ users.findOne(query).exec(function(err,data){
+         if (err) return next(err);
+         if(!!data) return next({"code":"90009"});
+         users.findByIdAndUpdate(id,info,options,function (err, data) {
                        if (err) return next(err);
                         res.json(data);
                       });
-                        
-  
+          
+      })
 })
 router.delete('/users/:id',  security.ensureAuthorized,function(req, res, next) {
 var query={};
