@@ -121,10 +121,11 @@ for(var i =0; i< perms.length; i++){
 
 router.post('/login', function(req, res, next) {
 var info=req.body;
+
 var password=info.password || "";
 var token=info.token || "";
 var query={
-      $and:[
+    $and:[
          { "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}},
          { $or:[
            {"password":security.encrypt(md5(password))},
@@ -144,7 +145,25 @@ users.findOne(query).populate([
           expiresIn: '120m',
           algorithm: 'HS256'
           });
-var data=datas[0];
+
+
+          var data=datas[0];
+          var perms=data.permissions?data.permissions:[];
+          var permsTemp=[];                   
+            if(!!data.roles){
+                for(var j=0;j<data.roles.length;j++) {
+                  perms = perms.concat(data.roles[j].permissions);
+                }
+            }
+          perms=security.unique5(perms,"_id");
+          var permsLength=perms.length-1;
+           for(var k=permsLength;k>0;k--){
+           	if(perms[k].perm<4){}else{
+                	permsTemp.push(perms[k].action); 
+                }
+	   }
+        data.permissions=permsTemp;
+
 data.accessToken=accessToken;
 console.log(data);
 res.json(data);
@@ -174,7 +193,10 @@ router.get('/perms', security.ensureAuthorized,function(req, res, next) {
                  };
 
       permissions.aggregate(
-           [ {$match:query},{ $group : {_id : "$permissionGroup",  order: { $min: "$order" },
+           [ {$match:query},
+        
+         {$sort:{order:1}},
+          { $group : {_id : "$permissionGroup",  order: { $min: "$order" },
              perms:{$push:{"subject":"$subject","action":"$action","perm":"$perm","status":"$status","value":"$_id","key":"$perm","order":"$order","merchantIds":"$merchantIds"} } 
 
             }}
