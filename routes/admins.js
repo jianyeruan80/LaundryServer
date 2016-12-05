@@ -129,7 +129,7 @@ for(var i =0; i< perms.length; i++){
 });
 
 router.post('/login', function(req, res, next) {
-     var info=req.body;
+var info=req.body;
   var password=info.password || "";
  var token=info.token || "";
 
@@ -172,14 +172,22 @@ router.post('/login', function(req, res, next) {
           });
 
           var data=datas[0];
-/*          var perms=data.permissions?data.permissions:[];
-                     
+          var perms=data.permissions?data.permissions:[];
+          var permsTemp=[];                   
             if(!!data.roles){
                 for(var j=0;j<data.roles.length;j++) {
                   perms = perms.concat(data.roles[j].permissions);
                 }
             }
-            if(!!data.perms){
+          perms=security.unique5(perms,"_id");
+          var permsLength=perms.length-1;
+           for(var k=permsLength;k>0;k--){
+           	if(perms[k].perm<4){}else{
+                	permsTemp.push(perms[k].action); 
+                }
+	   }
+        data.permissions=permsTemp;
+/*            if(!!data.perms){
               for(var j=0;j<data.perms.length;j++) {
                   perms = perms.concat(data.perms[j]);
               }
@@ -187,13 +195,11 @@ router.post('/login', function(req, res, next) {
        
           var cloneOfA = JSON.parse(JSON.stringify(perms));
 perms=security.unique5(cloneOfA,"_id");
-
 var jobsSortObject = {}; 
   for(var i =0; i< perms.length; i++){
    var job = perms[i],
    mark = job.permissionGroup+'-'+job.subject,
    jobItem = jobsSortObject[mark];
-
   if(jobItem){
     
    jobsSortObject[mark]=jobItem+job.perm;
@@ -201,7 +207,6 @@ var jobsSortObject = {};
    jobsSortObject[mark] = job.perm;
   }
 }
-
 var jobsSortObjectList = {}; 
 for(var i =0; i< perms.length; i++){
    var job = perms[i],
@@ -214,14 +219,12 @@ for(var i =0; i< perms.length; i++){
   }
 }
          var returnData={};
-
           returnData.perms=jobsSortObject;
           returnData.permsList=jobsSortObjectList;
           returnData.username=data.userName;
           returnData.storeName=data.storeName;
           returnData.merchantId=info.merchantId;
           returnData.accessToken=accessToken;
-
           res.json(returnData);*/
 data.accessToken=accessToken;
 console.log(data);
@@ -253,16 +256,20 @@ router.get('/perms', security.ensureAuthorized,function(req, res, next) {
                    ]
                  };
 
-   console.log(query);
       permissions.aggregate(
-           [ {$match:query},{ $group : {_id : "$permissionGroup",  order: { $min: "$order" },
+           [ {$match:query},
+        
+         {$sort:{order:1}},
+          { $group : {_id : "$permissionGroup",  order: { $min: "$order" },
              perms:{$push:{"subject":"$subject","action":"$action","perm":"$perm","status":"$status","value":"$_id","key":"$perm","order":"$order","merchantIds":"$merchantIds"} } 
 
             }}
         ]
         ).sort({"order" : 1}).exec(function(err,data){
             if (err) return next(err);
-
+ console.log("======================");      
+      console.log(JSON.stringify(data));
+console.log("======================");
              res.json(data);
         })
 

@@ -120,7 +120,6 @@ delete info["expires"];
 delete info["licenseKey"];
 try{
   info.addressInfo.location.coordinates=info.addressInfo.location.coordinates?info.addressInfo.location.coordinates.split(","):[];}catch(ex){}
-
  stores.findOneAndUpdate(query,info,options,function (err, data) {
           if (err) return next(err);
           res.json(data);
