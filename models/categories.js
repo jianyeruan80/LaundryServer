@@ -32,7 +32,7 @@ var optionsGroupsSchema = new mongoose.Schema({
     }
    
 });
-var categorysSchema = new mongoose.Schema({
+var categoriesSchema = new mongoose.Schema({
     merchantId:{type:String,lowercase: true, trim: true},
     name:{type:String},
     group:{ type: mongoose.Schema.Types.ObjectId, ref: 'groups',null: true },
@@ -53,8 +53,8 @@ var categorysSchema = new mongoose.Schema({
     }
 });
 
-categorysSchema.index({ name: 1, merchantId: 1 }, { unique: true,sparse:true});
-module.exports = mongoose.model('categorys', categorysSchema);
+categoriesSchema.index({ name: 1, merchantId: 1 }, { unique: true,sparse:true});
+module.exports = mongoose.model('categories', categoriesSchema);
 /*{ createdAt: { type: Date, expires: 3600, default: Date.now }}
 OrderList.$.UserName","大叔2015-09-21
 */

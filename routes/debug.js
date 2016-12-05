@@ -6,7 +6,6 @@ var express = require('express'),
     tools = require('../modules/tools');
     var  container=[];
     var sign="";
-
 router.get('/',function(req, res, next) {
   var p1=tools.logsList();
            p1.then(function(n){
@@ -79,9 +78,6 @@ return new Promise(function(resolve, reject) {
 })
 }
 function func(data) {
-// if(!sign){
- //      container.unshift(data);
- // }else{
        container.push(data);
   }
  

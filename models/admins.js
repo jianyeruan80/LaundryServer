@@ -12,8 +12,6 @@ var permissionsSchema = new Schema({
   createdAt: {type:Date,default:Date.now},
   updatedAt: Date
 });
-
-
 var rolesSchema = new Schema({
    name: {type:String},
    description:String,
@@ -28,9 +26,6 @@ var rolesSchema = new Schema({
   user:String
 },
 });
-
-
-
 var addressSchema = new Schema({
       address: String,
       city: String,
@@ -73,7 +68,6 @@ var chainStoresSchema = new Schema({
 
 });
 
-
 permissionsSchema.index({ permissionGroup: 1 ,subject:1,action:1}, { unique: true,sparse:true });
 rolesSchema.index({ name: 1 ,merchantId:1}, { unique: true,sparse:true });
 usersSchema.index({ userName: 1,merchantIds:1}, { unique: true,sparse:true});
@@ -84,6 +78,10 @@ module.exports.users = mongoose.model('users', usersSchema);
 module.exports.chainStores = mongoose.model('chainStores', chainStoresSchema);
 
 /*
+schemaModel.findOne({name:'loong'},function(err,doc){
+        doc.set({baseinfo:{age:26}});
+        doc.save();
+    });
 ============================
 1,不用权限
 2,read

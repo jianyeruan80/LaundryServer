@@ -87,7 +87,15 @@ function getAllFiles(root){
                
 })
 };
-
+module.exports.unique5=function(array,key){
+  var r = [];
+  for(var i = 0, l = array.length; i < l; i++) {
+    for(var j = i + 1; j < l; j++)
+      if (array[i][key] === array[j][key])j = ++i;
+      r.push(array[i]);
+  }
+  return r;
+}
 module.exports.upload = function(req, res, next) {
     var fold=req.token.merchantId;
     var photoPath=path.join(__dirname, 'public')+'/'+fold;
