@@ -2,8 +2,7 @@ var S3FS = require('s3fs');
 var path = require('path');
 var fs = require('fs');
 var options={
-  "accessKeyId":"AKIAIOEFE7NF2ZAPDNAA",
-  "secretAccessKey":"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"
+
 }
 
 
