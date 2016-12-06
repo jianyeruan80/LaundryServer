@@ -121,7 +121,6 @@ for(var i =0; i< perms.length; i++){
 
 router.post('/login', function(req, res, next) {
 var info=req.body;
-
 var password=info.password || "";
 var token=info.token || "";
 var query={
@@ -136,18 +135,16 @@ var query={
 };
 users.findOne(query).populate([
          { path:'roles',populate:{ path: 'permissions'}},
-         { path:'permissions'}],
-          function (err, datas) {
+         { path:'permissions'}]).exec(
+          function (err, data) {
           if (err) return next(err);
-           if (!datas || datas.length<1) return next({"code":"90002"});
-          if(datas[0].status==false) return next({"code":"90004"});
-           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":datas[0]._id,"user":datas[0].userName},req.app.get("superSecret"), {
+          if (!data) return next({"code":"90002"});
+          if(data.status==false) return next({"code":"90004"});
+          var data = JSON.parse(JSON.stringify(data));
+          var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":data._id,"user":data.userName},req.app.get("superSecret"), {
           expiresIn: '120m',
           algorithm: 'HS256'
           });
-
-
-          var data=datas[0];
           var perms=data.permissions?data.permissions:[];
           var permsTemp=[];                   
             if(!!data.roles){
@@ -155,17 +152,15 @@ users.findOne(query).populate([
                   perms = perms.concat(data.roles[j].permissions);
                 }
             }
-          perms=security.unique5(perms,"_id");
+          perms=tools.unique5(perms,"_id");
           var permsLength=perms.length-1;
            for(var k=permsLength;k>0;k--){
            	if(perms[k].perm<4){}else{
                 	permsTemp.push(perms[k].action); 
                 }
 	   }
-        data.permissions=permsTemp;
-
+data.permissions=permsTemp;
 data.accessToken=accessToken;
-console.log(data);
 res.json(data);
   }); 
 });
@@ -531,7 +526,36 @@ router.put('/roles/:id/perms', security.ensureAuthorized, function(req, res, nex
                     
 
 module.exports = router;
-/*function uniqueArr(array,key) {
+/*
+
+Query.populate(path, [select], [model], [match], [options])
+drawApply.find().populate('salesId', '_id name phone merchant').sort({createTime: -1}).exec(function(err, list) {
+  // list of drawApplies with salesIds populated
+});
+User.findOne({name: 'aikin'})
+    .exec(function(err, doc) {
+
+        var opts = [{
+            path   : 'posts',
+            select : 'title'
+        }];
+
+        doc.populate(opts, function(err, populatedDoc) {
+            console.log(populatedDoc.posts[0].title);  // post-by-aikin
+        });
+    });
+    drawApply.find().populate({
+    path: 'salesId',
+    select: '_id name phone merchant',
+    model: 'sales',//tables
+    populate: {
+        path: 'merchant',
+        select: '_id sname',
+        model: 'merchant' //tables
+    }).sort({createTime: -1}).exec(function(err, list) {
+  // list of drawApplies with salesIds populated and merchant populated
+});
+function uniqueArr(array,key) {
     var r = [];
     for (var i = 0, l = array.length; i < l; i++) {
         for (var j = i + 1; j < l; j++)

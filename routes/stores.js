@@ -120,17 +120,13 @@ delete info["expires"];
 delete info["licenseKey"];
 try{
   info.addressInfo.location.coordinates=info.addressInfo.location.coordinates?info.addressInfo.location.coordinates.split(","):[];}catch(ex){}
+
  stores.findOneAndUpdate(query,info,options,function (err, data) {
           if (err) return next(err);
           res.json(data);
     });
 })
-router.delete('/',function(req, res, next) {
-     stores.remove({}, function (err, data) {
-        if (err) return next(err);
-          res.json(data);
-      });
-});
+
 router.delete('/:id', security.ensureAuthorized,function(req, res, next) {
      stores.remove({"_id":req.params.id}, function (err, data) {
         if (err) return next(err);

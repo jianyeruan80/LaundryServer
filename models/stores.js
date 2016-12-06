@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var lauguagesSchema = new Schema({
-	"second":String,
-	"third":String
+  "second":String,
+  "third":String
 })
 var addressSchema = new Schema({
       address: String,
@@ -20,11 +20,21 @@ var addressSchema = new Schema({
   }
   
 });
-var distanceFeeSchema = new mongoose.Schema({ 
+var distanceFeeSchema = new Schema({ 
   distance:String,
   fee:Number
 })
-var storesSchema = new mongoose.Schema({ 
+var picturesSchema=new Schema({ 
+  path:String,
+  title:String,
+  active:{type:Boolean,default:true}
+})
+var vediosSchema=new Schema({ 
+  path:String,
+  title:String,
+  active:{type:Boolean,default:true}
+})
+var storesSchema = new Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
     name:String,
     addressInfo:addressSchema,
@@ -37,7 +47,10 @@ var storesSchema = new mongoose.Schema({
     about :String,
     createdAt: {type:Date,default:Date.now},
     updatedAt: Date,
-    picture:String,
+    pictures:[picturesSchema],
+    vedios:[vediosSchema],
+    mode:String,//"A".B
+    logo:String,
     fax:String,
     licenseKey:String,
     openTime:String,
