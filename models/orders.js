@@ -11,6 +11,7 @@ charge:Number,
 currentPrice:Number,//-
 discount:Number,//-
 discountRate:Number,//-
+chargeRate:Number,
 qty:Number,
 options:[],
 properties:[],
@@ -25,10 +26,10 @@ pickUpTime:{type:Date,index:true},
 timer:Date,
 merchantId:{type:String,lowercase: true, trim: true},
 subTotal:Number,
-
+charge:Number,
 taxRate:Number,
 tax:Number,
-
+orderType:String,
 tip:Number,
 tipTotal:Number,
 orderDetails:[orderDetailsSchema],
