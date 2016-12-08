@@ -46,7 +46,6 @@ router.get('/users', security.ensureAuthorized,function(req, res, next) {
 });
 router.get('/seqs', security.ensureAuthorized,function(req, res, next) {
    var  info=req.body;
-   
         seqs.find({},function (err, data) {
                if (err) return next(err);
                  res.json(data) ;
@@ -56,9 +55,7 @@ router.get('/seqs', security.ensureAuthorized,function(req, res, next) {
 router.post('/seqs', security.ensureAuthorized,function(req, res, next) {
    var  info=req.body;
         info.updatedAt=new Date(); 
-
-
-              var arvind = new seqs(info);
+         var arvind = new seqs(info);
          arvind.save(function (err, data) {
          if (err) return next(err);
                 res.json(data);

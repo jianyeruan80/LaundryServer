@@ -13,7 +13,7 @@ var customers = require('./routes/customers');
 var storeHours = require('./routes/storeHours');
 var groups = require('./routes/groups');
 var globalOptionGroups = require('./routes/globalOptionGroups');
-var categorys = require('./routes/categorys');
+var categories = require('./routes/categories');
 var items = require('./routes/items');
 var debug = require('./routes/debug');
 var orders = require('./routes/orders');
@@ -58,23 +58,11 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     next();
 });
-/*app.get('/test', function (req, res) {
 
-    var p1=tools.getNextSequence({"table":"Test"});
-
-
-p1.then(function(n){
-    res.json({"Seq":n});
- 
-}, function(n) {
-   res.json({"Seq":n});
-});
-});*/
 app.get('/', function (req, res) {
     res.send("index", "Start");
 });
 app.use('/superadmin', superAdmin);
-/*app.use('/api/seqs', seqs);*/
 app.use('/api/admin', admins);
 app.use('/api/logs', debug);
 app.use('/api/stores', stores);
@@ -82,12 +70,10 @@ app.use('/api/customers', customers);
 app.use('/api/storehours', storeHours);
 app.use('/api/groups', groups);
 app.use('/api/globalOptionGroups', globalOptionGroups);
-app.use('/api/categorys', categorys);
+app.use('/api/categories', categories);
 app.use('/api/items', items);
 app.use('/api/orders', orders);
 app.use('/api/settings',settings);
-/*app.use('/api/background', background);*/
-/*app.use('/api/menuitem', menuitem);*/
 
 
 
@@ -103,10 +89,7 @@ var form = new multiparty.Form({uploadDir:  photoPath});
 var  store={};
      store.success=true;
     form.parse(req, function(err, fields, files) {
-     /* 
-     console.log("----------CC---------------");
-     console.log("----------DD---------------");
-     */
+
     store.message=files;
 
    res.json(store);
@@ -185,27 +168,16 @@ app.use(function(err, req, res, next) {
   });
 });
 
-/*
-app.use(function(req, res, next) {
-// var err = new Error('Not Found');
-  //err.status = 404;
 
-   customerError["404"]="Not Found";
-   next(customerError["404"]);
-});*/
-
-/*app.use(function(err, req, res, next) {
-    err.message=err.code?customerError[err.code]:err.message;
-    res.status(500).json(err);
-  
-});
-
-*/
-//module.exports = app;
-var server = app.listen(3003, function () {
+var server = app.listen(3000, function () {
   var host = server.address().address;
   var port = server.address().port;
   console.log('Server is running at http://%s:%s', host, port)
 });
 
-/*console.log(util.inspect(result, false, null))*/
+/*console.log(util.inspect(result, false, null))
+schemaModel.findOne({name:'loong'},function(err,doc){
+        doc.set({baseinfo:{age:26}});
+        doc.save();
+    });
+*/

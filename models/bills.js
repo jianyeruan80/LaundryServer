@@ -12,9 +12,9 @@ discountRate:Number,
 discount:Number,
 charge:Number,
 grandTotal:Number,
-   type:{type:String,default:"cash"},
-   receiveTotal:Number,
-   change:Number,
+type:{type:String,default:"cash"},
+receiveTotal:Number,
+change:Number,
 createdAt: {type:Date,default:Date.now},
 updatedAt: Date,
 status:{type:String,default:"Paid"}, //paid,void
@@ -30,24 +30,3 @@ order:{type: mongoose.Schema.Types.ObjectId, ref: 'order'}
 });
 
 module.exports = mongoose.model('bills', billsSchema);
-
-/*orderNo:String,
-merchantId:String,
-
-subTotal:Number,
-
-taxRate:Number,
-tax:Number,
-
-tip:Number,
-tipTotal:Number,
-orderDetails:[orderDetailsSchema],
-
-discountRate:Number,//-
-discount:Number,//-
-
-grandTotal:Number,
-
-status:{type:String,default:"unpaid"},//uppaid,paid,close
-createdAt: {type:Date,default:Date.now},
-updatedAt: Date,*/

@@ -81,11 +81,10 @@ res.json(data);
  */
 
 router.post('/loginBak', function(req, res, next) {
-     var info=req.body;
+  var info=req.body;
   var password=info.password || "";
- var token=info.token || "";
-
-   var query={
+  var token=info.token || "";
+  var query={
       $and:[
          { "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}},
          { $or:[
@@ -97,17 +96,10 @@ router.post('/loginBak', function(req, res, next) {
         
      
    };
-    users.aggregate([
+      users.aggregate([
       { $match: query},
       { $lookup: {from: 'permissions', localField: 'defaultPerm', foreignField: 'perm', as: 'perms'} },
-      {$unwind:"$merchantIds"},
-      
-      { $lookup: {from: 'stores', localField: 'merchantId', foreignField: 'merchantId', as: 'stores'} },
-      
-      { 
-         $unwind: {path: "$stores",preserveNullAndEmptyArrays: true
-            }
-      }]
+      ]
       
        ).exec( function (err, result) {
         if (err) return next(err);
@@ -138,8 +130,7 @@ router.post('/loginBak', function(req, res, next) {
             }
        
           var cloneOfA = JSON.parse(JSON.stringify(perms));
-perms=security.unique5(cloneOfA,"_id");
-
+perms=tools.unique5(cloneOfA,"_id");
 var jobsSortObject = {}; 
   for(var i =0; i< perms.length; i++){
    var job = perms[i],
@@ -179,14 +170,13 @@ for(var i =0; i< perms.length; i++){
         
    });
 });
-
-router.post('/login', function(req, res, next) {
+router.post('/authorization', function(req, res, next) {
 var info=req.body;
-  var password=info.password || "";
- var token=info.token || "";
 
-   var query={
-      $and:[
+var password=info.password || "";
+var token=info.token || "";
+var query={
+    $and:[
          { "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}},
          { $or:[
            {"password":security.encrypt(md5(password))},
@@ -194,34 +184,69 @@ var info=req.body;
          ]}
         ]
 
-        
-     
-   };
-   
-
-    users.aggregate([
-      { $match: query},
-      {$unwind:"$merchantIds"},
-/*      { $lookup: {from: 'permissions', localField: 'defaultPerm', foreignField: 'perm', as: 'perms'} },*/
-      { $lookup: {from: 'stores', localField: 'merchantId', foreignField: 'merchantId', as: 'stores'} },
-      { 
-	$unwind: {path: "$stores",preserveNullAndEmptyArrays: true }      
-}]
-      
-       ).exec( function (err, result) {
-        if (err) return next(err);
-          if (!result || result.length<1) return next({"code":"90002"});
-          if(result[0].status==false) return next({"code":"90004"});
-          users.populate(result,[
+};
+users.findOne(query).populate([
          { path:'roles',populate:{ path: 'permissions'}},
          { path:'permissions'}],
           function (err, datas) {
           if (err) return next(err);
-
+           if (!datas || datas.length<1) return next({"code":"90002"});
+          if(datas[0].status==false) return next({"code":"90004"});
            var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":datas[0]._id,"user":datas[0].userName},req.app.get("superSecret"), {
           expiresIn: '120m',
           algorithm: 'HS256'
           });
+
+
+          var data=datas[0];
+          var perms=data.permissions?data.permissions:[];
+          var permsTemp=[];                   
+            if(!!data.roles){
+                for(var j=0;j<data.roles.length;j++) {
+                  perms = perms.concat(data.roles[j].permissions);
+                }
+            }
+          perms=security.unique5(perms,"_id");
+          var permsLength=perms.length-1;
+           for(var k=permsLength;k>0;k--){
+            if(perms[k].perm<4){}else{
+                  permsTemp.push(perms[k].action); 
+                }
+     }
+        data.permissions=permsTemp;
+
+data.accessToken=accessToken;
+console.log(data);
+res.json(data);
+  }); 
+});
+router.post('/login', function(req, res, next) {
+var info=req.body;
+
+var password=info.password || "";
+var token=info.token || "";
+var query={
+    $and:[
+         { "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}},
+         { $or:[
+           {"password":security.encrypt(md5(password))},
+           {"token":security.encrypt(md5(token))}
+         ]}
+        ]
+
+};
+users.findOne(query).populate([
+         { path:'roles',populate:{ path: 'permissions'}},
+         { path:'permissions'}],
+          function (err, datas) {
+          if (err) return next(err);
+           if (!datas || datas.length<1) return next({"code":"90002"});
+          if(datas[0].status==false) return next({"code":"90004"});
+           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":datas[0]._id,"user":datas[0].userName},req.app.get("superSecret"), {
+          expiresIn: '120m',
+          algorithm: 'HS256'
+          });
+
 
           var data=datas[0];
           var perms=data.permissions?data.permissions:[];
@@ -239,51 +264,11 @@ var info=req.body;
                 }
 	   }
         data.permissions=permsTemp;
-/*            if(!!data.perms){
-              for(var j=0;j<data.perms.length;j++) {
-                  perms = perms.concat(data.perms[j]);
-              }
-            }
-       
-          var cloneOfA = JSON.parse(JSON.stringify(perms));
-perms=security.unique5(cloneOfA,"_id");
-var jobsSortObject = {}; 
-  for(var i =0; i< perms.length; i++){
-   var job = perms[i],
-   mark = job.permissionGroup+'-'+job.subject,
-   jobItem = jobsSortObject[mark];
-  if(jobItem){
-    
-   jobsSortObject[mark]=jobItem+job.perm;
-  }else{
-   jobsSortObject[mark] = job.perm;
-  }
-}
-var jobsSortObjectList = {}; 
-for(var i =0; i< perms.length; i++){
-   var job = perms[i],
-   mark = job.permissionGroup,
-   jobItem = jobsSortObjectList[mark];
-  if(jobItem){
-   jobsSortObjectList[mark].push(job);
-  }else{
-   jobsSortObjectList[mark] = [job];
-  }
-}
-         var returnData={};
-          returnData.perms=jobsSortObject;
-          returnData.permsList=jobsSortObjectList;
-          returnData.username=data.userName;
-          returnData.storeName=data.storeName;
-          returnData.merchantId=info.merchantId;
-          returnData.accessToken=accessToken;
-          res.json(returnData);*/
+
 data.accessToken=accessToken;
 console.log(data);
 res.json(data);
   }); 
-        
-   });
 });
 
 /**
@@ -319,9 +304,7 @@ router.get('/perms', security.ensureAuthorized,function(req, res, next) {
         ]
         ).sort({"order" : 1}).exec(function(err,data){
             if (err) return next(err);
- console.log("======================");      
-      console.log(JSON.stringify(data));
-console.log("======================");
+
              res.json(data);
         })
 

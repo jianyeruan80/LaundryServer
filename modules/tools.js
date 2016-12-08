@@ -3,8 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var S3FS = require('s3fs');
 var options={
-  "accessKeyId":"AKIAIOEFE7NF2ZAPDNAA",
-  "secretAccessKey":"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"
+  
 }
 var filePath="C:/jayruanwork/app/node/test/test1.rar";
 var root_path=path.join(__dirname, '../logs');
@@ -87,7 +86,15 @@ function getAllFiles(root){
                
 })
 };
-
+module.exports.unique5=function(array,key){
+  var r = [];
+  for(var i = 0, l = array.length; i < l; i++) {
+    for(var j = i + 1; j < l; j++)
+      if (array[i][key] === array[j][key])j = ++i;
+      r.push(array[i]);
+  }
+  return r;
+}
 module.exports.upload = function(req, res, next) {
     var fold=req.token.merchantId;
     var photoPath=path.join(__dirname, 'public')+'/'+fold;

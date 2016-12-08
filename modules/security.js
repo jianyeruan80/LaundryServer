@@ -57,15 +57,7 @@ module.exports.ensureAuthorized=function(req, res, next) {
           return next({"code":"90001"}); 
     }
 }
-module.exports.unique5=function(array,key){
-  var r = [];
-  for(var i = 0, l = array.length; i < l; i++) {
-    for(var j = i + 1; j < l; j++)
-      if (array[i][key] === array[j][key])j = ++i;
-      r.push(array[i]);
-  }
-  return r;
-}
+
 
 
  //console.log("11");

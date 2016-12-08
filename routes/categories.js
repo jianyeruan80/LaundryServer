@@ -4,7 +4,7 @@ var express = require('express'),
     log = require('../modules/logs'),
     security = require('../modules/security'),
      groups = require('../models/groups'),
-    categorys = require('../models/categorys');
+    categories = require('../models/categories');
     
 groups = require('../models/groups');
 
@@ -13,12 +13,12 @@ router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
  var query={"merchantId":req.token.merchantId};
      
        groups.find(query).populate({
-    path: 'categorys'
+    path: 'categories'
 /*  , select: 'name'
   , match: { color: 'black' }*/
   , options: { sort: { order: 1 }}
 }).exec(function(err, data) {
-       /*categorys.find(query, function (err, data) {*/
+       /*categories.find(query, function (err, data) {*/
         if (err) return next(err);
            
     
@@ -35,7 +35,7 @@ router.put('/sort/:id', security.ensureAuthorized,function(req, res, next) {
       var sortJson =req.body;
       console.log(sortJson)
       console.log("xxxxxxxxxxxxxxxxxxxxxx");
-        categorys.find(query, function(err, data) {
+        categories.find(query, function(err, data) {
         if (err) return next(err);
         data.forEach(function(value, key) {
             if (sortJson[value._id]) {
@@ -52,8 +52,8 @@ router.put('/sort/:id', security.ensureAuthorized,function(req, res, next) {
 router.get('/', security.ensureAuthorized,function(req, res, next) {
 var query={"merchantId":req.token.merchantId};
      
-       categorys.find(query).exec(function(err, data) {
-       /*categorys.find(query, function (err, data) {*/
+       categories.find(query).exec(function(err, data) {
+       /*categories.find(query, function (err, data) {*/
         if (err) return next(err);
         res.json(data);
       });
@@ -64,8 +64,8 @@ var query={"merchantId":req.token.merchantId};
 
 router.get('/groups/:id', security.ensureAuthorized,function(req, res, next) {
     var query={"group":req.params.id};
-    categorys.find(query).sort( { order: 1 } ).exec(function(err, data) {
-       /*categorys.find(query, function (err, data) {*/
+    categories.find(query).sort( { order: 1 } ).exec(function(err, data) {
+       /*categories.find(query, function (err, data) {*/
         if (err) return next(err);
         res.json(data);
       });
@@ -79,10 +79,10 @@ router.get('/groups/:id', security.ensureAuthorized,function(req, res, next) {
       {
         $lookup:
      {
-       from: "categorys",
+       from: "categories",
        localField: "_id",
        foreignField:"group",
-       as: 'categorys_docs'
+       as: 'categories_docs'
      }
       }
    ]
@@ -94,7 +94,7 @@ router.get('/groups/:id', security.ensureAuthorized,function(req, res, next) {
 });
 router.get('/:id', security.ensureAuthorized,function(req, res, next) {
       log.debug(req.token);
-      categorys.findById(req.params.id, function (err, data) {
+      categories.findById(req.params.id, function (err, data) {
         if (err) return next(err);
         console.log(data)
          res.json(data);
@@ -105,14 +105,14 @@ router.get('/:id', security.ensureAuthorized,function(req, res, next) {
 router.post('/',  security.ensureAuthorized,function(req, res, next) {
    var info=req.body;
    info.merchantId=req.token.merchantId; 
-   var arvind = new categorys(info);
+   var arvind = new categories(info);
       info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
    arvind.save(function (err, data) {
    if (err) return next(err);
             var query={"_id":data.group}
-            var update={ $addToSet: {categorys: data._id } };
+            var update={ $addToSet: {categories: data._id } };
             groups.findOneAndUpdate(query,update,{},function (err, data2) {
                   if (err) return next(err);
                    res.json(data);
@@ -130,17 +130,17 @@ var options = {new: false};
    info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
- categorys.findOneAndUpdate(query,info,options,function (err, data) {
+ categories.findOneAndUpdate(query,info,options,function (err, data) {
           if (err) return next(err);
             var query={"_id":info.group};
-            var update={ $addToSet: {categorys: data._id } };
+            var update={ $addToSet: {categories: data._id } };
           if(info.group != data.group){
                
                console.log("xxxxx==========xxxxxxxxxxx");
                groups.findOneAndUpdate(query,update,{},function (err, data2) {
                   if (err) return next(err);
                         query={"_id":data.group};
-                        update={ $pull: {categorys: data._id } };
+                        update={ $pull: {categories: data._id } };
                         groups.findOneAndUpdate(query,update,{},function (err, data2) {
                             if (err) return next(err);
                               //res.json(data);
@@ -160,10 +160,10 @@ info.operator.user=req.token.user;
 })
 
 router.delete('/:id', security.ensureAuthorized,function(req, res, next) {
-     categorys.findByIdAndRemove(req.params.id,function (err, data) {
+     categories.findByIdAndRemove(req.params.id,function (err, data) {
         if (err) return next(err);
             var query={"_id":data.group}
-            var update={ $pull: {categorys: data._id } };
+            var update={ $pull: {categories: data._id } };
             groups.findOneAndUpdate(query,update,{},function (err, data2) {
                   if (err) return next(err);
                     res.json(data);
