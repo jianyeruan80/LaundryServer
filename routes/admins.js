@@ -123,7 +123,6 @@ for(var i =0; i< perms.length; i++){
 });
 router.post('/authorization', function(req, res, next) {
 var info=req.body;
-
 var password=info.password || "";
 var token=info.token || "";
 var query={
@@ -136,39 +135,17 @@ var query={
         ]
 
 };
-users.findOne(query).populate([
-         { path:'roles',populate:{ path: 'permissions'}},
-         { path:'permissions'}],
-          function (err, datas) {
+var perm={
+   "action":{
+    $regex:new RegExp(info.permission, 'i')
+ }
+}
+
+users.findOne(query).populate({path:'permissions',math:perm}).populate({path:'roles',populate:{ path: 'permissions',math:perm}}).
+         exec(function (err, data) {
           if (err) return next(err);
-           if (!datas || datas.length<1) return next({"code":"90002"});
-          if(datas[0].status==false) return next({"code":"90004"});
-           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":datas[0]._id,"user":datas[0].userName},req.app.get("superSecret"), {
-          expiresIn: '120m',
-          algorithm: 'HS256'
-          });
-
-
-          var data=datas[0];
-          var perms=data.permissions?data.permissions:[];
-          var permsTemp=[];                   
-            if(!!data.roles){
-                for(var j=0;j<data.roles.length;j++) {
-                  perms = perms.concat(data.roles[j].permissions);
-                }
-            }
-          perms=security.unique5(perms,"_id");
-          var permsLength=perms.length-1;
-           for(var k=permsLength;k>0;k--){
-            if(perms[k].perm<4){}else{
-                  permsTemp.push(perms[k].action); 
-                }
-     }
-        data.permissions=permsTemp;
-
-data.accessToken=accessToken;
-console.log(data);
-res.json(data);
+           res.json(data);
+             
   }); 
 });
 router.post('/login', function(req, res, next) {
@@ -185,8 +162,8 @@ var query={
         ]
 
 };
-console.log(JSON.stringify(query));
-users.findOne(query).populate({path:'permissions',math:{action:'Exit'}}).populate({path:'roles',populate:{ path: 'permissions',math:{action:'Exit'}}}).
+
+users.findOne(query).populate({path:'permissions'}).populate({path:'roles',populate:{ path: 'permissions'}}).
          exec(function (err, data) {
           if (err) return next(err);
  if (!data) return next({"code":"90002"});
