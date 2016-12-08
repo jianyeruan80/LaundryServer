@@ -5,7 +5,7 @@ var authorizationsSchema = new Schema({
       userName:String,
       perm:String,  
       note:String,
-      createdAt:Date,
+      createdAt:{type:Date,default:Date.now}
       
     });
 authorizationsSchema.index({ merchantId: 1,name:1});

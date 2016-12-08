@@ -2,12 +2,14 @@ var express = require('express'),
     router = express.Router(),
     log = require('../modules/logs'),
     admins = require('../models/admins'),
+    authorizations = require('../models/authorizations'),
     security = require('../modules/security'),
      userRequest = require('../models/userRequest'),
     mailer = require('../modules/mailer'),
      tools = require('../modules/tools'),
     md5 = require('md5'),
     util = require('util'),
+
     jwt = require('jsonwebtoken'),
     returnData={};
     returnData.success=true;
@@ -144,19 +146,28 @@ users.findOne(query).populate([{path:'permissions',select:'action',match:perm},{
           if(!data) return res.send(false);
           var permSign=false;
           if(data.permissions.length>0){
-		permSign=true;
+		          permSign=true;
           }else{
-           console.log("==========");
-            
-            for(var i=0;i<data.roles.length;i++){
+          for(var i=0;i<data.roles.length;i++){
         	if(data.roles[i].permissions.length>0){
-		permSign=true;
-                break;
-                }    
-	}
+		            permSign=true;
+            break;
+           }    
+	       }
 		
 	    
          }
+            if(permSing==true){
+               var authorizationJson={
+                "merchantId":req.token.merchantId,
+                "userId":data._id,
+                "userName":data.userName,
+                 "permission":info.permission,
+                 "note":info.note
+              }
+            var authorizationsDao=new authorizations(authorizationJson);
+            authorizationsDao.save();
+           }
            res.send(permSign);
              
   }); 
