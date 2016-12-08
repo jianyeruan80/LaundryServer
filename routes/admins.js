@@ -136,12 +136,12 @@ var query={
 
 };
 var perm={
-   "action":{
+   'action':{
     $regex:new RegExp(info.permission, 'i')
  }
 }
 
-users.findOne(query).populate({path:'permissions',math:perm}).populate({path:'roles',populate:{ path: 'permissions',math:perm}}).
+users.findOne(query).populate([{path:'permissions',select:'action',match:perm},{path:'roles',populate:{path:'permissions',select:'action',match:perm}}]).
          exec(function (err, data) {
           if (err) return next(err);
            res.json(data);
