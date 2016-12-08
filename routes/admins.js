@@ -121,17 +121,14 @@ for(var i =0; i< perms.length; i++){
         
    });
 });
-router.post('/authorization', function(req, res, next) {
+router.post('/authorization',security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 var password=info.password || "";
-var token=info.token || "";
 var query={
     $and:[
-         { "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}},
-         { $or:[
-           {"password":security.encrypt(md5(password))},
-           {"token":security.encrypt(md5(token))}
-         ]}
+         { "merchantIds": {$regex:new RegExp(req.token.merchantId, 'i')}},
+         {"password":security.encrypt(md5(password))},
+         
         ]
 
 };
@@ -143,8 +140,24 @@ var perm={
 
 users.findOne(query).populate([{path:'permissions',select:'action',match:perm},{path:'roles',populate:{path:'permissions',select:'action',match:perm}}]).
          exec(function (err, data) {
-          if (err) return next(err);
-           res.json(data);
+           if (err) return next(err);
+          if(!data) return res.send(false);
+          var permSign=false;
+          if(data.permissions.length>0){
+		permSign=true;
+          }else{
+           console.log("==========");
+            
+            for(var i=0;i<data.roles.length;i++){
+        	if(data.roles[i].permissions.length>0){
+		permSign=true;
+                break;
+                }    
+	}
+		
+	    
+         }
+           res.send(permSign);
              
   }); 
 });
