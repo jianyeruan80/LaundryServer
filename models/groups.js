@@ -45,7 +45,7 @@ var groupsSchema = new mongoose.Schema({
          description:lauguagesSchema
     },
     picture:{type:String},
-    categorys:[{type: mongoose.Schema.Types.ObjectId, ref: 'categorys'}],
+    categories:[{type: mongoose.Schema.Types.ObjectId, ref: 'categories'}],
     operator:{
     id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
     user:String
