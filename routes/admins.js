@@ -157,7 +157,7 @@ users.findOne(query).populate([{path:'permissions',select:'action',match:perm},{
 		
 	    
          }
-            if(permSing==true){
+            if(permSign==true){
                var authorizationJson={
                 "merchantId":req.token.merchantId,
                 "userId":data._id,
@@ -207,7 +207,7 @@ users.findOne(query).populate({path:'permissions'}).populate({path:'roles',popul
             }
           perms=tools.unique5(perms,"_id");
           var permsLength=perms.length-1;
-           for(var k=permsLength;k>0;k--){
+           for(var k=permsLength;k>=0;k--){
            	if(perms[k].perm<4){}else{
                 	permsTemp.push(perms[k].action); 
                 }
@@ -477,6 +477,10 @@ try{info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex
             "password":info.password,
             "_id":{$ne:id}
       }
+console.log("------------------------");
+console.log(query);
+console.log("--------------------------");
+
  users.findOne(query).exec(function(err,data){
          if (err) return next(err);
          if(!!data) return next({"code":"90009"});
@@ -484,7 +488,6 @@ try{info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex
                        if (err) return next(err);
                         res.json(data);
                       });
-          
       })
 })
 router.delete('/users/:id',  security.ensureAuthorized,function(req, res, next) {
