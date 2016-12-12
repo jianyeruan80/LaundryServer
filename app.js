@@ -17,6 +17,7 @@ var categories = require('./routes/categories');
 var items = require('./routes/items');
 var debug = require('./routes/debug');
 var orders = require('./routes/orders');
+var navs = require('./routes/navs');
 var seqs = require('./routes/seqs');
 var settings=require('./routes/settings');
 var ejs = require('ejs');
@@ -31,8 +32,7 @@ var compress = require('compression');
 var rest = require('restler');
 
 var apiToken={};
-var returnData={};
-returnData.success=true;
+
 var app = express();
 app.use(compress());
 
@@ -64,6 +64,7 @@ app.get('/', function (req, res) {
 });
 app.use('/superadmin', superAdmin);
 app.use('/api/admin', admins);
+app.use('/api/navs', navs);
 app.use('/api/logs', debug);
 app.use('/api/stores', stores);
 app.use('/api/customers', customers);
@@ -152,12 +153,16 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.error("Error:" + err.message);
     res.status(err.status || 500).json({
+
       success:false,
       message: customerError[err.code]?customerError[err.code]:err.message,
+      code:err.code?err.code:0,
+
       error: err
     });
   });
 }
+
 
 app.use(function(err, req, res, next) {
   

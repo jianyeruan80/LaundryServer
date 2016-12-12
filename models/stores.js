@@ -25,7 +25,7 @@ var distanceFeeSchema = new Schema({
   fee:Number
 })
 var picturesSchema=new Schema({ 
-  path:String,
+  picture:String,
   title:String,
   active:{type:Boolean,default:true}
 })
@@ -67,14 +67,10 @@ var storesSchema = new Schema({
          name:lauguagesSchema,
          description:lauguagesSchema
     },
-    operator:{
-  id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
-  user:String,
-
-},
+    operator:{id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },user:String},
 });
 storesSchema.index({ merchantId: 1},{unique: true,sparse:true });
-//storesSchema.index({ qrcUrl: 1},{unique: true,sparse:true });
+//storesSchema.index({ merchantId: 1,qrcUrl: 1},{unique: true,sparse:true });
 addressSchema.index({location: '2dsphere'});
 module.exports = mongoose.model('stores', storesSchema);
 

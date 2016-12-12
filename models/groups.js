@@ -47,9 +47,9 @@ var groupsSchema = new mongoose.Schema({
     picture:{type:String},
     categorys:[{type: mongoose.Schema.Types.ObjectId, ref: 'categorys'}],
     operator:{
-    id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
-    user:String
-},
+    id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },user:String},
+    /******************************/
+    gallerys:[{title:String,picture:String}],
    
 });
 groupsSchema.index({ name: 1, merchantId: 1 }, { unique: true,sparse:true});

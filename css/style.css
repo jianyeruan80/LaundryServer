@@ -77,12 +77,9 @@
   font-size:25px;
   
 }
-
 .login input[type="submit"]:hover {
   background: #17c;
 }
-
-/* Buttons' focus effect */
 .login input[type="submit"]:focus {
   border-color: #05a;
 }
