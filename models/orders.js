@@ -13,7 +13,7 @@ discount:Number,//-
 discountRate:Number,//-
 chargeRate:Number,
 qty:Number,
-options:[],
+options:[{"name":String,price:Number,order:Number}],
 properties:[],
 item:{type: mongoose.Schema.Types.ObjectId, ref: 'items' }
 });
