@@ -10,7 +10,7 @@ var navsSchema = new Schema({
   model:String,
   children:[{type: mongoose.Schema.Types.ObjectId, ref: 'navs'}],
   parent:{type: mongoose.Schema.Types.ObjectId, ref: 'navs',null: true},
-  gallerys:[{title:String,name:String}]
+  gallerys:[{title:String,picture:String}]
 })
 
 navsSchema.index({ name: 1,merchantId:1,parent:1}, { unique: true,sparse:true});

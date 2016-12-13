@@ -13,10 +13,11 @@ router.get('/', function(req, res, next) {
       });
      
 });
-router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
-     stores.findById(req.token.merchantId, function (err, data) {
+router.get('/merchantId', security.ensureAuthorized,function(req, res, next) {
+  
+     stores.findOne({"merchantId":req.token.merchantId}, function (err, data) {
         if (err) return next(err);
-         res.json(data);
+          res.json(data);
       });
      
 });

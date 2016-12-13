@@ -36,23 +36,22 @@ var vediosSchema=new Schema({
 })
 var storesSchema = new Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
+    logo:String,
     name:String,
-    addressInfo:addressSchema,
+    tax:Number,//
     phoneNum1:String,
     phoneNum2:String,
-    webSite:String,
+    fax:String,
     email:String,
-    password:String,
-    tax:Number,
+    webSite:String,
+    addressInfo:addressSchema,
+    
     about :String,
     createdAt: {type:Date,default:Date.now},
     updatedAt: Date,
-    pictures:[picturesSchema],
+    gallerys:[picturesSchema],
     vedios:[vediosSchema],
     mode:String,//"A".B
-    logo:String,
-    fax:String,
-    licenseKey:String,
     openTime:String,
     orderTime:String,
     qrcUrl:{type:String,lowercase:true},
@@ -62,6 +61,8 @@ var storesSchema = new Schema({
     maxDistance:Number,
     DiffTimes:{type:Number,default:0},
     distanceFee:[distanceFeeSchema],
+    
+    licenseKey:String,
     expires:Date,
     language:{
          name:lauguagesSchema,
@@ -71,7 +72,7 @@ var storesSchema = new Schema({
 });
 storesSchema.index({ merchantId: 1},{unique: true,sparse:true });
 //storesSchema.index({ merchantId: 1,qrcUrl: 1},{unique: true,sparse:true });
-addressSchema.index({location: '2dsphere'});
+//addressSchema.index({location: '2dsphere'});
 module.exports = mongoose.model('stores', storesSchema);
 
 /*{ createdAt: { type: Date, expires: 3600, default: Date.now }}
