@@ -29,8 +29,8 @@ var picturesSchema=new Schema({
   title:String,
   active:{type:Boolean,default:true}
 })
-var vediosSchema=new Schema({ 
-  path:String,
+var videosSchema=new Schema({ 
+  video:String,
   title:String,
   active:{type:Boolean,default:true}
 })
@@ -50,7 +50,7 @@ var storesSchema = new Schema({
     createdAt: {type:Date,default:Date.now},
     updatedAt: Date,
     gallerys:[picturesSchema],
-    vedios:[vediosSchema],
+    videos:[videosSchema],
     mode:String,//"A".B
     openTime:String,
     orderTime:String,

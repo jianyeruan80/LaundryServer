@@ -43,10 +43,16 @@ app.set('superSecret',"ruanjy520");
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*app.use(bodyParser.json({limit: '150mb'}));
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+limit: '150mb',
+extended: true
+})); */
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json({limit: '10mb'}));
-app.use(bodyParser.urlencoded({ limit: '10mb',extended: false }));
+app.use(bodyParser.urlencoded({ limit: '10mb',extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -78,7 +84,7 @@ app.use('/api/settings',settings);
 
 
 
-app.post('/api/upload',security.ensureAuthorized,function(req, res, next) {
+/*app.post('/api/upload',security.ensureAuthorized,function(req, res, next) {
 console.log(req.token.merchantId);
 var fold=req.token.merchantId;
 var photoPath=path.join(__dirname, 'public')+'/'+fold;
@@ -86,7 +92,11 @@ mkdirp(photoPath, function (err) {
     if (err) console.error(err)
     else console.log('pow!')
 });
-var form = new multiparty.Form({uploadDir:  photoPath});
+var options={
+    uploadDir:  photoPath,
+    maxFieldsSize:10
+}
+var form = new multiparty.Form(options);
 var  store={};
      store.success=true;
     form.parse(req, function(err, fields, files) {
@@ -95,27 +105,54 @@ var  store={};
 
    res.json(store);
  })
- })
+ })*/
 app.post('/api/uploadPic',security.ensureAuthorized,function(req, res, next) {
-
 var fold=req.token.merchantId;
 var photoPath=path.join(__dirname, 'public')+'/'+fold;
 mkdirp(photoPath, function (err) {
     if (err) console.error(err)
-    else console.log('pow!')
+    else console.log('uploadPic!')
 });
-var form = new multiparty.Form({uploadDir:  photoPath});
+var options={
+    uploadDir:  photoPath,
+    autoFiles:true
+}
+var form = new multiparty.Form(options);
+   form.maxFilesSize =1*1024*1024;
     var pic="";
-    
     form.parse(req, function(err, fields, files) {
-      
-       if(!!files &&  !!files.picture && files.picture[0].size>0){
+       form.maxFilesSize = 1 ;
+      if(err) {console.log(err);return next(err);}
+      if(!!files &&  !!files.picture && files.picture[0].size>0){
           console.log(files);
           var path=files.picture[0].path.split("/");
           pic=path[path.length-1];
        }
-
-      res.json(pic);
+       res.json(pic);
+ })
+ })
+app.post('/api/uploadVideo',security.ensureAuthorized,function(req, res, next) {
+var fold=req.token.merchantId;
+var photoPath=path.join(__dirname, 'public')+'/'+fold;
+mkdirp(photoPath, function (err) {
+    if (err) console.error(err)
+    else console.log('uploadVideo!')
+});
+var options={
+    uploadDir:  photoPath,
+    
+}
+var form = new multiparty.Form(options);
+    form.maxFilesSize =100*1024*1024;
+    var video="";
+    form.parse(req, function(err, fields, files) {
+       if(err) {console.log(err);return next(err);}
+      if(!!files &&  !!files.video && files.video[0].size>0){
+          console.log(files);
+          var path=files.video[0].path.split("/");
+          video=path[path.length-1];
+       }
+       res.json(video);
  })
  })
 

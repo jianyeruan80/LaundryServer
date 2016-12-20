@@ -1,74 +1,68 @@
 var WebSocketServer = require('websocket').server;
 var http = require('http');
-
-
-var registerClient={"M01":"A","M02":"B"};
 var clients={};
-
-//var clientsReverse  = {};
+var groups={};
 var server = http.createServer(function(request, response) {
     console.log((new Date()) + ' Received request for ' + request.url);
     response.writeHead(404);
     response.end();
 });
-server.listen(1337, function() {
-    console.log((new Date()) + ' Server is listening on port 1337');
+server.listen(8080, function() {
+    console.log((new Date()) + ' Server is listening on port 8080');
 });
- 
+
 wsServer = new WebSocketServer({
     httpServer: server,
-    autoAcceptConnections: false
+     autoAcceptConnections: false
 });
- 
+
 function originIsAllowed(origin) {
-  // put logic here to detect whether the specified origin is allowed. 
+  // put logic here to detect whether the specified origin is allowed.
   return true;
 }
- 
+
 wsServer.on('request', function(request) {
     if (!originIsAllowed(request.origin)) {
-      // Make sure we only accept requests from an allowed origin 
+      // Make sure we only accept requests from an allowed origin
       request.reject();
       console.log((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
       return;
     }
-    
+
     var connection = request.accept('echo-protocol', request.origin);
     console.log((new Date()) + ' Connection accepted.');
     connection.on('message', function(message) {
-        console.log('Received Message: ' + message.utf8Data);
-        var recievedData=eval("(" + message.utf8Data + ")");
-         if(!!recievedData["register"]){
-         	   var key=recievedData["register"];
-               clients[key]=connection;
-         }else if(!!recievedData["customer"]){
-            	var key=recievedData["customer"];
-            	clients[key]=connection;
-          }
-          
-          if(!!recievedData.from && !!recievedData.to  ){
-             if(!clients[recievedData.to]){
-             	connection.sendUTF('{"success":"false"}'); 
-           }else{
-            	 clients[recievedData.to].sendUTF(JSON.stringify(recievedData)); 
-            	 connection.sendUTF('{"success":"true"}'); 
-           }
-            
-          }else{
-           		connection.sendUTF(message.utf8Data);
-           }
-
+        
+        //if (message.type === 'utf8') {
+           // console.log('Received Message: ' + message.utf8Data);
+            connection.sendUTF(message.utf8Data);
+       // }
+       // else if (message.type === 'binary') {
+          //  console.log('Received Binary Message of ' + message.binaryData.length + ' bytes');
+          // connection.sendBytes(message.binaryData);
+       // }
     });
     connection.on('close', function(reasonCode, description) {
-    	  var keys=Object.keys(clients);
-    	   for(var i=0;i<keys.length;i++){
-    	   	   if(clients[keys[i]]==connection){
-                console.log(keys[i]+"delete");
-    	   	   	delete clients[keys[i]];
-    	   	   	break;
-    	   	   }
-    	   
-    	   }
-
+        console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
     });
 });
+/*
+socket.emit(‘message’,data)信息传输对象为当前socket对应的client,各个client socket相互不影响
+WebSocketServer broadcast
+socket.broadcast.emit信息传输对象为所有client，排除当前socket对应的client
+socket.on('request', function(request) {
+  var connection = request.accept('any-protocol', request.origin);
+  clients.push(connection);
+
+  connection.on('message', function(message) {
+    //broadcast the message to all the clients
+    clients.forEach(function(client) {
+      client.send(message.utf8Data);
+    });
+  });
+});  ws.send(JSON.stringify({
+      msg: {
+        connectionId: userId
+      }
+    }));
+io.socket.emit信息传输的对象为所有的client*/
