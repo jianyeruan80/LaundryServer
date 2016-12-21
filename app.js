@@ -30,6 +30,7 @@ var tools = require('./modules/tools');
 var mkdirp = require('mkdirp');
 var compress = require('compression');
 var rest = require('restler');
+var SSE = require('sse')
 
 var apiToken={};
 
@@ -81,9 +82,50 @@ app.use('/api/categories', categories);
 app.use('/api/items', items);
 app.use('/api/orders', orders);
 app.use('/api/settings',settings);
+var testdata = "This is my message";
 
 
 
+app.get('/test', (req, res) => {
+    res.end(`
+       <!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<h1>获取服务端更新数据</h1>
+<div id="result"></div>
+var es = new EventSource('http://localhost:8080/sse');
+
+<script type="text/javascript">
+    if (typeof (EventSource) !== "undefined") {
+        var source = new EventSource("http://192.168.1.100:3000/sse");
+        source.addEventListener('server-time', function (e) {
+                console.log("xxxxxxxxxx")
+                console.log(e.data);
+});
+        source.onmessage = function (event) {
+           console.log(event);
+            document.getElementById("result").innerHTML += event.data + "<br>";
+        };
+        source.onerror = function (event) {
+            console.log("error"+event);
+        }
+        source.onopen = function () {
+            console.log('开始连接');
+        }
+    }
+    else {
+        document.getElementById("result").innerHTML = "抱歉，你的浏览器不支持 server-sent 事件...";
+    }
+</script>
+
+</body>
+</html>
+      `);
+  });
 /*app.post('/api/upload',security.ensureAuthorized,function(req, res, next) {
 console.log(req.token.merchantId);
 var fold=req.token.merchantId;
@@ -210,13 +252,50 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
-var server = app.listen(3000, function () {
-  var host = server.address().address;
+var server = app.listen(3000, function (err) {
+  if(err) throw err;
+   var host = server.address().address;
   var port = server.address().port;
   console.log('Server is running at http://%s:%s', host, port)
 });
+var sse = new SSE(server)
+sse.on('connection', function (connection) {
+  console.log('new connection');
+  var pusher = setInterval(function () {
+    connection.send({
+      event: 'server-time',
+      data: new Date().toTimeString()
+    })
+  }, 1000);
 
+  connection.on('close', function () {
+    console.log('lost connection');
+    clearInterval(pusher);
+  });
+})
+/*var server = app.listen(3000, function () {
+   if(err) throw err;
+  console.log("server ready on http://localhost:8080")
+});
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log('Server is running at http://%s:%s', host, port)
+
+var sse = new SSE(server)
+sse.on('connection', function (connection) {
+  console.log('new connection');
+  var pusher = setInterval(function () {
+    connection.send({
+      event: 'server-time',
+      data: new Date().toTimeString()
+    })
+  }, 1000);
+
+  connection.on('close', function () {
+    console.log('lost connection');
+    clearInterval(pusher);
+  });
+  })*/
 /*console.log(util.inspect(result, false, null))
 schemaModel.findOne({name:'loong'},function(err,doc){
         doc.set({baseinfo:{age:26}});
