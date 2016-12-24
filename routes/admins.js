@@ -40,10 +40,7 @@ router.post('/loginBak', function(req, res, next) {
            {"token":security.encrypt(md5(token))}
          ]}
         ]
-
-        
-     
-   };
+    };
       users.aggregate([
       { $match: query},
       { $lookup: {from: 'permissions', localField: 'defaultPerm', foreignField: 'perm', as: 'perms'} },

@@ -1,6 +1,6 @@
 var W3CWebSocket = require('websocket').w3cwebsocket;
  var rest = require('restler');
-var client = new W3CWebSocket('ws://192.168.1.100:1337/', 'echo-protocol');
+var client = new W3CWebSocket('ws://192.168.1.100:3000/', 'echo-protocol');
  
 client.onerror = function() {
     console.log('Connection Error');

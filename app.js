@@ -1,4 +1,5 @@
 var express = require('express');
+var WebSocketServer = require('websocket').server;
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -31,9 +32,11 @@ var mkdirp = require('mkdirp');
 var compress = require('compression');
 var rest = require('restler');
 var SSE = require('sse')
-
+var hash = require('object-hash');
 var apiToken={};
-
+var clients=[];
+var clientsJson={};
+var clientGroups=[];
 var app = express();
 app.use(compress());
 
@@ -252,13 +255,84 @@ app.use(function(err, req, res, next) {
   });
 });
 
-var server = app.listen(3000, function (err) {
+var server = app.listen(3333, function (err) {
   if(err) throw err;
    var host = server.address().address;
   var port = server.address().port;
   console.log('Server is running at http://%s:%s', host, port)
 });
-var sse = new SSE(server)
+wsServer = new WebSocketServer({
+    httpServer: server,
+     autoAcceptConnections: false
+});
+
+function originIsAllowed(origin) {
+  return true;
+}
+
+wsServer.on('request', function(request) {
+   
+
+    if (!originIsAllowed(request.origin)) {
+   
+      request.reject();
+      console.log((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
+      return;
+    }
+
+    var connection = request.accept('bossreport', request.origin);
+    console.log((new Date()) + ' Connection accepted.');
+    connection.on('message', function(message) {
+         try{
+           var msg=JSON.parse(message.utf8Data);
+           if(msg.user){
+              var userJson={
+                   key:msg.user,
+                   value:connection
+              }
+              clients.push(userJson);
+              clientsJson[msg.user]=1;
+              connection.sendUTF(message.utf8Data);
+            }else{
+                  var sign=true;
+                  for (var i = 0; i < clients.length; i++) {  
+                      var key = clients[i].key;  
+                      if (key == msg.to) {  
+                          if(msg.to==msg.from){
+                            clients[i].value.sendUTF(JSON.stringify(clientsJson));  
+                          }else{
+                            clients[i].value.sendUTF(JSON.stringify(message.utf8Data));  
+                          }
+                          sign=false;
+                          break;      
+                      } 
+                      
+                  }  
+                  if(sign){
+                     connection.sendUTF('{"error":"Connection is Error!"}');
+                  }
+              //{"from":"xxxx","to":"xxxx","action":"xxx","mechod":"GET","data":"xxxxx"}
+              //{"from":"xxxx","to":"xxxx","error":"","data":"xxxxx"}
+             // connection.sendUTF(message.utf8Data);
+            }
+          }catch(ex){}
+ 
+    });
+    connection.on('close', function(reasonCode, description) {
+          for (var i = 0; i < clients.length; i++) {  
+            var client = clients[i].value;  
+            if (client === connection) {  
+                 delete clientsJson[clients[i].key];
+                clients.splice(i, 1); 
+               
+                break; 
+            }  
+        }  
+       
+        console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
+    });
+});
+/*var sse = new SSE(server)
 sse.on('connection', function (connection) {
   console.log('new connection');
   var pusher = setInterval(function () {
@@ -272,7 +346,7 @@ sse.on('connection', function (connection) {
     console.log('lost connection');
     clearInterval(pusher);
   });
-})
+})*/
 /*var server = app.listen(3000, function () {
    if(err) throw err;
   console.log("server ready on http://localhost:8080")
