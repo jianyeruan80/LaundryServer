@@ -418,9 +418,9 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                }
                                 
                                orderUpdata.unpaid=unpaid==0?-billData.change:unpaid;
-                                  orders.findOneAndUpdate(orderQuery,orderUpdata,{},function (err, orderData) {
+                                  orders.findOneAndUpdate(orderQuery,orderUpdata,{"new":true},function (err, orderData) {
                                              if (err) return next(err);
-                                             var initOrder={
+                                        /*     var initOrder={
                                                subTotal:0,
                                                tax:0,
                                                 taxRate:0,
@@ -431,8 +431,8 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                                 grandTotal:0,
                                                receiveTotal:0,
                                                orderDetails:[]
-                                             };
-                                             res.json(initOrder);
+                                             };*/
+                                             res.json(orderData);
                                           })
                    
 
@@ -495,10 +495,10 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                   
                                }
 				
-					orderUpdata.unpaid=unpaid==0?-billData.change:unpaid;
-                                 orders.findOneAndUpdate(orderQuery,orderUpdata,{},function (err, orderData) {
+					                       orderUpdata.unpaid=unpaid==0?-billData.change:unpaid;
+                                 orders.findOneAndUpdate(orderQuery,orderUpdata,{"new":true},function (err, orderData) {
                                              if (err) return next(err);
-                                             var initOrder={
+                                  /*           var initOrder={
                                                subTotal:0,
                                                tax:0,
                                                 taxRate:0,
@@ -509,8 +509,8 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                                 grandTotal:0,
                                                receiveTotal:0,
                                                orderDetails:[]
-                                             };
-                                             res.json(initOrder);
+                                             };*/
+                                             res.json(orderData);
                                           })
                    
 
