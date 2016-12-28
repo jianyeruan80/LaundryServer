@@ -22,9 +22,10 @@
     "multiparty": "^4.1.2",
     "nodemailer": "^2.5.0",
     "restler": "^3.4.0",
+    "s3fs": "~2.5.0",
     "serve-favicon": "~2.3.0",
+    "websocket": "^1.0.23",
     "winston": "^2.2.0",
-    "winston-daily-rotate-file": "^1.1.4",
-    "s3fs": "~2.5.0"
+    "winston-daily-rotate-file": "^1.1.4"
   }
 }

@@ -302,9 +302,10 @@ router.put('/billvoid/:id',  security.ensureAuthorized,function(req, res, next) 
                              
                            ]).exec(function(err,billResult){
                               if (err) return next(err);
-                            /*         console.log("444444444444444444444444");
-                     console.log(billData);
-                     console.log("6666666666666666666666666666666666666666666666");*/
+                                     console.log("444444444444444444444444");
+                     console.log(billResult);
+
+/*                     console.log("6666666666666666666666666666666666666666666666");*/
                                var billResult=billResult?billResult[0]:null;
                                 
                                 var orderQuery={"_id":billData.order};
@@ -314,7 +315,7 @@ router.put('/billvoid/:id',  security.ensureAuthorized,function(req, res, next) 
                                      
                                if(billResult){
                                 orderUpdata.status="Semi-Paid";
-                                orderUpdata.unpaid=toFixed(billResult.grandTotal-(billResult.receiveTotal-billResult.change-billResult.tip),2);
+                                orderUpdata.unpaid=toFixed(billData.grandTotal-(billResult.receiveTotal-billResult.change-billResult.tip),2);
                                }
                            
                                  orders.findOneAndUpdate(orderQuery,orderUpdata,{},function (err, orderData) {
