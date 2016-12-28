@@ -2,12 +2,14 @@ var express = require('express'),
     router = express.Router(),
     log = require('../modules/logs'),
     admins = require('../models/admins'),
+    authorizations = require('../models/authorizations'),
     security = require('../modules/security'),
      userRequest = require('../models/userRequest'),
     mailer = require('../modules/mailer'),
      tools = require('../modules/tools'),
     md5 = require('md5'),
     util = require('util'),
+
     jwt = require('jsonwebtoken'),
     returnData={};
     returnData.success=true;
@@ -15,6 +17,9 @@ var express = require('express'),
 var permissions=admins.permissions; 
 var roles=admins.roles; 
 var users=admins.users; 
+
+
+
 /**
  * @api {post} /api/admin/login
  * @apiVersion 0.0.1
@@ -118,10 +123,57 @@ for(var i =0; i< perms.length; i++){
         
    });
 });
+router.post('/authorization',security.ensureAuthorized,function(req, res, next) {
+var info=req.body;
+var password=info.password || "";
+var query={
+    $and:[
+         { "merchantIds": {$regex:new RegExp(req.token.merchantId, 'i')}},
+         {"password":security.encrypt(md5(password))},
+         
+        ]
 
+};
+var perm={
+   'action':{
+    $regex:new RegExp(info.permission, 'i')
+ }
+}
+
+users.findOne(query).populate([{path:'permissions',select:'action',match:perm},{path:'roles',populate:{path:'permissions',select:'action',match:perm}}]).
+         exec(function (err, data) {
+           if (err) return next(err);
+          if(!data) return res.send(false);
+          var permSign=false;
+          if(data.permissions.length>0){
+		          permSign=true;
+          }else{
+          for(var i=0;i<data.roles.length;i++){
+        	if(data.roles[i].permissions.length>0){
+		            permSign=true;
+            break;
+           }    
+	       }
+		
+	    
+         }
+            if(permSign==true){
+               var authorizationJson={
+                "merchantId":req.token.merchantId,
+                "userId":data._id,
+                "userName":data.userName,
+                 "permission":info.permission,
+                 "note":info.note
+              }
+            var authorizationsDao=new authorizations(authorizationJson);
+            authorizationsDao.save();
+           }
+           res.send(permSign);
+             
+  }); 
+});
 router.post('/login', function(req, res, next) {
 var info=req.body;
-
 var password=info.password || "";
 var token=info.token || "";
 var query={
@@ -134,20 +186,18 @@ var query={
         ]
 
 };
-users.findOne(query).populate([
-         { path:'roles',populate:{ path: 'permissions'}},
-         { path:'permissions'}],
-          function (err, datas) {
+
+users.findOne(query).populate({path:'permissions'}).populate({path:'roles',populate:{ path: 'permissions'}}).
+         exec(function (err, data) {
           if (err) return next(err);
-           if (!datas || datas.length<1) return next({"code":"90002"});
-          if(datas[0].status==false) return next({"code":"90004"});
-           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":datas[0]._id,"user":datas[0].userName},req.app.get("superSecret"), {
+ if (!data) return next({"code":"90002"});
+          if(data.status==false) return next({"code":"90004"});
+           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":data._id,"user":data.userName},req.app.get("superSecret"), {
           expiresIn: '120m',
           algorithm: 'HS256'
           });
 
 
-          var data=datas[0];
           var perms=data.permissions?data.permissions:[];
           var permsTemp=[];                   
             if(!!data.roles){
@@ -155,18 +205,18 @@ users.findOne(query).populate([
                   perms = perms.concat(data.roles[j].permissions);
                 }
             }
-          perms=security.unique5(perms,"_id");
+          perms=tools.unique5(perms,"_id");
           var permsLength=perms.length-1;
-           for(var k=permsLength;k>0;k--){
+           for(var k=permsLength;k>=0;k--){
            	if(perms[k].perm<4){}else{
                 	permsTemp.push(perms[k].action); 
                 }
 	   }
-        data.permissions=permsTemp;
+        var returnData=JSON.parse(JSON.stringify(data));
+        returnData.permissions=permsTemp;
 
-data.accessToken=accessToken;
-console.log(data);
-res.json(data);
+returnData.accessToken=accessToken;
+res.json(returnData);
   }); 
 });
 
@@ -342,7 +392,8 @@ router.get('/users', security.ensureAuthorized,function(req, res, next) {
       
      var query={
              "merchantIds":new RegExp(req.token.merchantId,"i"),
-              "type":""
+             "type":"",
+              "_id":{$ne:req.token.id}
             }
 
      users.find(query,function (err, data) {
@@ -427,6 +478,10 @@ try{info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex
             "password":info.password,
             "_id":{$ne:id}
       }
+console.log("------------------------");
+console.log(query);
+console.log("--------------------------");
+
  users.findOne(query).exec(function(err,data){
          if (err) return next(err);
          if(!!data) return next({"code":"90009"});
@@ -434,7 +489,6 @@ try{info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex
                        if (err) return next(err);
                         res.json(data);
                       });
-          
       })
 })
 router.delete('/users/:id',  security.ensureAuthorized,function(req, res, next) {

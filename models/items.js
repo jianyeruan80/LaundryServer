@@ -47,7 +47,7 @@ var itemsSchema = new mongoose.Schema({
     customerOptions:[optionsGroupsSchema],
     size:[sizesSchema],
     status:{type:Boolean,default:false},
-    category:{ type: mongoose.Schema.Types.ObjectId, ref: 'categorys',null: true },
+    category:{ type: mongoose.Schema.Types.ObjectId, ref: 'categories',null: true },
     price:Number,
     picture:{type:String},
     status:{type:Boolean,default:true},

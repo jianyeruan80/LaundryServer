@@ -11,8 +11,9 @@ charge:Number,
 currentPrice:Number,//-
 discount:Number,//-
 discountRate:Number,//-
+chargeRate:Number,
 qty:Number,
-options:[],
+options:[{"name":String,price:Number,order:Number}],
 properties:[],
 item:{type: mongoose.Schema.Types.ObjectId, ref: 'items' }
 });
@@ -25,10 +26,11 @@ pickUpTime:{type:Date,index:true},
 timer:Date,
 merchantId:{type:String,lowercase: true, trim: true},
 subTotal:Number,
-
+charge:Number,
+chargeRate:Number,
 taxRate:Number,
 tax:Number,
-
+orderType:String,
 tip:Number,
 tipTotal:Number,
 orderDetails:[orderDetailsSchema],

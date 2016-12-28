@@ -3,8 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var S3FS = require('s3fs');
 var options={
-  "accessKeyId":"AKIAIOEFE7NF2ZAPDNAA",
-  "secretAccessKey":"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"
+  
 }
 var filePath="C:/jayruanwork/app/node/test/test1.rar";
 var root_path=path.join(__dirname, '../logs');

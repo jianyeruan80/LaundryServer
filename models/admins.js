@@ -63,7 +63,7 @@ var usersSchema = new Schema({
 });
 var chainStoresSchema = new Schema({
    name:{type:String},
-   merchants:[String]
+   merchantIds:[String]
 
 });
 

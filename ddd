@@ -1,0 +1,236 @@
+commit 60d236717283dffd21c50072d0aee677d137048a
+Merge: 58fdc38 72fabe1
+Author: root <root@li577-91.members.linode.com>
+Date:   Thu Dec 8 11:16:12 2016 -0500
+
+    Merge branch 'master' of https://github.com/jianyeruan80/LaundryServer
+
+commit 58fdc388b2744eb4748a4d995310c8e272c5f9be
+Author: root <root@li577-91.members.linode.com>
+Date:   Thu Dec 8 11:13:08 2016 -0500
+
+    add
+
+commit 72fabe1b5e0ae21ad959d6d1e770984357c4da7f
+Author: jianyeruan@gmail.com <jianyeruan@gmail.com>
+Date:   Thu Dec 8 11:10:47 2016 -0500
+
+    auth
+
+commit a556967370415afd247d8f921a982330db81212f
+Author: jianyeruan@gmail.com <jianyeruan@gmail.com>
+Date:   Tue Dec 6 10:39:30 2016 -0500
+
+    del key
+
+commit 0307422bc05bf12b752271b33252802aec897905
+Author: jianyeruan@gmail.com <jianyeruan@gmail.com>
+Date:   Tue Dec 6 10:36:58 2016 -0500
+
+    del key
+
+commit 5e88d93294afdab900a723d864cebbb0b178e2e4
+Merge: 7ed2366 9fb7663
+Author: unknown <jianyeruan@gmail.com>
+Date:   Sun Dec 4 23:02:55 2016 -0500
+
+    add
+
+commit 7ed2366968ac2c4c3202742f566fd05c5fe94484
+Author: unknown <jianyeruan@gmail.com>
+Date:   Sun Dec 4 22:59:52 2016 -0500
+
+    add
+
+commit 9fb7663e8cf06afe2d0946fd402bd404c85b62cf
+Author: root <root@li577-91.members.linode.com>
+Date:   Mon Dec 5 03:55:57 2016 +0000
+
+    add
+
+commit 98247b099514f239911677810f0a66087a2b4168
+Author: root <root@li577-91.members.linode.com>
+Date:   Sat Dec 3 22:02:41 2016 +0000
+
+    add
+
+commit 784095fdfb73f7c4212561dd0f08ee9ae8dceb92
+Author: root <root@li577-91.members.linode.com>
+Date:   Fri Dec 2 04:23:00 2016 +0000
+
+    add charge
+
+commit ceb534f9f03c21977f72be6f5c7116d9a3fe03f7
+Author: root <root@li577-91.members.linode.com>
+Date:   Sun Nov 27 04:57:29 2016 +0000
+
+    add
+
+commit 8f5641a0fa5bec5760037cb1ddb32a907411ada5
+Author: root <root@li577-91.members.linode.com>
+Date:   Sun Nov 27 03:36:38 2016 +0000
+
+    add
+
+commit 49931a7a8acd073f9ff8303e9c719ddeba6aa34b
+Author: root <root@li577-91.members.linode.com>
+Date:   Sat Nov 26 01:54:13 2016 +0000
+
+    add
+
+commit 6c7fe6289528e542921db4597c35812ef9323b8d
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Thu Nov 24 23:54:41 2016 +0000
+
+    add
+
+commit 68bbb5f945f345abd9caf12206da52e7d83f646b
+Author: unknown <jianyeruan@gmail.com>
+Date:   Thu Nov 24 18:24:58 2016 -0500
+
+    add
+
+commit f4de791adc07f47050abf1d4ef595e8db893504c
+Author: unknown <jianyeruan@gmail.com>
+Date:   Thu Nov 24 17:48:38 2016 -0500
+
+    add upload
+
+commit 3ff3db2f9861d4c74c5748a082b1f54e17bc7621
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Wed Nov 23 03:25:23 2016 +0000
+
+    add
+
+commit a862c76258e1d6846e5a8700b04fe11fa2a751f7
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Sun Nov 20 05:21:07 2016 +0000
+
+    add
+
+commit a8e7d5da33bd36249ff58c2d137b671fce6d58b8
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Sun Nov 20 03:41:41 2016 +0000
+
+    add
+
+commit cef108ea44ad2992efba1820b9164c60726cd0aa
+Merge: 7bc5986 ff7bfed
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Sat Nov 19 07:45:55 2016 +0000
+
+    add
+
+commit ff7bfed5d158f2b68a1d1c314883ed38638b4271
+Author: unknown <jianyeruan@gmail.com>
+Date:   Sat Nov 19 03:37:44 2016 -0500
+
+    add
+
+commit 833bcc4473a7b9d083754bc30e2ad9e728486339
+Author: unknown <jianyeruan@gmail.com>
+Date:   Sat Nov 19 03:22:56 2016 -0500
+
+    add
+
+commit 7bc59869e7a365ef9ae8765e9111f3dab8a3bcee
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Sat Nov 19 07:37:41 2016 +0000
+
+    add
+
+commit 2e27c67d977d8b3aec6791ba14844e71029bdb21
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Sat Nov 19 07:05:32 2016 +0000
+
+    add
+
+commit 8e7b243d08cd97f2c06efb18359dea810314fc86
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Mon Nov 14 02:48:59 2016 +0000
+
+    a
+
+commit 909ffba3f80102fdf56a0be843914671f37e8746
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Sun Nov 13 14:08:10 2016 +0000
+
+    add set
+
+commit 4d2c5d7b3c3676c9ad245e2f20d6aeef68bfe7a3
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Sat Nov 12 02:38:29 2016 +0000
+
+    ok
+
+commit 87dfaa86bac7ee1a824a3b1247c62fa6986f09ca
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Tue Nov 8 22:03:31 2016 +0000
+
+    add
+
+commit 54b49773626cb8a375743487151dd6b0bad616d2
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Tue Nov 8 21:57:36 2016 +0000
+
+    add debug
+
+commit e3f270f7b72b9ba863cd2b78701e48d68b3a63b1
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Tue Nov 8 21:22:53 2016 +0000
+
+    add bug
+
+commit f591723c324ad09e9b7b7f42f4b6920693798f08
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Tue Nov 8 19:04:11 2016 +0000
+
+    add logs
+
+commit 6bf2b07a6b727771fdf0ef13c0df80f05246f223
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Tue Nov 8 14:56:41 2016 +0000
+
+    fix
+
+commit 8dbff7fa313bbc9bae7d75b57dd1dad56cfb5f78
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Fri Nov 4 04:57:59 2016 +0000
+
+    add timer
+
+commit a9a27b3a50a60726cfe489fd09e1903b270e4960
+Author: unknown <jianyeruan@gmail.com>
+Date:   Fri Nov 4 00:00:23 2016 -0500
+
+    add timmer alert
+
+commit 97965e3c88a354edae0f9acad487873583d454df
+Author: unknown <jianyeruan@gmail.com>
+Date:   Wed Nov 2 22:47:10 2016 -0500
+
+    add perm
+
+commit 46c086328451eea9a190ebf70371b3da4563fa2d
+Author: unknown <jianyeruan@gmail.com>
+Date:   Wed Nov 2 00:48:34 2016 -0500
+
+    order
+
+commit 0796578d738e662c5b546b71f28856f038743136
+Author: root <root@ssdvps-91415.vps.net>
+Date:   Mon Oct 31 20:00:02 2016 +0000
+
+    10/31
+
+commit fb3da997d75eafe071ee10c99cc423f2f6cc9439
+Author: unknown <jianyeruan@gmail.com>
+Date:   Sat Oct 15 21:12:28 2016 -0500
+
+    ok
+
+commit accae9818676ec051ab22afa9a6e6049be9fa4d4
+Author: unknown <jianyeruan@gmail.com>
+Date:   Sat Oct 15 21:10:36 2016 -0500
+
+    first commit

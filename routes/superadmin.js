@@ -98,7 +98,7 @@ var info=req.body;
 log.debug(info);
 if(req.token.type=="SUPER"){
     info.password=security.encrypt(md5(info.password));
-   try{info.merchants=info.merchants?info.merchants.split(","):[]}catch(ex){}
+   try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
     var arvind = new users(info);
       arvind.save(function (err, data) {
       if (err) return next(err);
@@ -117,7 +117,7 @@ var options={"upsert":false,"multi":false};
                      info.updated_at=new Date();
                      if(!info.password) delete info.password;
                      if(!!info.password) info.password=security.encrypt(md5(info.password));
-                       try{info.merchants=info.merchants?info.merchants.split(","):[]}catch(ex){}
+                       try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
 var query = {"_id": id};
 var options = {new: true};
          users.findOneAndUpdate(query,info,options,function (err, data) {
@@ -136,7 +136,7 @@ router.post('/perms', security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 log.debug(info);
 if(req.token.type=="SUPER"){
- try{info.merchants=info.merchants?info.merchants.split(","):[]}catch(ex){}
+ try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
  var arvind = new permissions(info);
             arvind.save(function (err, data) {
             if (err) return next(err);
@@ -151,7 +151,7 @@ var info=req.body;
 log.debug(info);
 if(req.token.type=="SUPER"){
         var id=req.params.id;
-        try{info.merchants=info.merchants?info.merchants.split(","):[]}catch(ex){}
+        try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
         var options={"upsert":false,"multi":false};
                    info.updated_at=new Date();
                    permissions.update({"_id":id},info,options,function (err, data) {
@@ -213,7 +213,7 @@ router.get('/chainStores/:id', security.ensureAuthorized,function(req, res, next
 });
 router.post('/chainStores',  security.ensureAuthorized,function(req, res, next) {
    var info=req.body;
-   try{info.merchants=info.merchants?info.merchants.split(","):[]}catch(ex){}
+   try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
    var arvind = new chainStores(info);
    arvind.save(function (err, data) {
    if (err) return next(err);
@@ -227,7 +227,7 @@ var id=req.params.id;
 info.updated_at=new Date();
 var query = {"_id": id};
 var options = {new: true};
- try{info.merchants=info.merchants?info.merchants.split(","):[]}catch(ex){}
+ try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
  chainStores.findOneAndUpdate(query,info,options,function (err, data) {
           if (err) return next(err);
           res.json(data);
