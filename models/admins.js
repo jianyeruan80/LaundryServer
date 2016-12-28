@@ -58,9 +58,8 @@ var usersSchema = new Schema({
    storeName:String,
    token:String,
    operator:{
-  id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
-  user:String
-},
+   id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+   user:String},
 });
 var chainStoresSchema = new Schema({
    name:{type:String},

@@ -117,7 +117,7 @@ var id=req.params.id;
 info.updated_at=new Date();
 var query = {"_id": id};
 var options = {new: true};
-   info.operator={};
+info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
  customers.findOneAndUpdate(query,info,options,function (err, data) {

@@ -9,14 +9,6 @@ client.onerror = function() {
 client.onopen = function() {
     console.log('WebSocket Client Connected');
     client.send('{"register":"M01"}');
-   /* function sendNumber() {
-        if (client.readyState === client.OPEN) {
-            var number = Math.round(Math.random() * 0xFFFFFF);
-            client.send(number.toString());
-            //setTimeout(sendNumber, 1000);
-        }
-    }
-    sendNumber();*/
 };
  
 client.onclose = function() {

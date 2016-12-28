@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var admins = require('./routes/admins');
+var W3CWebSocket = require('websocket').w3cwebsocket;
+
 var superAdmin = require('./routes/superadmin');
 /*var background = require('./routes/background');*/
 /*var menuitem = require('./routes/menuitem');*/
@@ -29,7 +31,7 @@ var tools = require('./modules/tools');
 var mkdirp = require('mkdirp');
 var compress = require('compression');
 var rest = require('restler');
-
+var timerID=0;
 var apiToken={};
 var returnData={};
 returnData.success=true;
@@ -138,7 +140,7 @@ app.get('/api/ext',function(req, res, next) {
     var args = {};
     console.log(info)
      var address=info.address;
-      rest.get("https://maps.googleapis.com/maps/api/geocode/json?address="+address).on('complete', function(data, response) {
+      rest.get("api/stores").on('complete', function(data, response) {
         if (data instanceof Error) return next(data);
          console.log(data);
         // address.message=data.results[0];
@@ -174,7 +176,85 @@ var server = app.listen(3000, function () {
   var port = server.address().port;
   console.log('Server is running at http://%s:%s', host, port)
 });
+var client =null;
+function connect() { 
+client = new W3CWebSocket('ws://service520.com:3333/', 'bossreport');  
+client.onerror = function() {
+    console.log('Connection Error');
+    /* client.onclose();*/
+};
+ 
+client.onopen = function() {
+    console.log('WebSocket Client Connected');
+     heartCheck.start();
+     client.send('{"user":"M01"}');
+};
+ 
+client.onclose = function() {
+    console.log('echo-protocol Client Closed');
+       setTimeout(function() {
+      connect();
+    }, 4000)
+};
+ 
+client.onmessage = function(e) {
+ 
 
+ // try{
+   var clientData=JSON.parse(e.data);  
+   
+
+   if(!!clientData && !!clientData.to){
+      var sendData={},dataJson={};
+  
+     /*                 console.log(data);
+                    rest.get("http://service520.com:3003/api/stores",{"headers":"bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjaGFudElkIjoidGFlciIsImlkIjoiNTgwMmRjYTdhYTI4MGIwMDBlMzc0MWI2IiwidXNlciI6ImFkbWluIiwiaWF0IjoxNDgyNzE3MTg0LCJleHAiOjE0ODI3MjQzODR9.bCuewoiS6GKTLfhg_a9RWdZFRfgQafnf-i5xbaT3zsw"}).on('complete', function(data, response) {
+                            if (data instanceof Error)  {
+                              console.log(data);
+                             }*/
+         /* window.setTimeout(function(client){*/
+        
+
+              
+//(function (client,clientData) {
+       
+                            sendData.from=clientData.to;
+                            sendData.to=clientData.from;
+                            sendData.error="";
+                          console.log(clientData)
+                
+         rest.get(clientData.action,
+          {"headers":"bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjaGFudElkIjoidGFlciIsImlkIjoiNTgwMmRjYTdhYTI4MGIwMDBlMzc0MWI2IiwidXNlciI6ImFkbWluIiwiaWF0IjoxNDgyNzE3MTg0LCJleHAiOjE0ODI3MjQzODR9.bCuewoiS6GKTLfhg_a9RWdZFRfgQafnf-i5xbaT3zsw"}).
+         on('complete', function(data, response) {
+                            if (data instanceof Error) return next(data);
+                      
+                        
+                            sendData.data=data;
+                            client.send(JSON.stringify(sendData));
+                         })    
+                
+      
+   // })(client,data);
+
+   heartCheck.reset(); 
+ }
+}
+}
+ var heartCheck = {
+    timeout: 60000,
+    timeoutObj: null,
+    reset: function(){
+        clearTimeout(this.timeoutObj);
+　　　　 this.start();
+    },
+    start: function(){
+        this.timeoutObj = setTimeout(function(){
+            client.send("HeartBeat", "beat");
+        }, this.timeout)
+    }
+}
+connect();
+  
 /*console.log(util.inspect(result, false, null))
 schemaModel.findOne({name:'loong'},function(err,doc){
         doc.set({baseinfo:{age:26}});

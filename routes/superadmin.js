@@ -79,7 +79,11 @@ router.get('/perms', security.ensureAuthorized,function(req, res, next) {
  log.debug(req.token);
   if(req.token.type=="SUPER"){
          permissions.aggregate(
-           [ { $group : {_id : "$permissionGroup",  order: { $min: "$order" },perms:{$push:{"subject":"$subject","action":"$action","perm":"$perm","status":"$status","value":"$_id","key":"$perm","order":"$order","merchantIds":"$merchantIds"} } } }
+           [ { $group : {_id : "$permissionGroup",  order: { $min: "$order" },
+           perms:{$push:{"subject":"$subject","action":"$action",
+           "perm":"$perm","status":"$status","value":"$_id","key":
+           "$perm","order":"$order","merchantIds":"$merchantIds"} } }
+            }
         ]
         ).sort({"order" : 1}).exec(function(err,data){
             if (err) return next(err);
