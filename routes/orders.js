@@ -8,6 +8,7 @@ var express = require('express'),
     util = require('util'),
     orders = require('../models/orders'),
     bills = require('../models/bills'),
+    async=require('async'), //http://yijiebuyi.com/blog/be234394cd350de16479c583f6f6bcb6.html
     stores = require('../models/stores');
     router.post('/query',  security.ensureAuthorized,function(req, res, next) {
          var info=req.body;
@@ -628,7 +629,90 @@ info.unpaid=info.grandTotal;
 
 })                           
     
+router.post('/report',  function(req, res, next) {
+ var info=req.body;
+ var query={"status":{$ne:"Void"}}; 
+async.parallel({
+    one: function (done) {
+        orders.aggregate([
+            {
+              $match:query
+            },
+             { $group: { _id: null, grandTotal: { $sum: "$grandTotal" },subTotal: { $sum: "$subTotal" },taxTotal: { $sum: "$tax" },count: { $sum:1 },
+              discountTotal: { $sum:"$discount"},chargeTotal: { $sum:"$charge" },tipTotal:{$sum:"$tip"}
+              } }]).exec(function(err,data){
+                 if (err) return next(err);
+                 done(null,data);
+             })
+             
+    },
+    two: function (done) {  //Laundry + Merchandise = Grand Total
+          var twoQuery={};
+          orders.aggregate([
+            {
+              $match:twoQuery
+            },
+             { $group: { _id: "$orderType", grandTotal: { $sum: "$grandTotal" }
+              } }]).exec(function(err,data){
+                 if (err) return next(err);
+                   done(null,data);
+             })
+    },
+    three: function (done) {  //Paid Total = Cash + Credit + Gift Card + Loyalty
+          var threeQuery={"status":"Paid"};
+          bills.aggregate([
+            {
+              $match:threeQuery
+            },
+             { $group: { _id: "$type", receiveTotal: { $sum: "$receiveTotal" },change:{$sum:
+              { $cond: { if: { $gte: [ "$change", 0 ] }, then: "$change", else:0 }}
+             }
+              } }]).exec(function(err,data){
+                 if (err) return next(err);
+                   done(null,data);
+             })
+       
+    },
+    four: function (done) {
+              bills.aggregate([
+            {
+              $lookup:
+                {
+                  from: "orders",
+                  localField: "order",
+                  foreignField: "_id",
+                  as: "ordersDoc"
+                }
+           },
+           { $unwind: "$ordersDoc" },
+           {
+            $match:{"ordersDoc.status":{$ne:"Void"},"status":"Void"}
+           },{
+               $group: { _id: null, receiveTotal: { $sum: "$receiveTotal" },chargeTotal: { $sum: "$charge" },discountTotal : { $sum: "$discount" },
+               change:{$sum:{ $cond: { if: { $gte: [ "$change", 0 ] }, then: "$change", else:0 }}}}
+             
+              
+           }
+        ]).exec(function(err,data){
+                 if (err) return next(err);
+                   done(null,data);
+             })
+       
+        
+    }
+}, function (err, result) {
+    if(!!err){console.log(err); return next(err)}
+    var returnJson={};
+    returnJson.one=result.one;
+    returnJson.two=result.two;
+    returnJson.three=result.three;
+    returnJson.four=result.four;
+    
+    
+    res.json(returnJson)
+})
 
+})
 
 module.exports = router;
 
