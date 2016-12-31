@@ -631,22 +631,47 @@ info.unpaid=info.grandTotal;
     
 router.post('/report',  function(req, res, next) {
  var info=req.body;
- var query={"status":{$ne:"Void"}}; 
+ var query={}; 
 async.parallel({
     one: function (done) {
+      var initData={
+      "grandTotal":0,
+      "subTotal": 0,
+      "taxTotal": 0,
+      "numOfOrder": 0,
+      "discountTotal": 0,
+      "chargeTotal": 0,
+      "tipTotal": 0
+        }
+
         orders.aggregate([
             {
               $match:query
             },
-             { $group: { _id: null, grandTotal: { $sum: "$grandTotal" },subTotal: { $sum: "$subTotal" },taxTotal: { $sum: "$tax" },count: { $sum:1 },
+             { $group: { _id: "$status", grandTotal: { $sum: "$grandTotal" },subTotal: { $sum: "$subTotal" },taxTotal: { $sum: "$tax" },numOfOrder: { $sum:1 },
               discountTotal: { $sum:"$discount"},chargeTotal: { $sum:"$charge" },tipTotal:{$sum:"$tip"}
               } }]).exec(function(err,data){
                  if (err) return next(err);
-                 done(null,data);
+                 data.forEach(function(v,k){
+                    if(v._id=="Void"){
+                      initData.grandTotal+=v.grandTotal;
+                      initData.grandTotal+=v.grandTotal;
+                    }else{
+                      initData.grandTotal+=v.grandTotal;
+                      initData.subTotal+=v.subTotal;
+                      initData.taxTotal+=v.taxTotal;
+                      initData.numOfOrder+=v.numOfOrder;
+                      initData.discountTotal+=v.grandTotal;
+                      initData.chargeTotal+=v.chargeTotal;
+                      initData.tipTotal+=v.tipTotal;
+                    }
+                 })
+                 done(null,initData);
              })
              
     },
     two: function (done) {  //Laundry + Merchandise = Grand Total
+
           var twoQuery={};
           orders.aggregate([
             {
@@ -655,10 +680,17 @@ async.parallel({
              { $group: { _id: "$orderType", grandTotal: { $sum: "$grandTotal" }
               } }]).exec(function(err,data){
                  if (err) return next(err);
-                   done(null,data);
+                    data.forEach(function(v,k){
+                       var key=v._id || "laundry";
+                       initData[key]=(v.receiveTotal-v.change).toFixed(2);
+                    })
              })
     },
     three: function (done) {  //Paid Total = Cash + Credit + Gift Card + Loyalty
+           var initData={
+      
+
+        }
           var threeQuery={"status":"Paid"};
           bills.aggregate([
             {
@@ -669,11 +701,20 @@ async.parallel({
              }
               } }]).exec(function(err,data){
                  if (err) return next(err);
-                   done(null,data);
+                    data.forEach(function(v,k){
+                       var key=v._id  || "other";
+                       initData[key]=(v.receiveTotal-v.change).toFixed(2);
+                    })
+                     done(null,initData);
              })
        
     },
     four: function (done) {
+               var initData={
+                "voidItemTotal":0,
+                "voidItemDiscountTotal":0,
+                "voidItemChargeTotal":0,
+               }
               bills.aggregate([
             {
               $lookup:
@@ -695,7 +736,12 @@ async.parallel({
            }
         ]).exec(function(err,data){
                  if (err) return next(err);
-                   done(null,data);
+                  data.forEach(function(v,k){
+                    initData["voidItemTotal"]=(v.receiveTotal-v.change).toFixed(2);
+                    initData["voidItemDiscountTotal"]=v.discountTotal.toFixed(2);
+                    initData["voidItemChargeTotal"]=v.chargeTotal.toFixed(2);
+                  })
+                   
              })
        
         
