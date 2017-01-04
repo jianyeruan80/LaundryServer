@@ -50,6 +50,8 @@ var storesSchema = new mongoose.Schema({
     DiffTimes:{type:Number,default:0},
     distanceFee:[distanceFeeSchema],
     expires:Date,
+    reportStartTime:Date,
+    reportEndTime:Date,
     language:{
          name:lauguagesSchema,
          description:lauguagesSchema

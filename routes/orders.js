@@ -641,9 +641,17 @@ async.parallel({
       "numOfOrder": 0,
       "discountTotal": 0,
       "chargeTotal": 0,
-      "tipTotal": 0
+      "tipTotal": 0,
+     "voidGrandTotal":0,
+    "voidNumOfOrder":0
         }
+        if(info.startTime){
+           query["createdAt"]={"$gte":info.startTime};	
+        }
+        if(info.endTime){
+          query["createdAt"]={"$lte":info.endTime};
 
+        } 
         orders.aggregate([
             {
               $match:query
@@ -654,26 +662,34 @@ async.parallel({
                  if (err) return next(err);
                  data.forEach(function(v,k){
                     if(v._id=="Void"){
-                      initData.grandTotal+=v.grandTotal;
-                      initData.grandTotal+=v.grandTotal;
+                      initData.voidGrandTotal=v.grandTotal.toFixed(2);
+                      initData.voidNumOfOrder=v.numOfOrder;
                     }else{
                       initData.grandTotal+=v.grandTotal;
                       initData.subTotal+=v.subTotal;
                       initData.taxTotal+=v.taxTotal;
                       initData.numOfOrder+=v.numOfOrder;
-                      initData.discountTotal+=v.grandTotal;
+                      initData.discountTotal+=v.discountTotal;
                       initData.chargeTotal+=v.chargeTotal;
                       initData.tipTotal+=v.tipTotal;
                     }
                  })
+                  initData.grandTotal=initData.grandTotal.toFixed(2);
+                  initData.subTotal=initData.subTotal.toFixed(2);
+                  initData.taxTotal=initData.taxTotal.toFixed(2);
+                  initData.discountTotal=initData.discountTotal.toFixed(2);
+                 initData.chargeTotal=initData.chargeTotal.toFixed(2);
+                 initData.tipTotal=initData.tipTotal.toFixed(2);
+          
                  done(null,initData);
              })
              
     },
     two: function (done) {  //Laundry + Merchandise = Grand Total
-
+          var initData={};
           var twoQuery={};
-          orders.aggregate([
+          
+		orders.aggregate([
             {
               $match:twoQuery
             },
@@ -682,8 +698,9 @@ async.parallel({
                  if (err) return next(err);
                     data.forEach(function(v,k){
                        var key=v._id || "laundry";
-                       initData[key]=(v.receiveTotal-v.change).toFixed(2);
-                    })
+                      initData[key]=v.grandTotal;
+                   })
+                  done(null,initData);
              })
     },
     three: function (done) {  //Paid Total = Cash + Credit + Gift Card + Loyalty
@@ -705,6 +722,7 @@ async.parallel({
                        var key=v._id  || "other";
                        initData[key]=(v.receiveTotal-v.change).toFixed(2);
                     })
+                    
                      done(null,initData);
              })
        
@@ -741,7 +759,7 @@ async.parallel({
                     initData["voidItemDiscountTotal"]=v.discountTotal.toFixed(2);
                     initData["voidItemChargeTotal"]=v.chargeTotal.toFixed(2);
                   })
-                   
+                done(null,initData);   
              })
        
         
