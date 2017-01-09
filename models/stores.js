@@ -64,7 +64,7 @@ var storesSchema = new mongoose.Schema({
 });
 storesSchema.index({ merchantId: 1},{unique: true,sparse:true });
 //storesSchema.index({ qrcUrl: 1},{unique: true,sparse:true });
-addressSchema.index({location: '2dsphere'});
+//addressSchema.index({location: '2dsphere'});
 module.exports = mongoose.model('stores', storesSchema);
 
 /*{ createdAt: { type: Date, expires: 3600, default: Date.now }}
