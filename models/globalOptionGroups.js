@@ -26,8 +26,9 @@ var globalOptionGroupsSchema = new mongoose.Schema({
     maximun:{type:Number,default:0},
     order:{type:Number,default:1},
     picture:String,
-   operator:{
-    id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+    unit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
+    operator:{
+     id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
     user:String
 },
     options:[globalOptionsSchema],

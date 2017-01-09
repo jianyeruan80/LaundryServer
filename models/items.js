@@ -54,6 +54,7 @@ var itemsSchema = new mongoose.Schema({
     description:String,
     order:{type:Number,default:1},
     oldPrice:Number,
+    unit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
     recommend:{type:Boolean,default:false},
     properties:[String],
     operator:{
