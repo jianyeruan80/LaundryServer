@@ -20,14 +20,6 @@ var transactionsSchema = new mongoose.Schema({
          description:lauguagesSchema
     }
 });
-
-
-
-
-  
-
 transactionsSchema.index({merchantId: 1 }, { unique: true,sparse:true});
 module.exports = mongoose.model('transactions', transactionsSchema);
-/*{ createdAt: { type: Date, expires: 3600, default: Date.now }}
-OrderList.$.UserName","大叔2015-09-21
-*/
+
