@@ -10,6 +10,8 @@ var optionsSchema = new mongoose.Schema({
     price:Number,
     picture:String,
     order:{type:Number,default:1},
+    compositions:[{material:{type: mongoose.Schema.Types.ObjectId, ref: 'materials'}},qty:Number}],
+    unit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
     language:{
          name:lauguagesSchema,
          description:lauguagesSchema
@@ -25,6 +27,7 @@ var optionsGroupsSchema = new mongoose.Schema({
     maximun:{type:Number,default:0},
     order:{type:Number,default:1},
     options:[optionsSchema],
+
     language:{
          group:lauguagesSchema,
          name:lauguagesSchema,
@@ -56,10 +59,11 @@ var itemsSchema = new mongoose.Schema({
     oldPrice:Number,
     unit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
     recommend:{type:Boolean,default:false},
+    compositions:[{material:{type: mongoose.Schema.Types.ObjectId, ref: 'materials'}},qty:Number}],
     properties:[String],
     operator:{
-  id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
-  user:String
+    id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+    user:String
 },
     language:{
          name:lauguagesSchema,

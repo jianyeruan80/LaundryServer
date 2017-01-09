@@ -27,6 +27,7 @@ var globalOptionGroupsSchema = new mongoose.Schema({
     order:{type:Number,default:1},
     picture:String,
     unit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
+    compositions:[{material:{type: mongoose.Schema.Types.ObjectId, ref: 'materials'}},qty:Number}],
     operator:{
      id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
     user:String
