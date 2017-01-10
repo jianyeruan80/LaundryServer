@@ -6,7 +6,7 @@ var lauguagesSchema = new Schema({
 })
 
 
-var materialsSchema = new mongoose.Schema({ 
+var inventoryItemsSchema = new mongoose.Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
     name:{type:String},
     category:{ type: mongoose.Schema.Types.ObjectId, ref: 'categorys',null: true },
@@ -15,7 +15,10 @@ var materialsSchema = new mongoose.Schema({
     description:String,
     order:{type:Number,default:1},
     alarm:Number, 
-    unit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
+    baseQty:Number,
+    baseUnit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
+    derivedUnit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
+    derivedQty:Number,
     operator:{
              id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
              user:String
@@ -25,5 +28,5 @@ var materialsSchema = new mongoose.Schema({
          description:lauguagesSchema
     }
 });
-materialsSchema.index({ name: 1, merchantId: 1 }, { unique: true,sparse:true});
-module.exports = mongoose.model('materials', materialsSchema);
+inventoryItemsSchema.index({ name: 1, merchantId: 1 }, { unique: true,sparse:true});
+module.exports = mongoose.model('inventoryItems', inventoryItemsSchema);

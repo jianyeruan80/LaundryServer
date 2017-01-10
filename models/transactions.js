@@ -8,7 +8,7 @@ var lauguagesSchema = new Schema({
 
 var transactionsSchema = new mongoose.Schema({
     merchantId: String,
-    material:{ type: mongoose.Schema.Types.ObjectId, ref: 'materials',null: true },
+    inventoryItem:{ type: mongoose.Schema.Types.ObjectId, ref: 'inventoryItems',null: true },
     qty:Number,
     type:{type: String, enum: ['Outstock', 'Instock'],default:'Outstock'}},
     item:{ type: mongoose.Schema.Types.ObjectId, ref: 'items',null: true },
