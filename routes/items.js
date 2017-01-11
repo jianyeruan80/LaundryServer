@@ -3,10 +3,11 @@ var express = require('express'),
     router = express.Router(),
     log = require('../modules/logs'),
     security = require('../modules/security'),
-    categories = require('../models/categories');
-    stores = require('../models/stores');
-    groups = require('../models/groups');
-    util = require('util');
+    categories = require('../models/categories'),
+    async=require('async'),
+    stores = require('../models/stores'),
+    groups = require('../models/groups'),
+    util = require('util'),
     returnData={},
     items = require('../models/items');
 
@@ -61,70 +62,45 @@ router.put('/sort/:id', security.ensureAuthorized,function(req, res, next) {
 });
 
 router.get('/menus',security.ensureAuthorized,function(req, res, next) {
-  
-  
+ 	 
  log.debug(req.token);
+var info=req.params; 
 var query={}; query.merchantId=req.token.merchantId;
- 
-//{path:'xxxx'},找xxx下的
-// populate: { path: 'friends' }
 
- stores.findOne(query).exec(function (err, data) {
-   if (err) return next(err);
-       query.status=true;
-      groups.find(query).populate(
+async.parallel({
+    one: function (done) {
+      stores.findOne(query).exec(function (err, data) {
+        if (err) return  done(err,err);          
+                 done(null,data);
+         
+      })
+             
+    },
+    two: function (done) {  //Laundry + Merchandise = Grand Total
+         query.status=true;
+         query.type = info.type || "Product";
+          groups.find(query).populate(
              {
               path: 'categories',
               populate: [{ path: 'items', match: {status:true},options: { sort: { order: 1 }},populate: { path: 'globalOptions'}},{path: 'globalOptions'}],
               match: {status:true}, 
               options: { sort: { order: 1 }}
               }
-            ).populate("globalOptions").sort({order:1}).exec(function(err, data2) {    
-                 if (err) return next(err);
-                     
-                   
-                /*      for(var i=0;i<data2.length;i++){
-                          var globalOptionsArray=data2[i].globalOptions;
-                          var customerOptionsArray=data2[i].customerOptions;
-                              
-                              for(var j=0;j<data2[i].categories.length;j++){
-                                 data2[i].categories[j].globalOptions=globalOptionsArray.concat(data2[i].categories[j].globalOptions);
-                                 data2[i].categories[j].customerOptions=customerOptionsArray.concat(data2[i].categories[j].customerOptions);
-                                for(var k=0;k<data2[i].categories[j].items.length;k++){
-                                  
-                                        data2[i].categories[j].items[k].globalOptions= data2[i].categories[j].globalOptions.concat(data2[i].categories[j].items[k].globalOptions);
-                                        data2[i].categories[j].items[k].customerOptions= data2[i].categories[j].customerOptions.concat(data2[i].categories[j].items[k].customerOptions);
-                      
-                                }
-
-                            }
-
-                      }*/
-                     returnData.store=data;
-                     returnData.menus=data2;
-                     res.json(returnData);
-                  })
+            ).populate("globalOptions").sort({order:1}).exec(function(err, data) {    
+                 if (err) return  done(err,err); 
+                     done(null,data);
+                })
+    }
 
 
-
- })
-        
-/*categories.o([
-              { $match: query },
-              {$unwind:"$globalOptions"},
-              {
-                $lookup: {
-                  from: 'globalOptionGroups',
-                  localField: 'globalOptions',
-                  foreignField: '_id',
-                  as: 'globalOptionGroups'
-                }
-              },
-   
-            ]).exec(function(err,result){
-              console.log(result)
-            })*/
-  
+}, function (err, result) {
+    if(!!err){console.log(err); return next(err)}
+    var returnJson={};
+    returnJson.store=result.one;
+    returnJson.menus=result.two;
+   res.json(returnJson)
+}) 
+ 
 })
 router.get('/group', security.ensureAuthorized,function(req, res, next) {
     

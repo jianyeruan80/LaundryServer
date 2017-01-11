@@ -33,11 +33,10 @@ router.put('/sort',security.ensureAuthorized, function(req, res, next) {
      
 });
 router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
-
-     var query={"merchantId":req.token.merchantId};
-     console.log("---------------------");
-     console.log(query);
-     console.log("---------------------");
+     var info=req.params;
+      var query={"merchantId":req.token.merchantId};
+          query.type=info.type ||"Product";
+         
       groups.find(query).sort({order:1}).exec(function (err, data) {
         if (err) return next(err);
          res.json(data);

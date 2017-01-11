@@ -46,7 +46,7 @@ var groupsSchema = new mongoose.Schema({
     },
     picture:{type:String},
     categories:[{type: mongoose.Schema.Types.ObjectId, ref: 'categories'}],
-    type:[{type: String, enum: ['Product','inventoryItems'],default:'Product'}],
+    type:{type: String, enum: ['Product','inventoryItems'],default:'Product'},
     operator:{
     id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
     user:String

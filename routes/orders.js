@@ -528,7 +528,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
 router.post('/',  security.ensureAuthorized,function(req, res, next) {
    var info=req.body;
  console.log("---------------------sssssssssss-------------");
-   console.log(info);
+//   console.log(info);
    log.info("NewOrder",info);
    var name="orderNo";
    info.merchantId=req.token.merchantId; 
@@ -540,7 +540,6 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
    if(info.pickUpTime){
    try{info.pickUpTime=new Date(info.pickUpTime) } catch(ex){ console.log(ex)}}
    console.log("=====================================");
-console.log(info);
 
  
    var d=new Date();
@@ -553,6 +552,9 @@ console.log(info);
    info.orderNo=n.seqNo;
     var pre=d.getMonth()+1+""+d.getDate()+(""+d.getFullYear()).substr(2,2);
    info.invoiceNo=pre+n.seqNo;
+
+   console.log(info);
+
    var arvind = new orders(info);
    arvind.save(function (err, data) {
    if (err) return next(err);

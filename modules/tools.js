@@ -39,7 +39,8 @@ function getAllFiles(root){
             var options = {new: false,upsert: true};
             var rightNow=new Date();
             var dateFormat= rightNow.toISOString().slice(0,10).replace(/-/g,"");
-
+   console.log("===xxx==");
+ console.log(query);
       seqs.aggregate(
     [ 
    {
@@ -62,6 +63,7 @@ function getAllFiles(root){
 ).exec(function (err, data) {
             if (err){reject(err);return false};
             var currentData=data[0];
+            console.log(currentData);
             if(!currentData){reject("");return false};
             var seqNo=currentData.pre || "";
              currentData.seq++

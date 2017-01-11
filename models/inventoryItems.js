@@ -19,6 +19,8 @@ var inventoryItemsSchema = new mongoose.Schema({
     baseUnit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
     derivedUnit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
     derivedQty:Number,
+    createdAt: {type:Date,default:Date.now},
+    updatedAt: Date,
     operator:{
              id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
              user:String
