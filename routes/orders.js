@@ -434,6 +434,9 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                                receiveTotal:0,
                                                orderDetails:[]
                                              };*/
+                                             console.log("======aa============");
+                                             console.log(orderData);
+                                            console.log("-------aa-----------");
                                              res.json(orderData);
                                           })
                    
@@ -444,7 +447,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                })
         
     return false;
-   } 
+   }else{
   
    var p1=tools.getNextSequence(query);
    p1.then(function(n){
@@ -512,7 +515,10 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                                receiveTotal:0,
                                                orderDetails:[]
                                              };*/
-                                             res.json(orderData);
+                                            console.log("==aaa========");
+                                            console.log(orderData);
+                                            console.log("===bbb=="); 
+					    res.json(orderData);
                                           })
                    
 
@@ -523,7 +529,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
  });
 }, function(n) {
   res.json({"code":"90005"});
-});
+});}
 })
 router.post('/',  security.ensureAuthorized,function(req, res, next) {
    var info=req.body;
@@ -645,7 +651,9 @@ async.parallel({
       "chargeTotal": 0,
       "tipTotal": 0,
      "voidGrandTotal":0,
-    "voidNumOfOrder":0
+    "voidNumOfOrder":0,
+    "orders":[],
+    "voidOrders":[]
         }
         if(info.startTime){
            query["createdAt"]={"$gte":info.startTime};	
@@ -659,13 +667,14 @@ async.parallel({
               $match:query
             },
              { $group: { _id: "$status", grandTotal: { $sum: "$grandTotal" },subTotal: { $sum: "$subTotal" },taxTotal: { $sum: "$tax" },numOfOrder: { $sum:1 },
-              discountTotal: { $sum:"$discount"},chargeTotal: { $sum:"$charge" },tipTotal:{$sum:"$tip"}
+              discountTotal: { $sum:"$discount"},chargeTotal: { $sum:"$charge" },tipTotal:{$sum:"$tip"},orders:{$push:{"orderId":"$_id"}}
               } }]).exec(function(err,data){
                  if (err) return next(err);
                  data.forEach(function(v,k){
                     if(v._id=="Void"){
                       initData.voidGrandTotal=v.grandTotal.toFixed(2);
                       initData.voidNumOfOrder=v.numOfOrder;
+                      initData.voidOrders=v.orders || [];
                     }else{
                       initData.grandTotal+=v.grandTotal;
                       initData.subTotal+=v.subTotal;
@@ -674,6 +683,7 @@ async.parallel({
                       initData.discountTotal+=v.discountTotal;
                       initData.chargeTotal+=v.chargeTotal;
                       initData.tipTotal+=v.tipTotal;
+                      initData.orders=v.orders || [];
                     }
                  })
                   initData.grandTotal=initData.grandTotal.toFixed(2);
@@ -682,7 +692,7 @@ async.parallel({
                   initData.discountTotal=initData.discountTotal.toFixed(2);
                  initData.chargeTotal=initData.chargeTotal.toFixed(2);
                  initData.tipTotal=initData.tipTotal.toFixed(2);
-          
+                
                  done(null,initData);
              })
              
