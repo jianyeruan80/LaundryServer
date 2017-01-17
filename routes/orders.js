@@ -1,5 +1,7 @@
 var express = require('express'),
     router = express.Router(),
+    extend = require('util')._extend,
+
    mongoose = require('mongoose'), 
    log = require('../modules/logs'),
     security = require('../modules/security'),
@@ -399,7 +401,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                   _id: "$order", 
                                   receiveTotal: { $sum: "$receiveTotal" } ,
                                   change: { $sum:"$change"}   ,
-                                  tip: { $sum: "$tip" } ,
+                                  tip: { $sum: "$tip" } 
 
                                 } 
                                }
@@ -422,22 +424,15 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                orderUpdata.unpaid=unpaid==0?-billData.change:unpaid;
                                   orders.findOneAndUpdate(orderQuery,orderUpdata,{"new":true},function (err, orderData) {
                                              if (err) return next(err);
-                                        /*     var initOrder={
-                                               subTotal:0,
-                                               tax:0,
-                                                taxRate:0,
-                                                tip:0,
-                                                tipRate:0,
-                                                discount:0,
-                                                discountRate:0,
-                                                grandTotal:0,
-                                               receiveTotal:0,
-                                               orderDetails:[]
-                                             };*/
-                                             console.log("======aa============");
-                                             console.log(orderData);
-                                            console.log("-------aa-----------");
-                                             res.json(orderData);
+                                             console.log("======aa=aaa===========");
+                                              var returnData=JSON.parse(JSON.stringify(orderData));;
+                                              var unpaid=returnData.unpaid>0?returnData.unpaid:0;
+                                                       
+                                             returnData.paid=(returnData.grandTotal-unpaid || 0);
+                                             returnData.receiveTotal=info.receiveTotal;
+                                             console.log(returnData);
+                                            console.log("-------aa----aa-------");
+                                             res.json(returnData);
                                           })
                    
 
@@ -503,22 +498,16 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
 					                       orderUpdata.unpaid=unpaid==0?-billData.change:unpaid;
                                  orders.findOneAndUpdate(orderQuery,orderUpdata,{"new":true},function (err, orderData) {
                                              if (err) return next(err);
-                                  /*           var initOrder={
-                                               subTotal:0,
-                                               tax:0,
-                                                taxRate:0,
-                                                tip:0,
-                                                tipRate:0,
-                                                discount:0,
-                                                discountRate:0,
-                                                grandTotal:0,
-                                               receiveTotal:0,
-                                               orderDetails:[]
-                                             };*/
-                                            console.log("==aaa========");
-                                            console.log(orderData);
-                                            console.log("===bbb=="); 
-					    res.json(orderData);
+                                              
+                                               console.log("==aaa=====bb===");
+                  
+                                               var returnData=JSON.parse(JSON.stringify(orderData));
+                                               var unpaid=orderData.unpaid>0?orderData.unpaid:0;
+                                            	returnData.paid=(orderData.grandTotal-unpaid) ||0;
+						returnData.receiveToal=info.receiveTotal;
+						console.log(returnData);
+                                            console.log("===bbb= bb="); 
+					    res.json(returnData);
                                           })
                    
 
@@ -667,7 +656,7 @@ async.parallel({
               $match:query
             },
              { $group: { _id: "$status", grandTotal: { $sum: "$grandTotal" },subTotal: { $sum: "$subTotal" },taxTotal: { $sum: "$tax" },numOfOrder: { $sum:1 },
-              discountTotal: { $sum:"$discount"},chargeTotal: { $sum:"$charge" },tipTotal:{$sum:"$tip"},orders:{$push:{"orderId":"$_id"}}
+              discountTotal: { $sum:"$discount"},chargeTotal: { $sum:"$charge" },tipTotal:{$sum:"$tip"},orders:{$push:{"orderId":"$_id","status":"$status","orderNo":"$orderNo"}}
               } }]).exec(function(err,data){
                  if (err) return next(err);
                  data.forEach(function(v,k){
@@ -683,7 +672,7 @@ async.parallel({
                       initData.discountTotal+=v.discountTotal;
                       initData.chargeTotal+=v.chargeTotal;
                       initData.tipTotal+=v.tipTotal;
-                      initData.orders=v.orders || [];
+                      initData.orders=initData.orders.concat(v.orders || []);
                     }
                  })
                   initData.grandTotal=initData.grandTotal.toFixed(2);
@@ -698,7 +687,7 @@ async.parallel({
              
     },
     two: function (done) {  //Laundry + Merchandise = Grand Total
-          var initData={};
+          var initData={"orders":[]};
           var twoQuery={};
           
 		orders.aggregate([
@@ -706,20 +695,20 @@ async.parallel({
               $match:twoQuery
             },
              { $group: { _id: "$orderType", grandTotal: { $sum: "$grandTotal" }
-              } }]).exec(function(err,data){
+              ,orders:{$push:{"orderId":"$_id","status":"$status","orderNo":"$orderNo"}}}} ]).exec(function(err,data){
                  if (err) return next(err);
                     data.forEach(function(v,k){
                        var key=v._id || "laundry";
                       initData[key]=v.grandTotal;
+                      initData.orders=initData.orders.concat(v.orders || []);
                    })
                   done(null,initData);
              })
     },
     three: function (done) {  //Paid Total = Cash + Credit + Gift Card + Loyalty
            var initData={
-      
-
-        }
+             "orders":[]
+          }
           var threeQuery={"status":"Paid"};
           bills.aggregate([
             {
@@ -727,12 +716,13 @@ async.parallel({
             },
              { $group: { _id: "$type", receiveTotal: { $sum: "$receiveTotal" },change:{$sum:
               { $cond: { if: { $gte: [ "$change", 0 ] }, then: "$change", else:0 }}
-             }
+             },orders:{$push:{"orderId":"$order","billId":"$_id","type":"$type","orderNo":"$orderNo"}}
               } }]).exec(function(err,data){
                  if (err) return next(err);
                     data.forEach(function(v,k){
                        var key=v._id  || "other";
                        initData[key]=(v.receiveTotal-v.change).toFixed(2);
+                       initData.orders=initData.orders.concat(v.orders || [] );   
                     })
                     
                      done(null,initData);
@@ -744,6 +734,7 @@ async.parallel({
                 "voidItemTotal":0,
                 "voidItemDiscountTotal":0,
                 "voidItemChargeTotal":0,
+                "orders":[]
                }
               bills.aggregate([
             {
@@ -758,18 +749,20 @@ async.parallel({
            { $unwind: "$ordersDoc" },
            {
             $match:{"ordersDoc.status":{$ne:"Void"},"status":"Void"}
-           },{
+           }
+       ,{
                $group: { _id: null, receiveTotal: { $sum: "$receiveTotal" },chargeTotal: { $sum: "$charge" },discountTotal : { $sum: "$discount" },
-               change:{$sum:{ $cond: { if: { $gte: [ "$change", 0 ] }, then: "$change", else:0 }}}}
+               change:{$sum:{ $cond: { if: { $gte: [ "$change", 0 ] }, then: "$change", else:0 }}},orders:{$push:{"orderId":"$order","billId":"$_id"}}}
              
               
            }
         ]).exec(function(err,data){
                  if (err) return next(err);
-                  data.forEach(function(v,k){
+                data.forEach(function(v,k){
                     initData["voidItemTotal"]=(v.receiveTotal-v.change).toFixed(2);
                     initData["voidItemDiscountTotal"]=v.discountTotal.toFixed(2);
                     initData["voidItemChargeTotal"]=v.chargeTotal.toFixed(2);
+                    initData["orders"]=v.orders;
                   })
                 done(null,initData);   
              })
