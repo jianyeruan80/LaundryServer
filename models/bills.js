@@ -1,4 +1,6 @@
-var mongoose = require('mongoose'),Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    tools = require('../modules/tools');
 
 var billsSchema = new Schema({
 merchantId:{type:String,lowercase: true, trim: true},
@@ -16,7 +18,7 @@ grandTotal:Number,
 type:{type:String,default:"Cash"},
 receiveTotal:Number,
 change:Number,
-createdAt: {type:Date,default:Date.now},
+createdAt: {type:Date,default:tools.defaultDate},
 updatedAt: Date,
 status:{type:String,default:"Paid"}, //paid,void
 operator:{

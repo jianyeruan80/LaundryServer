@@ -6,6 +6,7 @@ var express = require('express'),
     admins = require('../models/admins'),
     seqs = require('../models/seqs'),
     security = require('../modules/security'),
+     tools = require('../modules/tools'),
     md5 = require('md5'),
     jwt = require('jsonwebtoken');
 
@@ -54,7 +55,7 @@ router.get('/seqs', security.ensureAuthorized,function(req, res, next) {
  });
 router.post('/seqs', security.ensureAuthorized,function(req, res, next) {
    var  info=req.body;
-        info.updatedAt=new Date(); 
+        info.updatedAt=tools.defaultDate; 
          var arvind = new seqs(info);
          arvind.save(function (err, data) {
          if (err) return next(err);
@@ -65,7 +66,7 @@ router.post('/seqs', security.ensureAuthorized,function(req, res, next) {
  });
 router.put('/seqs/:id', security.ensureAuthorized,function(req, res, next) {
    var  info=req.body;
-        info.updatedAt=new Date(); 
+        info.updatedAt=tools.defaultDate; 
         var query = {"_id": req.params.id};
         var options = {new: true};
 
@@ -114,7 +115,7 @@ log.debug(info);
 if(req.token.type=="SUPER"){
 var options={"upsert":false,"multi":false};
        var id=req.params.id;
-                     info.updated_at=new Date();
+                     info.updated_at=tools.defaultDate;
                      if(!info.password) delete info.password;
                      if(!!info.password) info.password=security.encrypt(md5(info.password));
                        try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
@@ -153,7 +154,7 @@ if(req.token.type=="SUPER"){
         var id=req.params.id;
         try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
         var options={"upsert":false,"multi":false};
-                   info.updated_at=new Date();
+                   info.updated_at=tools.defaultDate;
                    permissions.update({"_id":id},info,options,function (err, data) {
                         if (err) return next(err);
                             
@@ -224,7 +225,7 @@ router.put('/chainStores/:id',  security.ensureAuthorized,function(req, res, nex
 var info=req.body;
 log.debug(info);
 var id=req.params.id;
-info.updated_at=new Date();
+info.updated_at=tools.defaultDate;
 var query = {"_id": id};
 var options = {new: true};
  try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}

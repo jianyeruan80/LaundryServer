@@ -3,6 +3,7 @@ var express = require('express'),
     router = express.Router(),
     log = require('../modules/logs'),
     security = require('../modules/security'),
+     tools = require('../modules/tools'),
     storehours = require('../models/storehours');
     
 router.get('/merchants/id', security.ensureAuthorized, function(req, res, next) {
@@ -105,7 +106,7 @@ router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 
 var id=req.params.id;
-info.updatedAt=new Date();
+info.updatedAt=tools.defaultDate;
 info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;

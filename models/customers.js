@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+     tools = require('../modules/tools'),
 var lauguagesSchema = new Schema({
     "second":String,
     "third":String
@@ -40,7 +41,7 @@ var customersSchema = new mongoose.Schema({
 	  twitter:String,
 	  password:String,
     fax:String,
-  	createdAt: {type:Date,default:Date.now},
+  	createdAt: {type:Date,default:tools.defaultDate},
     updatedAt: Date,
     description:String,
     status:{ type: Boolean, default: true },

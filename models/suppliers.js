@@ -1,5 +1,6 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    tools = require('../modules/tools');
 var addressSchema = new Schema({
       address: String,
       city: String,
@@ -31,7 +32,7 @@ var suppliersSchema = new mongoose.Schema({
     webSite:String,
     email:String,
     about :String,
-    createdAt: {type:Date,default:Date.now},
+    createdAt: {type:Date,default:tools.defaultDate},
     updatedAt: Date,
     picture:String,
     language:{

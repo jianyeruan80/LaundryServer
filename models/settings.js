@@ -1,10 +1,12 @@
-var mongoose = require('mongoose'),Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    tools = require('../modules/tools');
 var lauguagesSchema = new Schema({
   "second":String,
   "third":String
 })
 var settingsSchema = new mongoose.Schema({ 
- createdAt:{type:Date,default:Date.now},
+ createdAt:{type:Date,default:tools.defaultDate},
  updatedAt:Date,
  merchantId:{type:String,lowercase: true, trim: true},
  group:String,

@@ -2,6 +2,7 @@
 var express = require('express'),
     router = express.Router(),
     log = require('../modules/logs'),
+     tools = require('../modules/tools'),
     security = require('../modules/security'),
     customers = require('../models/customers');
     
@@ -114,7 +115,7 @@ router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 log.debug(info);
 var id=req.params.id;
-info.updated_at=new Date();
+info.updatedAt=tools.defaultDate;
 var query = {"_id": id};
 var options = {new: true};
 info.operator={};

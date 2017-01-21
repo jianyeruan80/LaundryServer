@@ -2,6 +2,7 @@ var express = require('express'),
     router = express.Router(),
     fs = require('fs'),
     path = require('path'),
+     tools = require('../modules/tools'),
     root_path=path.join(__dirname, '../logs/');
     tools = require('../modules/tools');
     var  container=[];

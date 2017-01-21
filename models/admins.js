@@ -1,4 +1,6 @@
-var mongoose = require('mongoose'),Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    tools = require('../modules/tools');
 var permissionsSchema = new Schema({ 
   permissionGroup: {type:String},
   subject: {type:String},
@@ -9,7 +11,7 @@ var permissionsSchema = new Schema({
   status:{type:Boolean ,default:true},
   merchantIds:[{type:String,lowercase: true, trim: true}],
   description:String,
-  createdAt: {type:Date,default:Date.now},
+  createdAt: {type:Date,default:tools.defaultDate},
   updatedAt: Date
 });
 var rolesSchema = new Schema({
@@ -19,7 +21,7 @@ var rolesSchema = new Schema({
    order:{type:Number,default:1},
    status:{type:Boolean ,default:true},
    merchantId:{type:String,lowercase: true, trim: true},
-   createdAt: {type:Date,default:Date.now},
+   createdAt: {type:Date,default:tools.defaultDate},
    updatedAt: Date,
   operator:{
   id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
@@ -53,7 +55,7 @@ var usersSchema = new Schema({
    type:{type:String,default:""},
    admin:{type:String,default:""},
    status:{type:Boolean,default:true},
-   createdAt: {type:Date,default:Date.now},
+   createdAt: {type:Date,default:tools.defaultDate},
    updatedAt: Date,
    storeName:String,
    token:String,

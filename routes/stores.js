@@ -4,6 +4,7 @@ var express = require('express'),
     log = require('../modules/logs'),
     security = require('../modules/security'),
     stores = require('../models/stores'),
+     tools = require('../modules/tools'),
      licenses = require('../modules/license');
 router.get('/', function(req, res, next) {
      log.debug(req.token);
@@ -23,7 +24,7 @@ router.post('/decrypt',  function(req, res, next) {
            console.log(keyJSON);
         console.log(keyJSON.merchantId);
         if(keyJSON.merchantId==info.merchantId && keyJSON.active==true){
-            var currentDate=new Date();
+            var currentDate=tools.defaultDate;
             var expires=new Date(keyJSON.expires);
          
                keyJSON.expiresTotal=Math.ceil(new Date(currentDate-expires).getTime()/(24*60*60*1000));
@@ -73,7 +74,6 @@ router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
        stores.findOne(query, function (err, data) {
         if (err) return next(err);
         console.log(data);
-         
          res.json(data);
       });
      
@@ -109,7 +109,7 @@ info.operator.user=req.token.user;
 router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 var id=req.params.id;
-info.updatedAt=new Date();
+info.updatedAt=tools.defaultDate;
 info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;

@@ -1,5 +1,6 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    tools = require('../modules/tools');
 var lauguagesSchema = new Schema({
 	"second":String,
 	"third":String
@@ -35,7 +36,7 @@ var storesSchema = new mongoose.Schema({
     password:String,
     tax:Number,
     about :String,
-    createdAt: {type:Date,default:Date.now},
+    createdAt: {type:Date,default:tools.defaultDate},
     updatedAt: Date,
     picture:String,
     fax:String,
@@ -67,6 +68,6 @@ storesSchema.index({ merchantId: 1},{unique: true,sparse:true });
 //addressSchema.index({location: '2dsphere'});
 module.exports = mongoose.model('stores', storesSchema);
 
-/*{ createdAt: { type: Date, expires: 3600, default: Date.now }}
+/*{ createdAt: { type: Date, expires: 3600, default: tools.defaultDate }}
 OrderList.$.UserName","大叔2015-09-21
 */

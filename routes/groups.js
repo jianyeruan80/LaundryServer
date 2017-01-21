@@ -2,6 +2,7 @@
 var express = require('express'),
     router = express.Router(),
     log = require('../modules/logs'),
+     tools = require('../modules/tools'),
     security = require('../modules/security'),
     groups = require('../models/groups');
     
@@ -73,7 +74,7 @@ var info=req.body;
 info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
-info.updatedAt=new Date();
+info.updatedAt=tools.defaultDate;
 var query = {"_id": req.params.id};
 var options = {new: true};
 

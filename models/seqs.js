@@ -1,4 +1,5 @@
-var mongoose = require('mongoose'),Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 var seqsSchema = new Schema({
 	   merchantId:{type:String,lowercase: true, trim: true},
       name:String,

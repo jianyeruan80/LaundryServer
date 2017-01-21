@@ -1,5 +1,6 @@
-var mongoose = require('mongoose'),Schema = mongoose.Schema,
-tools = require('../modules/tools');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    tools = require('../modules/tools');
 var orderDetailsSchema = new Schema({
 merchantId:{type:String,lowercase: true, trim: true},
 category:String,

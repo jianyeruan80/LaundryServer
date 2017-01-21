@@ -5,6 +5,8 @@ var express = require('express'),
     security = require('../modules/security'),
     categories = require('../models/categories'),
     async=require('async'),
+
+     tools = require('../modules/tools'),
     stores = require('../models/stores'),
     groups = require('../models/groups'),
     util = require('util'),
@@ -161,7 +163,7 @@ router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
    
 var info=req.body;
 var id=req.params.id;
-info.updatedAt=new Date();
+info.updatedAt=tools.defaultDate;
   info.operator={};
        info.operator.id=req.token.id;
        info.operator.user=req.token.user;
