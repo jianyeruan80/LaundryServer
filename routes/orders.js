@@ -1,7 +1,6 @@
 var express = require('express'),
     router = express.Router(),
     extend = require('util')._extend,
-
    mongoose = require('mongoose'), 
    log = require('../modules/logs'),
     security = require('../modules/security'),
@@ -118,7 +117,7 @@ router.post('/updateTimer',  security.ensureAuthorized,function(req, res, next) 
    var len=info.length;
      for(var i=0;i<len;i++){
          var query={"_id":info[i]._id};
-          var timer=new Date(),min=info[i].min;
+          var timer=tools.defaultDate(),min=info[i].min;
            var update={"timer":null};
               if(min>0){
 	         
@@ -137,7 +136,7 @@ router.post('/updateTimer',  security.ensureAuthorized,function(req, res, next) 
      }
 })
 router.post('/timer',  security.ensureAuthorized,function(req, res, next) {
-    var alertDate=new Date();
+    var alertDate=tools.defaultDate();
 
     var query={
       $and:[
@@ -369,9 +368,8 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
    info.operator.id=req.token.id;
    info.operator.user=req.token.user;
    info.createdBy=info.operator;
-   var d=new Date();
-   info.createdAt=d;//new Date();
-   info.updatedAt=d;//new Date();
+  
+   info.updatedAt=tools.defaultDate();
    info.status="Unpaid"; //paid ,void
    if(info.pickUpTime){
    
@@ -536,10 +534,8 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
    try{info.pickUpTime=new Date(info.pickUpTime) } catch(ex){ console.log(ex)}}
    console.log("=====================================");
 
- 
-   var d=new Date();
-   info.createdAt=d;//new Date();
-   info.updatedAt=d;//new Date();
+   var d=tools.defaultDate();
+   info.updatedAt=d;
    info.status="Unpaid"; //paid ,void
    info.unpaid=info.grandTotal;
    var p1=tools.getNextSequence(query);
@@ -570,7 +566,7 @@ var info=req.body;
      info.operator={};
     info.operator.id=req.token.id;
     info.operator.user=req.token.user;
-    info.updatedAt=new Date();
+    info.updatedAt=tools.defaultDate();
     info.status="Unpaid";
     var query={"_id":req.params.id};
     var options = {new: true};

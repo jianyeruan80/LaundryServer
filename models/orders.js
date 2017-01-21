@@ -1,6 +1,5 @@
-var mongoose = require('mongoose'),Schema = mongoose.Schema;
-
-
+var mongoose = require('mongoose'),Schema = mongoose.Schema,
+tools = require('../modules/tools');
 var orderDetailsSchema = new Schema({
 merchantId:{type:String,lowercase: true, trim: true},
 category:String,
@@ -40,7 +39,7 @@ grandTotal:Number,
 unpaid:Number,
 reason:String,
 status:{type:String,default:"Unpaid",index:true},//uppaid,paid,close
-createdAt: {type:Date,default:Date.now,index:true},
+createdAt: {type:Date,default:tools.defaultDate,index:true},
 updatedAt: Date,
 createdBy:{
 	id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },

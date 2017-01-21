@@ -32,8 +32,27 @@ function getAllFiles(root){
   });
   return res
 }
-
-
+ module.exports.defaultDate=function(){
+ var timeObject = new Date();
+    timeObject.setTime(timeObject.getTime() + -5 * 60 * 60 *1000);
+    console.log(timeObject);
+    return timeObject;
+//  return  miniteFromNow();
+//   return new Date();
+}
+ module.exports.miniteFromNow=function(hour,min,sec){
+    console.log("xxxxxxxxxxxxx");
+    var hour = (hour || -5 ) * 60 * 1000 * 60;
+    var min = (min || 0) * 1000 * 60;
+    var sec= sec || 0;
+    console.log("xxxxxxxxxxxxx");
+    var minSec=hour+min+sec;
+ console.log(minSec);
+    var timeObject = new Date();
+    timeObject.setTime(timeObject.getTime() + minSec);
+    console.log(timeObject);
+    return timeObject;
+ }
  module.exports.getNextSequence = function(query) {
   return new Promise(function(resolve, reject) {
             var options = {new: false,upsert: true};
