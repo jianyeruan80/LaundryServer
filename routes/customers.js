@@ -115,7 +115,7 @@ router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 log.debug(info);
 var id=req.params.id;
-info.updatedAt=tools.defaultDate;
+info.updatedAt=tools.defaultDate();
 var query = {"_id": id};
 var options = {new: true};
 info.operator={};

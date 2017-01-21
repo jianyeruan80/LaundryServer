@@ -354,7 +354,7 @@ router.put('/roles/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 log.debug(info);
 var id=req.params.id;
-info.updatedAt=tools.defaultDate;
+info.updatedAt=tools.defaultDate();
 var query = {"_id": id};
 
 var options = {new: true};
@@ -463,7 +463,7 @@ router.put('/users/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 log.debug(info);
 var id=req.params.id;
-info.updatedAt=tools.defaultDate;
+info.updatedAt=tools.defaultDate();
 if(!info.password) delete info.password;
 if(!!info.password) info.password=security.encrypt(md5(info.password));
 var query = {"_id": id};

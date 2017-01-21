@@ -24,7 +24,7 @@ router.post('/decrypt',  function(req, res, next) {
            console.log(keyJSON);
         console.log(keyJSON.merchantId);
         if(keyJSON.merchantId==info.merchantId && keyJSON.active==true){
-            var currentDate=tools.defaultDate;
+            var currentDate=tools.defaultDate();
             var expires=new Date(keyJSON.expires);
          
                keyJSON.expiresTotal=Math.ceil(new Date(currentDate-expires).getTime()/(24*60*60*1000));
@@ -109,7 +109,7 @@ info.operator.user=req.token.user;
 router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 var id=req.params.id;
-info.updatedAt=tools.defaultDate;
+info.updatedAt=tools.defaultDate();
 info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
