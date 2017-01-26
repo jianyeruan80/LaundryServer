@@ -652,7 +652,7 @@ async.parallel({
               $match:query
             },
              { $group: { _id: "$status", grandTotal: { $sum: "$grandTotal" },subTotal: { $sum: "$subTotal" },taxTotal: { $sum: "$tax" },numOfOrder: { $sum:1 },
-              discountTotal: { $sum:"$discount"},chargeTotal: { $sum:"$charge" },tipTotal:{$sum:"$tip"},orders:{$push:{"orderId":"$_id","status":"$status","orderNo":"$orderNo"}}
+              discountTotal: { $sum:"$discount"},chargeTotal: { $sum:"$charge" },tipTotal:{$sum:"$tip"}
               } }]).exec(function(err,data){
                  if (err) return next(err);
                  data.forEach(function(v,k){
@@ -684,14 +684,14 @@ async.parallel({
     },
     two: function (done) {  //Laundry + Merchandise = Grand Total
           var initData={"orders":[]};
-          var twoQuery={};
+         
           
 		orders.aggregate([
             {
-              $match:twoQuery
+              $match:query
             },
              { $group: { _id: "$orderType", grandTotal: { $sum: "$grandTotal" }
-              ,orders:{$push:{"orderId":"$_id","status":"$status","orderNo":"$orderNo"}}}} ]).exec(function(err,data){
+              }} ]).exec(function(err,data){
                  if (err) return next(err);
                     data.forEach(function(v,k){
                        var key=v._id || "laundry";
@@ -705,14 +705,15 @@ async.parallel({
            var initData={
              "orders":[]
           }
-          var threeQuery={"status":"Paid"};
+          var threeQuery=JSON.parse(JSON.stringify(query));
+             threeQuerystatus="Paid";
           bills.aggregate([
             {
               $match:threeQuery
             },
              { $group: { _id: "$type", receiveTotal: { $sum: "$receiveTotal" },change:{$sum:
               { $cond: { if: { $gte: [ "$change", 0 ] }, then: "$change", else:0 }}
-             },orders:{$push:{"orderId":"$order","billId":"$_id","type":"$type","orderNo":"$orderNo"}}
+             }
               } }]).exec(function(err,data){
                  if (err) return next(err);
                     data.forEach(function(v,k){
@@ -732,7 +733,10 @@ async.parallel({
                 "voidItemChargeTotal":0,
                 "orders":[]
                }
-              bills.aggregate([
+            var fourQuery= JSON.parse(JSON.stringify(query));  
+            fourQuery["ordersDoc.status"]={$ne:"Void"};
+            fourQuery["status"]=Void;
+            bills.aggregate([
             {
               $lookup:
                 {
@@ -744,11 +748,11 @@ async.parallel({
            },
            { $unwind: "$ordersDoc" },
            {
-            $match:{"ordersDoc.status":{$ne:"Void"},"status":"Void"}
+            $match:fourQuery
            }
        ,{
                $group: { _id: null, receiveTotal: { $sum: "$receiveTotal" },chargeTotal: { $sum: "$charge" },discountTotal : { $sum: "$discount" },
-               change:{$sum:{ $cond: { if: { $gte: [ "$change", 0 ] }, then: "$change", else:0 }}},orders:{$push:{"orderId":"$order","billId":"$_id"}}}
+               change:{$sum:{ $cond: { if: { $gte: [ "$change", 0 ] }, then: "$change", else:0 }}}}
              
               
            }
@@ -764,7 +768,27 @@ async.parallel({
              })
        
         
-    }
+    }/*,
+        five: function (done) {
+          
+            orders.aggregate([
+            {
+              $match:{}
+            },
+             { $group: { _id: "$orderType", grandTotal: { $sum: "$grandTotal" }
+              ,orders:{$push:{"orderId":"$_id","status":"$status","orderNo":"$orderNo"}}}} ]).exec(function(err,data){
+                 if (err) return next(err);
+                    data.forEach(function(v,k){
+                       var key=v._id || "laundry";
+                      initData[key]=v.grandTotal;
+                      initData.orders=initData.orders.concat(v.orders || []);
+                   })
+                  done(null,{});
+             })
+              
+       
+        
+    }*/
 }, function (err, result) {
     if(!!err){console.log(err); return next(err)}
     var returnJson={};
@@ -772,8 +796,6 @@ async.parallel({
     returnJson.two=result.two;
     returnJson.three=result.three;
     returnJson.four=result.four;
-    
-    
     res.json(returnJson)
 })
 
