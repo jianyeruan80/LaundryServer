@@ -117,8 +117,9 @@ var form = new multiparty.Form({uploadDir:  photoPath});
       res.json(pic);
  })
  })
-
+//1,成功.0,失败。其它是自定义
  var customerError={
+         "1":"",
          "11000":"Item already exists",
          "90001":"token not match",
          "90002":"user password is not match",
@@ -152,10 +153,9 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.error("Error:" + err.message);
     res.status(err.status || 500).json({
-      success:false,
+      code:err.code?err.code:"0",
       message: customerError[err.code]?customerError[err.code]:err.message,
-      error: err
-    });
+      });
   });
 }
 
