@@ -796,10 +796,10 @@ async.parallel({
       //-----------------------    
    case "CASH":
          sign="C";
-            q["status"]="Paid";q["type"]="Cash";
+           // q["status"]="Paid";
         break;
    case "CREDIT":
-          sign="C";q["type"]="Credit";
+          sign="C";
           break;
    default:
        sign="D";
@@ -817,6 +817,9 @@ async.parallel({
                   return res.json(data);    
               })
          }else if(sign=="B"){
+          var changeSatus={
+           "DISCOUNT_TOTAL":"discount","CHARGE_TOTAL":"charge"
+         }
            orders.aggregate([
              {
                $match:q
@@ -826,18 +829,48 @@ async.parallel({
                   var tempData=JSON.parse(JSON.stringify(data)); 
                   for(var i=0;i<tempData.length;i++){
                          for(var j=0;j<tempData[i].orderDetails.length;j++){
-                             tempData[i].discount+=tempData[i].orderDetails[j].discount || 0;
-                             tempData[i].charge+=tempData[i].orderDetails[j].charge || 0;
+                             tempData[i][changeSatus[info.detail]]+=tempData[i].orderDetails[j][changeSatus[info.detail]] || 0;
+                             
                          }
                   }
                   return res.json(tempData);    
               })
 
          }else if(sign=="C"){
+         var changeSatus={
+           "CASH":"Cash","CREDIT":"Credit"
+         }
+          orders.aggregate([
+             {
+               $match:q
+             },
+             {
+   $lookup:
+     {
+       from: "bills",
+       localField: "_id",
+       foreignField: "orders",
+       as:billsDocs
+     }
+},
+{
+ $match:{"billsDocs.type":"Paid","billsDocs.status":changeSatus[info.detail]}
+}
+             ]).exec(function(err,data){
+                   if (err) return next(err);
 
+                 var tempData=JSON.parse(JSON.stringify(data)); 
+                  for(var i=0;i<tempData.length;i++){
+                         tempData["paid"]=0;
+                         for(var j=0;j<tempData[i].billsDocs.length;j++){
+                             tempData["paid"]+=tempData[i].billsDocs[j][changeSatus[info.detail]] || 0;
+                             
+                         }
+                  }
+                  return res.json(tempData);    
+              })
           
-          
-          bills.aggregate([
+          /*bills.aggregate([
             {
               $match:q
             }]).exec(function(err,data){
@@ -850,7 +883,7 @@ async.parallel({
                     
                      done(null,initData);
              })
-       
+       */
 
          }else{
            

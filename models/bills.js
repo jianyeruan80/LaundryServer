@@ -29,7 +29,7 @@ customer:{
 	id:{type: mongoose.Schema.Types.ObjectId, ref: 'customers' },
 	user:String
 },
-order:{type: mongoose.Schema.Types.ObjectId, ref: 'order'}
+order:{type: mongoose.Schema.Types.ObjectId, ref: 'orders'}
 });
 
 module.exports = mongoose.model('bills', billsSchema);
