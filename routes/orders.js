@@ -623,30 +623,32 @@ info.unpaid=info.grandTotal;
 })                           
     
 router.post('/report',  function(req, res, next) {
- var info=req.body;
- var query={}; 
+   var info=req.body;
+   var query={}; 
+    if(info.startTime){
+           query["createdAt"]={"$gte":info.startTime};  
+        }
+        if(info.endTime){
+          query["createdAt"]={"$lte":info.endTime};
+
+        } 
+if(!info.detail){
 async.parallel({
     one: function (done) {
       var initData={
       "grandTotal":0,
       "subTotal": 0,
       "taxTotal": 0,
-      "numOfOrder": 0,
+      "ofOrder": 0,
       "discountTotal": 0,
       "chargeTotal": 0,
       "tipTotal": 0,
      "voidGrandTotal":0,
-    "voidNumOfOrder":0,
-    "orders":[],
-    "voidOrders":[]
+      "ofVoid":0
+   
+   
         }
-        if(info.startTime){
-           query["createdAt"]={"$gte":info.startTime};	
-        }
-        if(info.endTime){
-          query["createdAt"]={"$lte":info.endTime};
-
-        } 
+     
         orders.aggregate([
             {
               $match:query
@@ -658,17 +660,17 @@ async.parallel({
                  data.forEach(function(v,k){
                     if(v._id=="Void"){
                       initData.voidGrandTotal=v.grandTotal.toFixed(2);
-                      initData.voidNumOfOrder=v.numOfOrder;
-                      initData.voidOrders=v.orders || [];
+                      initData.ofVoid=v.numOfOrder;
+                     // initData.voidOrders=v.orders || [];
                     }else{
                       initData.grandTotal+=v.grandTotal;
                       initData.subTotal+=v.subTotal;
                       initData.taxTotal+=v.taxTotal;
-                      initData.numOfOrder+=v.numOfOrder;
+                      initData.ofOrder+=v.numOfOrder;
                       initData.discountTotal+=v.discountTotal;
                       initData.chargeTotal+=v.chargeTotal;
                       initData.tipTotal+=v.tipTotal;
-                      initData.orders=initData.orders.concat(v.orders || []);
+                     // initData.orders=initData.orders.concat(v.orders || []);
                     }
                  })
                   initData.grandTotal=initData.grandTotal.toFixed(2);
@@ -696,7 +698,7 @@ async.parallel({
                     data.forEach(function(v,k){
                        var key=v._id || "laundry";
                       initData[key]=v.grandTotal;
-                      initData.orders=initData.orders.concat(v.orders || []);
+                      //initData.orders=initData.orders.concat(v.orders || []);
                    })
                   done(null,initData);
              })
@@ -719,7 +721,7 @@ async.parallel({
                     data.forEach(function(v,k){
                        var key=v._id  || "other";
                        initData[key]=(v.receiveTotal-v.change).toFixed(2);
-                       initData.orders=initData.orders.concat(v.orders || [] );   
+                      // initData.orders=initData.orders.concat(v.orders || [] );   
                     })
                     
                      done(null,initData);
@@ -735,7 +737,7 @@ async.parallel({
                }
             var fourQuery= JSON.parse(JSON.stringify(query));  
             fourQuery["ordersDoc.status"]={$ne:"Void"};
-            fourQuery["status"]=Void;
+            fourQuery["status"]="Void";
             bills.aggregate([
             {
               $lookup:
@@ -762,7 +764,7 @@ async.parallel({
                     initData["voidItemTotal"]=(v.receiveTotal-v.change).toFixed(2);
                     initData["voidItemDiscountTotal"]=v.discountTotal.toFixed(2);
                     initData["voidItemChargeTotal"]=v.chargeTotal.toFixed(2);
-                    initData["orders"]=v.orders;
+                 //   initData["orders"]=v.orders;
                   })
                 done(null,initData);   
              })
@@ -798,6 +800,95 @@ async.parallel({
     returnJson.four=result.four;
     res.json(returnJson)
 })
+}else{
+         orders.aggregate([
+            {
+              $match:query
+            },
+             { $group: { _id: "$status", grandTotal: { $sum: "$grandTotal" },subTotal: { $sum: "$subTotal" },taxTotal: { $sum: "$tax" },numOfOrder: { $sum:1 },
+              discountTotal: { $sum:"$discount"},chargeTotal: { $sum:"$charge" },tipTotal:{$sum:"$tip"}
+              } }]).exec(function(err,data){
+                 if (err) return next(err);
+                 data.forEach(function(v,k){
+                    if(v._id=="Void"){
+                      initData.voidGrandTotal=v.grandTotal.toFixed(2);
+                      initData.voidNumOfOrder=v.numOfOrder;
+                      initData.voidOrders=v.orders || [];
+                    }else{
+                      initData.grandTotal+=v.grandTotal;
+                      initData.subTotal+=v.subTotal;
+                      initData.taxTotal+=v.taxTotal;
+                      initData.numOfOrder+=v.numOfOrder;
+                      initData.discountTotal+=v.discountTotal;
+                      initData.chargeTotal+=v.chargeTotal;
+                      initData.tipTotal+=v.tipTotal;
+                      initData.orders=initData.orders.concat(v.orders || []);
+                    }
+                 })
+                  initData.grandTotal=initData.grandTotal.toFixed(2);
+                  initData.subTotal=initData.subTotal.toFixed(2);
+                  initData.taxTotal=initData.taxTotal.toFixed(2);
+                  initData.discountTotal=initData.discountTotal.toFixed(2);
+                 initData.chargeTotal=initData.chargeTotal.toFixed(2);
+                 initData.tipTotal=initData.tipTotal.toFixed(2);
+                
+                 done(null,initData);
+             })
+
+}
+var changeJson={};
+
+  changeJson["GRAND_TOTAL"]={"grandTotal":{"$gt":0}};
+  changeJson["SUBTOTAL":subTotal,
+  changeJson"TAXTOTAL":taxTotal,
+  changeJson"OF_ORDER":grandTotal,
+  changeJson"DICOUNT_TOTAL":discount,
+  changeJson"CHANGE_TOTAL":charge,
+   changeJson"TIP_TOTAL":tip,
+   "Merchandise":grandTotal,
+    "LAUNDRY":grandTotal,
+     "CASH":grandTotal,
+     "CREDIT":grandTotal,
+}
+}
+//
+//GRAND_TOTAL,SUBTOTAL,TAXTOTAL,OF_ORDER,
+
+  /*  "grandTotal": "30.37",
+    "subTotal": "30.00",
+    "taxTotal": "0.37",
+    "OfOrder": 4,
+    "discountTotal": "0.00",
+    "chargeTotal": "0.00",
+    "tipTotal": "0.00",
+     "Merchandise": 54,
+     "Laundry": 81.74000000000001
+
+    "Cash": "96.37"
+     "CREDIT":xx
+    不等于VOID，大于>
+
+
+    "voidGrandTotal": "105.37",
+    "OfVoid": 9,
+    等于VOID，大于>
+
+=================
+    "voidItemTotal": 0,
+    "voidItemDiscountTotal": 0,
+    "voidItemChargeTotal": 0,*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 })
 
