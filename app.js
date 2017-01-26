@@ -121,17 +121,18 @@ var form = new multiparty.Form({uploadDir:  photoPath});
  })
 
  var customerError={
-         "11000":"Item already exists",
-         "90001":"token not match",
-         "90002":"user password is not match",
-         "90003":"User Type not match",
-         "90004":"Your account is disable,please contant admin!",
-         "90005":"Your Link is false!",
-         "90006":"Save order is fail",
-         "90007":"License is fail",
-         "90008":"License is expires",
-         "90009":"User or password already exists",
-         "99999":"Transfer parameters Is Error"
+         "11000":"Item already exists !",
+         "90001":"token not match !",
+         "90002":"user password is not match !",
+         "90003":"User Type not match !",
+         "90004":"Your account is disable,please contant admin !",
+         "90005":"Your Link is false !",
+         "90006":"Save order is fail !",
+         "90007":"License is fail !" ,
+         "90008":"License is expires !" ,
+         "90009":"User or password already exists!",
+         "90010":"Transfer parameters is error !",
+         "99999":"Transfer parameters is error !"
  }
 
 app.get('/api/ext',function(req, res, next) {

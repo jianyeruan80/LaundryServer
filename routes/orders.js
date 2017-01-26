@@ -748,70 +748,7 @@ async.parallel({
                      done(null,initData);
              })
        
-    }/*,
-    four: function (done) {
-               var initData={
-                "voidItemTotal":0,
-                "voidItemDiscountTotal":0,
-                "voidItemChargeTotal":0,
-                "orders":[]
-               }
-            var fourQuery= JSON.parse(JSON.stringify(query));  
-            fourQuery["ordersDoc.status"]={$ne:"Void"};
-            fourQuery["status"]="Void";
-            bills.aggregate([
-            {
-              $lookup:
-                {
-                  from: "orders",
-                  localField: "order",
-                  foreignField: "_id",
-                  as: "ordersDoc"
-                }
-           },
-           { $unwind: "$ordersDoc" },
-           {
-            $match:fourQuery
-           }
-       ,{
-               $group: { _id: null, receiveTotal: { $sum: "$receiveTotal" },chargeTotal: { $sum: "$charge" },discountTotal : { $sum: "$discount" },
-               change:{$sum:{ $cond: { if: { $gte: [ "$change", 0 ] }, then: "$change", else:0 }}}}
-             
-              
-           }
-        ]).exec(function(err,data){
-                 if (err) return next(err);
-                data.forEach(function(v,k){
-                    initData["voidItemTotal"]=(v.receiveTotal-v.change).toFixed(2);
-                    initData["voidItemDiscountTotal"]=v.discountTotal.toFixed(2);
-                    initData["voidItemChargeTotal"]=v.chargeTotal.toFixed(2);
-                 //   initData["orders"]=v.orders;
-                  })
-                done(null,initData);   
-             })
-       
-        
-    }/*,
-        five: function (done) {
-          
-            orders.aggregate([
-            {
-              $match:{}
-            },
-             { $group: { _id: "$orderType", grandTotal: { $sum: "$grandTotal" }
-              ,orders:{$push:{"orderId":"$_id","status":"$status","orderNo":"$orderNo"}}}} ]).exec(function(err,data){
-                 if (err) return next(err);
-                    data.forEach(function(v,k){
-                       var key=v._id || "laundry";
-                      initData[key]=v.grandTotal;
-                      initData.orders=initData.orders.concat(v.orders || []);
-                   })
-                  done(null,{});
-             })
-              
-       
-        
-    }*/
+    }
 }, function (err, result) {
     if(!!err){console.log(err); return next(err)}
     var returnJson={};
@@ -822,62 +759,105 @@ async.parallel({
     res.json(returnJson)
 })
 }else{
-  console.log("xxxx");    
-   var q=JSON.parse(JSON.stringify(query));
+  var q=JSON.parse(JSON.stringify(query));
+  var sign="A";
    switch (info.detail)
 {
     case "GRAND_TOTAL":
-         q["grandTotal"]={$gt:0};
-         q["status"] ={$ne:"Void"};
-         console.log(q);
-         break;
+         q["grandTotal"]={$gt:0};q["status"] ={$ne:"Void"};break;
     case "SUBTOTAL":
          q["subTotal"]={$gt:0}; q["status"] ={$ne:"Void"};break;
     case "TAXTOTAL":
          q["taxTotal"]={$gt:0}; q["status"] ={$ne:"Void"};break;
     case "OF_ORDER":
-         q["status"] ={$ne:"Void"};
-         break;
+         q["status"] ={$ne:"Void"};break;
     case "VOID_GRAND_TOTAL":
-          q["grandTotal"]={$gt:0};
-       q["status"]="Void";break;
+          q["grandTotal"]={$gt:0};q["status"]="Void";break;
                
     case "OF_VOID":
-        q["status"]="Void";
-        break;
+        q["status"]="Void";break;
     case "LAUNDRY":
         q["status"]!="Void";q["orderType"]="Laundry";break;
-    case "MERCHANDISE":  q["status"]!="Void";q["orderType"]="Merchandise";break;
+    case "MERCHANDISE":  
+    q["status"]!="Void";q["orderType"]="Merchandise";break;
+    
+    //------------------------------
     case "DISCOUNT_TOTAL":
-          var qq=JSON.parse(JSON.stringify(query));
-          q={
-         $and:[
-  qq,
-  {
-  $or:[{"discount":{$gt:0}},{"orderDetails.discount":{$gt:0}}]
-  }	
-] 
-         };break;
+        sign="B";
+        var qq=JSON.parse(JSON.stringify(query));
+          q={$and:[ qq,{
+                  $or:[{"discount":{$gt:0}},{"orderDetails.discount":{$gt:0}}]}	 
+            ] };
+            break;
     case "CHARGE_TOTAL":
-     var qq=JSON.parse(JSON.stringify(query));
-          q={
-         $and:[
-  qq,
-  {
-  $or:[{"charge":{$gt:0}},{"orderDetails.charge":{$gt:0}}]
-  }
-]
-         };break;
+         sign="B";
+         var qq=JSON.parse(JSON.stringify(query));
+          q={$and:[qq,{$or:[{"charge":{$gt:0}},{"orderDetails.charge":{$gt:0}}]}]};break;
+      //-----------------------    
+   case "CASH":
+         sign="C";
+            q["status"]="Paid";q["type"]="Cash";
+        break;
+   case "CREDIT":
+          sign="C";q["type"]="Credit";
+          break;
+   default:
+       sign="D";
+       break;     
+         }
 
-}
-          orders.aggregate([
-           {
-            $match:q
-           }
-              ]).exec(function(err,data){
+         if(sign=="A"){
+            orders.aggregate([
+             {
+               $match:q
+             }
+             ]).exec(function(err,data){
+                   if (err) return next(err);
+
+                  return res.json(data);    
+              })
+         }else if(sign=="B"){
+           orders.aggregate([
+             {
+               $match:q
+             }
+             ]).exec(function(err,data){
+                  if (err) return next(err);
+                  var tempData=JSON.parse(JSON.stringify(data)); 
+                  for(var i=0;i<tempData.length;i++){
+                         for(var j=0;j<tempData[i].orderDetails.length;j++){
+                             tempData[i].discount+=tempData[i].orderDetails[j].discount || 0;
+                             tempData[i].charge+=tempData[i].orderDetails[j].charge || 0;
+                         }
+                  }
+                  return res.json(tempData);    
+              })
+
+         }else if(sign=="C"){
+
+          
+          
+          bills.aggregate([
+            {
+              $match:q
+            }]).exec(function(err,data){
                  if (err) return next(err);
-                return res.json(data);    
-            })
+                    data.forEach(function(v,k){
+                       var key=v._id  || "other";
+                       initData[key]=(v.receiveTotal-v.change).toFixed(2);
+                      // initData.orders=initData.orders.concat(v.orders || [] );   
+                    })
+                    
+                     done(null,initData);
+             })
+       
+
+         }else{
+           
+          return next({"code":"90010"});
+         }
+          
+
 
 }
 /*var changeJson={};
