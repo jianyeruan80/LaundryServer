@@ -822,7 +822,8 @@ async.parallel({
     res.json(returnJson)
 })
 }else{
-       var q=JSON.parse(JSON.stringify(query));
+  console.log("xxxx");    
+   var q=JSON.parse(JSON.stringify(query));
    switch (info.detail)
 {
     case "GRAND_TOTAL":
