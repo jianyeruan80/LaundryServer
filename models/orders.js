@@ -8,8 +8,10 @@ price:Number,
 qty:Number,
 name:String,
 charge:Number,
+chargeRate:Number,
 currentPrice:Number,//-
 discount:Number,//-
+discountRate:Number,
 qty:Number,
 options:[{"name":String,price:Number,order:Number}],
 properties:[],
