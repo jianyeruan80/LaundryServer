@@ -684,7 +684,7 @@ async.parallel({
              
     },
     two: function (done) {  //Laundry + Merchandise = Grand Total
-        /*  var initData={"orders":[]};*/
+          var initData={};
           var towQuery=JSON.parse(JSON.stringify(query));
           towQuery["status"] !="Void";
 		orders.aggregate([
@@ -694,12 +694,12 @@ async.parallel({
              { $group: { _id: "$orderType", grandTotal: { $sum: "$grandTotal" }
               }} ]).exec(function(err,data){
                  if (err) return next(err);
-                   // data.forEach(function(v,k){
-                    //   var key=v._id || "laundry";
-                     // initData[key]=v.grandTotal;
+                    data.forEach(function(v,k){
+                       var key=v._id || "laundry";
+                      initData[key]=v.grandTotal;
                       //initData.orders=initData.orders.concat(v.orders || []);
-                   //})
-                  done(null,data);
+                   })
+                  done(null,initData);
              })
     },
     three: function (done) {  //Paid Total = Cash + Credit + Gift Card + Loyalty
@@ -711,7 +711,7 @@ async.parallel({
             },
             {
               $unwind:"$orderDetails"
-            }
+            },
            
 
              { $group: { _id: null, discountTotal: { $sum: "$discount" },chargeTotal:{ $sum: "$charge" }
@@ -822,39 +822,61 @@ async.parallel({
     res.json(returnJson)
 })
 }else{
-         orders.aggregate([
-            {
-              $match:query
-            },
-             { $group: { _id: "$status", grandTotal: { $sum: "$grandTotal" },subTotal: { $sum: "$subTotal" },taxTotal: { $sum: "$tax" },numOfOrder: { $sum:1 },
-              discountTotal: { $sum:"$discount"},chargeTotal: { $sum:"$charge" },tipTotal:{$sum:"$tip"}
-              } }]).exec(function(err,data){
+       var q=JSON.parse(JSON.stringify(query));
+   switch (info.detail)
+{
+    case "GRAND_TOTAL":
+         q["grandTotal"]={$gt:0};
+         q["status"] ={$ne:"Void"};
+         console.log(q);
+         break;
+    case "SUBTOTAL":
+         q["subTotal"]={$gt:0}; q["status"] ={$ne:"Void"};break;
+    case "TAXTOTAL":
+         q["taxTotal"]={$gt:0}; q["status"] ={$ne:"Void"};break;
+    case "OF_ORDER":
+         q["status"] ={$ne:"Void"};
+         break;
+    case "VOID_GRAND_TOTAL":
+          q["grandTotal"]={$gt:0};
+       q["status"]="Void";break;
+               
+    case "OF_VOID":
+        q["status"]="Void";
+        break;
+    case "LAUNDRY":
+        q["status"]!="Void";q["orderType"]="Laundry";break;
+    case "MERCHANDISE":  q["status"]!="Void";q["orderType"]="Merchandise";break;
+    case "DISCOUNT_TOTAL":
+          var qq=JSON.parse(JSON.stringify(query));
+          q={
+         $and:[
+  qq,
+  {
+  $or:[{"discount":{$gt:0}},{"orderDetails.discount":{$gt:0}}]
+  }	
+] 
+         };break;
+    case "CHARGE_TOTAL":
+     var qq=JSON.parse(JSON.stringify(query));
+          q={
+         $and:[
+  qq,
+  {
+  $or:[{"charge":{$gt:0}},{"orderDetails.charge":{$gt:0}}]
+  }
+]
+         };break;
+
+}
+          orders.aggregate([
+           {
+            $match:q
+           }
+              ]).exec(function(err,data){
                  if (err) return next(err);
-                 data.forEach(function(v,k){
-                    if(v._id=="Void"){
-                      initData.voidGrandTotal=v.grandTotal.toFixed(2);
-                      initData.voidNumOfOrder=v.numOfOrder;
-                      initData.voidOrders=v.orders || [];
-                    }else{
-                      initData.grandTotal+=v.grandTotal;
-                      initData.subTotal+=v.subTotal;
-                      initData.taxTotal+=v.taxTotal;
-                      initData.numOfOrder+=v.numOfOrder;
-                      initData.discountTotal+=v.discountTotal;
-                      initData.chargeTotal+=v.chargeTotal;
-                      initData.tipTotal+=v.tipTotal;
-                      initData.orders=initData.orders.concat(v.orders || []);
-                    }
-                 })
-                  initData.grandTotal=initData.grandTotal.toFixed(2);
-                  initData.subTotal=initData.subTotal.toFixed(2);
-                  initData.taxTotal=initData.taxTotal.toFixed(2);
-                  initData.discountTotal=initData.discountTotal.toFixed(2);
-                 initData.chargeTotal=initData.chargeTotal.toFixed(2);
-                 initData.tipTotal=initData.tipTotal.toFixed(2);
-                
-                 done(null,initData);
-             })
+                return res.json(data);    
+            })
 
 }
 /*var changeJson={};

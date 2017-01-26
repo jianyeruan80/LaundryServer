@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    tools = require('../modules/tools'),
+    tools = require('../modules/tools');
 var lauguagesSchema = new Schema({
 	"second":String,
 	"third":String
