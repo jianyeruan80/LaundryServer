@@ -32,6 +32,12 @@ function getAllFiles(root){
   });
   return res
 }
+module.exports.mergeJson=function(obj1,obj2){
+var obj3 = {};
+    for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
+    for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
+    return obj3;
+}
  module.exports.defaultDate=function(){
  var timeObject = new Date();
     timeObject.setTime(timeObject.getTime() + -5 * 60 * 60 *1000);
