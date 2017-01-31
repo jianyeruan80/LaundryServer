@@ -98,7 +98,9 @@ var  store={};
  })
  })
 app.post('/api/uploadPic',security.ensureAuthorized,function(req, res, next) {
-
+console.log("-xxxxxxxxxxxxxxxxx");
+console.log(req.body);
+console.log("xxxxxxxxxxxxxxxxxxxxxx");
 var fold=req.token.merchantId;
 var photoPath=path.join(__dirname, 'public')+'/'+fold;
 mkdirp(photoPath, function (err) {
@@ -109,14 +111,22 @@ var form = new multiparty.Form({uploadDir:  photoPath});
     var pic="";
     
     form.parse(req, function(err, fields, files) {
-      
+       console.log(files);      
        if(!!files &&  !!files.picture && files.picture[0].size>0){
           console.log(files);
           var path=files.picture[0].path.split("/");
           pic=path[path.length-1];
        }
+       if(!!files &&  !!files.file && files.file[0].size>0){
+          console.log(files);
+          var path=files.file[0].path.split("/");
+          pic=path[path.length-1];
+       }
 
-      res.json(pic);
+       console.log("vvvvvvvvvvvv");
+       console.log(pic);
+      console.log("vvvvvvvvvvvvvvvv");
+      res.send(pic);
  })
  })
 
