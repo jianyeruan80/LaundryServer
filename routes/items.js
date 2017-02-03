@@ -147,8 +147,29 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
      info.operator={};
        info.operator.id=req.token.id;
        info.operator.user=req.token.user;
-   var arvind = new items(info);
-   arvind.save(function (err, data) {
+   
+   if(info.groupName){
+      var groupDao=new groups({"merchantId":info.merchantId,"name":info.groupName});
+       groupDao.save(function (err, groupData) {
+          if (err) return next(err);
+             if(info.categoryName){
+                var categoryDao=new groups({"merchantId":info.merchantId,"name":.groupName,"group":groupData._id});
+                   categoryDao.save(function (err, categoryData) {
+                      if (err) return next(err);
+                        var query={"_id":groupData._id}
+                        var update={ $addToSet: {categories: categoryData._id } };
+                         groups.findOneAndUpdate(query,update,{},function (err, groupData) {
+                              if (err) return next(err);
+                               info.category=categoryData._id;
+                               return;
+                        });
+                   })
+             }
+       })
+   } 
+   
+   var dao = new items(info);
+   dao.save(function (err, data) {
    if (err) return next(err);
             var query={"_id":data.category}
             var update={ $addToSet: {items: data._id } };

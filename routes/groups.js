@@ -62,8 +62,8 @@ info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
 
-   var arvind = new groups(info);
-   arvind.save(function (err, data) {
+   var dao = new groups(info);
+   dao.save(function (err, data) {
    if (err) return next(err);
           res.json(data);
       });

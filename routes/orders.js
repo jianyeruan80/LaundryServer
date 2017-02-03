@@ -632,7 +632,17 @@ router.post('/report',  function(req, res, next) {
           query["createdAt"]={"$lte":info.endTime};
 
         } 
-
+var returnData={
+     "grandTotal":0,
+      "subTotal": 0,
+      "taxTotal": 0,
+      "ofOrder": 0,
+      "discountTotal": 0,
+      "chargeTotal": 0,
+      "tipTotal": 0,
+     "voidGrandTotal":0,
+      "ofVoid":0
+}
 if(!info.detail){
 async.parallel({
     one: function (done) {

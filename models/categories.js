@@ -54,7 +54,7 @@ var categoriesSchema = new mongoose.Schema({
     }
 });
 
-categoriesSchema.index({ name: 1, merchantId: 1 }, { unique: true,sparse:true});
+categoriesSchema.index({ name: 1, merchantId: 1 ,group:1 }, { unique: true,sparse:true});
 module.exports = mongoose.model('categories', categoriesSchema);
 /*{ createdAt: { type: Date, expires: 3600, default: Date.now }}
 OrderList.$.UserName","大叔2015-09-21
