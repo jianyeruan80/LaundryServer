@@ -54,7 +54,7 @@ var customersSchema = new mongoose.Schema({
          description:lauguagesSchema
     },
 });
-customersSchema.index({ phoneNum1: 1 ,merchantId:1}, { unique: true,sparse:true });
+//customersSchema.index({ phoneNum1: 1 ,merchantId:1}, { unique: true,sparse:true });
 
 module.exports = mongoose.model('customers', customersSchema);
 
