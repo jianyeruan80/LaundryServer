@@ -412,7 +412,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                var orderQuery={"_id":billData._id};
 
                                var orderUpdata={};
-                               var unpaid=toFixed(info.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
+                               var unpaid=toFixed(info.grandTotal-(billData.receiveTotal-billData.change),2);
                                orderUpdata.status="Paid";
                                
                                if(unpaid>0){
@@ -485,7 +485,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                var orderQuery={"_id":billData._id};
 
                                var orderUpdata={};
-                               var unpaid=toFixed(info.grandTotal-(billData.receiveTotal-billData.change-billData.tip),2);
+                               var unpaid=toFixed(info.grandTotal-(billData.receiveTotal-billData.change),2);
                                  orderUpdata.status="Paid";
 
                                if(unpaid>0){
@@ -623,15 +623,36 @@ info.unpaid=info.grandTotal;
 })                           
     
 router.post('/report',  function(req, res, next) {
+
+
    var info=req.body;
-   var query={}; 
-    if(info.startTime){
-           query["createdAt"]={"$gte":info.startTime};  
+   var query={};
+if( info.staffId){
+   query["operator"]={"id":info.staffId};
+ }    
+if(info.startTime){
+           var startTime=new Date(info.startTime);
+           if(info.startTime.length<=12){
+           startTime= new Date(startTime.getUTCFullYear(),startTime.getMonth(),startTime.getDate(), -5, 0, 0, 0);
+           }
+           startTime=tools.miniteFromNow(startTime,24);  
+           query["createdAt"]={"$gte":startTime};  
         }
         if(info.endTime){
-          query["createdAt"]={"$lte":info.endTime};
+           var endTime=new Date(info.endTime);
+          
+           if(info.endTime.length<=12){
+           endTime= new Date(endTime.getUTCFullYear(),endTime.getMonth(),endTime.getDate(),18, 59, 59, 999);
+           }
+            endTime=tools.miniteFromNow(endTime,24);
+            if(query["createdAt"]){
+           query["createdAt"]["$lte"]=endTime; 
+           }else{
+            query["createdAt"]={"$lte":endTime};
+            }
 
         } 
+<<<<<<< HEAD
 var returnData={
      "grandTotal":0,
       "subTotal": 0,
@@ -643,6 +664,15 @@ var returnData={
      "voidGrandTotal":0,
       "ofVoid":0
 }
+=======
+
+console.log("=================================AA====");
+console.log(info);
+console.log("===CC====================================");
+console.log(query);
+console.log("==BB========================================");
+
+>>>>>>> 7691e048ce4b4c4a8b33f47f2d8b2f41992227a7
 if(!info.detail){
 async.parallel({
     one: function (done) {
@@ -695,11 +725,12 @@ async.parallel({
     },
     two: function (done) {  //Laundry + Merchandise = Grand Total
           var initData={};
-          var towQuery=JSON.parse(JSON.stringify(query));
-          towQuery["status"] !="Void";
+          var twoQuery=query;
+          twoQuery["status"] ={$ne:"Void"};
+         console.log(twoQuery);
 		orders.aggregate([
             {
-              $match:towQuery
+              $match:twoQuery
             },
              { $group: { _id: "$orderType", grandTotal: { $sum: "$grandTotal" }
               }} ]).exec(function(err,data){
@@ -714,7 +745,9 @@ async.parallel({
     },
     three: function (done) {  //Paid Total = Cash + Credit + Gift Card + Loyalty
           var initData={};
-          var threeQuery=JSON.parse(JSON.stringify(query));
+          var threeQuery=query;
+           threeQuery["status"] ={$ne:"Void"};
+
           orders.aggregate([
             {
               $match:threeQuery
@@ -724,25 +757,27 @@ async.parallel({
             },
            
 
-             { $group: { _id: null, discountTotal: { $sum: "$discount" },chargeTotal:{ $sum: "$charge" }
+             { $group: { _id: null, discountTotal: { $sum: "$orderDetails.discount" },chargeTotal:{ $sum: "$orderDetails.charge" }
               }} ]).exec(function(err,data){
                  if (err) return next(err);
-                   // data.forEach(function(v,k){
-                    //   var key=v._id || "laundry";
-                     // initData[key]=v.grandTotal;
+                    data.forEach(function(v,k){
+                      
+                      initData["discountTotal"]=v.discountTotal;
+                      initData["chargeTotal"]=v.chargeTotal;
                       //initData.orders=initData.orders.concat(v.orders || []);
-                   //})
-                  done(null,data);
+                   })
+                  done(null,initData);
              })
        
     },
     four: function (done) {  //Paid Total = Cash + Credit + Gift Card + Loyalty
           var initData={};
-          var threeQuery=JSON.parse(JSON.stringify(query));
-             threeQuery["status"]="Paid";
+          var fourQuery=query;
+             fourQuery["status"]="Paid";
+            console.log(fourQuery);
           bills.aggregate([
             {
-              $match:threeQuery
+              $match:fourQuery
             },
              { $group: { _id: "$type", receiveTotal: { $sum: "$receiveTotal" },change:{$sum:
               { $cond: { if: { $gte: [ "$change", 0 ] }, then: "$change", else:0 }}
@@ -762,14 +797,19 @@ async.parallel({
 }, function (err, result) {
     if(!!err){console.log(err); return next(err)}
     var returnJson={};
-    returnJson.one=result.one;
-    returnJson.two=result.two;
-    returnJson.three=result.three;
-    returnJson.four=result.four;
+   result.one.discountTotal=parseFloat(result.one.discountTotal);
+  result.one.chargeTotal=parseFloat(result.one.chargeTotal); 
+  result.one.discountTotal+=(result.three.discountTotal || 0);
+   result.one.chargeTotal+=(result.three.chargeTotal || 0);
+   returnJson=tools.mergeJson(returnJson,result.one);
+  returnJson=tools.mergeJson(returnJson,result.two);
+ returnJson=tools.mergeJson(returnJson,result.four);
+//   returnJson.two=result.two;
+ //  returnJson.four=result.four;
     res.json(returnJson)
 })
 }else{
-  var q=JSON.parse(JSON.stringify(query));
+  var q=query;
   var sign="A";
    switch (info.detail)
 {
@@ -783,26 +823,30 @@ async.parallel({
          q["status"] ={$ne:"Void"};break;
     case "VOID_GRAND_TOTAL":
           q["grandTotal"]={$gt:0};q["status"]="Void";break;
-               
+    case "TIP_TOTAL":
+          q["tip"]={$gt:0}; q["status"] ={$ne:"Void"};break;
+
     case "OF_VOID":
         q["status"]="Void";break;
     case "LAUNDRY":
-        q["status"]!="Void";q["orderType"]="Laundry";break;
+        q["status"]={$ne:"Void"};q["orderType"]="Laundry";break;
     case "MERCHANDISE":  
-    q["status"]!="Void";q["orderType"]="Merchandise";break;
+    q["status"]={$ne:"Void"};q["orderType"]="Merchandise";break;
     
     //------------------------------
     case "DISCOUNT_TOTAL":
         sign="B";
-        var qq=JSON.parse(JSON.stringify(query));
-          q={$and:[ qq,{
+        query["status"]={$ne:"Void"};
+ 
+       // var qq=JSON.parse(JSON.stringify(query));
+          q={$and:[query,{
                   $or:[{"discount":{$gt:0}},{"orderDetails.discount":{$gt:0}}]}	 
             ] };
             break;
     case "CHARGE_TOTAL":
          sign="B";
-         var qq=JSON.parse(JSON.stringify(query));
-          q={$and:[qq,{$or:[{"charge":{$gt:0}},{"orderDetails.charge":{$gt:0}}]}]};break;
+        // var qq=JSON.parse(JSON.stringify(query));
+          q={$and:[query,{$or:[{"charge":{$gt:0}},{"orderDetails.charge":{$gt:0}}]}]};break;
       //-----------------------    
    case "CASH":
          sign="C";
@@ -836,7 +880,10 @@ async.parallel({
              }
              ]).exec(function(err,data){
                   if (err) return next(err);
-                  var tempData=JSON.parse(JSON.stringify(data)); 
+                  var tempData=[];
+                  if(data){
+                  
+                  tempData= JSON.parse(JSON.stringify(data)); }
                   for(var i=0;i<tempData.length;i++){
                          for(var j=0;j<tempData[i].orderDetails.length;j++){
                              tempData[i][changeSatus[info.detail]]+=tempData[i].orderDetails[j][changeSatus[info.detail]] || 0;
@@ -847,9 +894,10 @@ async.parallel({
               })
 
          }else if(sign=="C"){
-         var changeSatus={
+         var changeStatus={
            "CASH":"Cash","CREDIT":"Credit"
          }
+         console.log(q);
           orders.aggregate([
              {
                $match:q
@@ -859,41 +907,33 @@ async.parallel({
      {
        from: "bills",
        localField: "_id",
-       foreignField: "orders",
-       as:billsDocs
+       foreignField: "order",
+       as:"billDocs"
      }
-},
+}
+,
 {
- $match:{"billsDocs.type":"Paid","billsDocs.status":changeSatus[info.detail]}
+$match:{"billDocs.status":"Paid","billDocs.type":changeStatus[info.detail]}
 }
              ]).exec(function(err,data){
+             
+               console.log(data);
+             console.log({"billDocs.type":"Paid","billDocs.status":changeStatus[info.detail]});
                    if (err) return next(err);
-
-                 var tempData=JSON.parse(JSON.stringify(data)); 
-                  for(var i=0;i<tempData.length;i++){
-                         tempData["paid"]=0;
-                         for(var j=0;j<tempData[i].billsDocs.length;j++){
-                             tempData["paid"]+=tempData[i].billsDocs[j][changeSatus[info.detail]] || 0;
+                var returnData=[];
+                 if(data){
+                   returnData=JSON.parse(JSON.stringify(data));
+                 }
+                  for(var i=0;i<returnData.length;i++){
+                          returnData[i]["paid"]=0;
+                         for(var j=0;j<returnData[i].billDocs.length;j++){
+                             returnData[i]["paid"]+=(returnData[i].billDocs[j].receiveTotal - returnData[i].billDocs[j].change) || 0;
                              
                          }
                   }
-                  return res.json(tempData);    
+                  return res.json(returnData);    
               })
           
-          /*bills.aggregate([
-            {
-              $match:q
-            }]).exec(function(err,data){
-                 if (err) return next(err);
-                    data.forEach(function(v,k){
-                       var key=v._id  || "other";
-                       initData[key]=(v.receiveTotal-v.change).toFixed(2);
-                      // initData.orders=initData.orders.concat(v.orders || [] );   
-                    })
-                    
-                     done(null,initData);
-             })
-       */
 
          }else{
            

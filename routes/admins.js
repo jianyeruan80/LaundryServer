@@ -392,8 +392,8 @@ router.get('/users', security.ensureAuthorized,function(req, res, next) {
       
      var query={
              "merchantIds":new RegExp(req.token.merchantId,"i"),
-             "type":"",
-              "_id":{$ne:req.token.id}
+             "type":""
+             // "_id":{$ne:req.token.id}
             }
 
      users.find(query,function (err, data) {

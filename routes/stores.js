@@ -109,7 +109,9 @@ info.operator.user=req.token.user;
 router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 var id=req.params.id;
+console.log("xxxxxxxxxxxxxxxxx");
 info.updatedAt=tools.defaultDate();
+console.log("yyyyyyyyyyyyyyyyyyyyy");
 info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;

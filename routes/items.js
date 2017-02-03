@@ -97,6 +97,9 @@ async.parallel({
 
 }, function (err, result) {
     if(!!err){console.log(err); return next(err)}
+ console.log("xxxxxxxxxxxxx");
+     console.log(result);
+ console.log("-------------------");
     var returnJson={};
     returnJson.store=result.one;
     returnJson.menus=result.two;
