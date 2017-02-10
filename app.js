@@ -257,6 +257,7 @@ client.onmessage = function(e) {
 connect();
   
 /*console.log(util.inspect(result, false, null))
+a:{$literal:1}
 schemaModel.findOne({name:'loong'},function(err,doc){
         doc.set({baseinfo:{age:26}});
         doc.save();
