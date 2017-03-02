@@ -1,18 +1,13 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-var seqsSchema = new Schema({
+var levelsSchema = new Schema({
 	    merchantId:{type:String,lowercase: true, trim: true},
       name:String,
-      seq:Number,
-      seqEnd:Number,
-      seqStart:Number,
-      pre:String,
-      daySign:{type:Boolean,default:false},
-      updatedAt:Date,
-      len:Number,
+      minPoint:String,
+      discountRate:Number,
     });
-seqsSchema.index({ merchantId: 1,name:1},{unique: true,sparse:true });
-module.exports = mongoose.model('seqs', seqsSchema);
+levelsSchema.index({ merchantId: 1,name:1},{unique: true,sparse:true });
+module.exports = mongoose.model('levels', levelsSchema);
 
 /*
 1

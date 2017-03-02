@@ -1,29 +1,24 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     tools = require('../modules/tools');
-var lauguagesSchema = new Schema({
-	"second":String,
-	"third":String
-})
+
 var addressSchema = new Schema({
-      address: String,
+      address1: String,
+      address2: String,
       city: String,
       state: String,
       zipcode: String,
       description:String,
-      language:{
-         description:lauguagesSchema
-    },
-   location: {
-    type:{type:String,default:'Point'},
-    coordinates: [Number],
-    
-  }
+      loc: {
+      type:{type:String,default:'Point'},
+      coordinates: [Number]
+      }
   
 });
 var distanceFeeSchema = new mongoose.Schema({ 
   distance:String,
   fee:Number
+
 })
 var storesSchema = new mongoose.Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
@@ -51,23 +46,18 @@ var storesSchema = new mongoose.Schema({
     DiffTimes:{type:Number,default:0},
     distanceFee:[distanceFeeSchema],
     expires:Date,
-    reportStartTime:Date,
-    reportEndTime:Date,
-    language:{
-         name:lauguagesSchema,
-         description:lauguagesSchema
-    },
-    operator:{
-  id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
-  user:String,
-
-},
+    status:{type:String,default:""},
+    operator:{ id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },user:String},
+    chainStore:String,
 });
-storesSchema.index({ merchantId: 1},{unique: true,sparse:true });
+storesSchema.index({ merchantId: 1,status:1},{unique: true,sparse:true });
 //storesSchema.index({ qrcUrl: 1},{unique: true,sparse:true });
 //addressSchema.index({location: '2dsphere'});
 module.exports = mongoose.model('stores', storesSchema);
 
-/*{ createdAt: { type: Date, expires: 3600, default: tools.defaultDate }}
+/*
+db.places.createIndex( { loc : "2dsphere" } )
+https://docs.mongodb.com/manual/core/2dsphere/#dsphere-version-2
+{ createdAt: { type: Date, expires: 3600, default: tools.defaultDate }}
 OrderList.$.UserName","大叔2015-09-21
 */

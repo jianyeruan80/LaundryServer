@@ -12,7 +12,7 @@ var membershipsSchema=new Schema({
     activateTime: Date,
     expireTime: Date,
     disabled: { type: Boolean, default: false },
-    membershipLevel: String
+    membershipLevel: {type: mongoose.Schema.Types.ObjectId, ref: 'levels' }
    
 });
 module.exports = mongoose.model('memberships', membershipsSchema);

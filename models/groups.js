@@ -1,21 +1,15 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var lauguagesSchema = new Schema({
-	"second":String,
-	"third":String
-})
-var optionsSchema = new mongoose.Schema({ 
+
+/*var optionsSchema = new mongoose.Schema({ 
     name:String,
     description:String,
     price:Number,
     picture:String,
-    order:{type:Number,default:1},
-    language:{
-         name:lauguagesSchema,
-         description:lauguagesSchema
-    }
+    order:{type:Number,default:1}
    
-});
+   
+});*/
 
 var optionsGroupsSchema = new mongoose.Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
@@ -25,11 +19,7 @@ var optionsGroupsSchema = new mongoose.Schema({
     maximun:{type:Number,default:0},
     order:{type:Number,default:1},
     options:[optionsSchema],
-    language:{
-         group:lauguagesSchema,
-         name:lauguagesSchema,
-         description:lauguagesSchema
-    }
+
    
 });
 var groupsSchema = new mongoose.Schema({ 
@@ -37,23 +27,17 @@ var groupsSchema = new mongoose.Schema({
     name:{type:String},
     description:String,
     globalOptions:[{type: mongoose.Schema.Types.ObjectId,ref: 'globalOptionGroups'}],
-    customerOptions:[optionsGroupsSchema],
-    status:{type:Boolean,default:true},
+   /* customerOptions:[optionsGroupsSchema],*/
+    status:{type:String,default:""},
     order:{type:Number,default:1},
-    language:{
-         name:lauguagesSchema,
-         description:lauguagesSchema
-    },
     picture:{type:String},
     categories:[{type: mongoose.Schema.Types.ObjectId, ref: 'categories'}],
     type:{type: String, enum: ['Product','inventoryItems'],default:'Product'},
     operator:{
-    id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
-    user:String
-},
+    id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },user:String}
    
 });
-groupsSchema.index({ name: 1, merchantId: 1 }, { unique: true,sparse:true});
+groupsSchema.index({ name: 1, merchantId: 1 ,status:1}, { unique: true,sparse:true});
 
 module.exports = mongoose.model('groups', groupsSchema);
 /*{ createdAt: { type: Date, expires: 3600, default: Date.now }}

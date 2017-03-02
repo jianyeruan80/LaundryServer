@@ -125,7 +125,7 @@ var form = new multiparty.Form({uploadDir:  photoPath});
          "90001":"token not match !",
          "90002":"user password is not match !",
          "90003":"User Type not match !",
-         "90004":"Your account is disable,please contant admin !",
+         "90004":"Your account is disable,please contact admin !",
          "90005":"Your Link is false !",
          "90006":"Save order is fail !",
          "90007":"License is fail !" ,
@@ -155,9 +155,10 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.error("Error:" + err.message);
     res.status(err.status || 500).json({
-      success:false,
-      message: customerError[err.code]?customerError[err.code]:err.message,
-      error: err
+        success:false,
+        code:err.code?err.code:err.status,
+        message: customerError[err.code]?customerError[err.code]:err.message,
+        error: err
     });
   });
 }

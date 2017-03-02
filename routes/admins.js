@@ -4,19 +4,15 @@ var express = require('express'),
     admins = require('../models/admins'),
     authorizations = require('../models/authorizations'),
     security = require('../modules/security'),
-     userRequest = require('../models/userRequest'),
+    userRequest = require('../models/userRequest'),
     mailer = require('../modules/mailer'),
-     tools = require('../modules/tools'),
+    tools = require('../modules/tools'),
     md5 = require('md5'),
     util = require('util'),
-
     jwt = require('jsonwebtoken'),
-    returnData={};
-    returnData.success=true;
-
-var permissions=admins.permissions; 
-var roles=admins.roles; 
-var users=admins.users; 
+    permissions=admins.permissions,
+    roles=admins.roles,
+    users=admins.users; 
 
 
 
@@ -178,7 +174,7 @@ var password=info.password || "";
 var token=info.token || "";
 var query={
     $and:[
-         { "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}},
+         { "merchantIds": {$regex:new RegExp("^"+info.merchantId+"$", 'i')}},
          { $or:[
            {"password":security.encrypt(md5(password))},
            {"token":security.encrypt(md5(token))}
@@ -192,7 +188,7 @@ users.findOne(query).populate({path:'permissions'}).populate({path:'roles',popul
           if (err) return next(err);
  if (!data) return next({"code":"90002"});
           if(data.status==false) return next({"code":"90004"});
-           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":data._id,"user":data.userName},req.app.get("superSecret"), {
+           var accessToken = jwt.sign({"merchantId":data.merchantId.toLowerCase(),"id":data._id,"user":data.userName},req.app.get("superSecret"), {
           expiresIn: '120m',
           algorithm: 'HS256'
           });

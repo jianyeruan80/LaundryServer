@@ -8,7 +8,7 @@ var permissionsSchema = new Schema({
   perm:Number,
   order:{type:Number,default:1},
   url:String,
-  status:{type:Boolean ,default:true},
+  status:{type:String ,default:""},
   merchantIds:[{type:String,lowercase: true, trim: true}],
   description:String,
   createdAt: {type:Date,default:tools.defaultDate},
@@ -19,17 +19,15 @@ var rolesSchema = new Schema({
    description:String,
    permissions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'permissions' }],
    order:{type:Number,default:1},
-   status:{type:Boolean ,default:true},
+   status:{type:String ,default:""},
    merchantId:{type:String,lowercase: true, trim: true},
    createdAt: {type:Date,default:tools.defaultDate},
    updatedAt: Date,
-  operator:{
-  id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
-  user:String
-},
+   operator:{id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },user:String}
 });
 var addressSchema = new Schema({
-      address: String,
+      address1: String,
+      address2:String,
       city: String,
       state: String,
       zipCode: String,
@@ -54,29 +52,27 @@ var usersSchema = new Schema({
    token:{type:String,default:""},
    type:{type:String,default:""},
    admin:{type:String,default:""},
-   status:{type:Boolean,default:true},
+   status:{type:String ,default:""},
    createdAt: {type:Date,default:tools.defaultDate},
    updatedAt: Date,
    storeName:String,
    token:String,
-   operator:{
-   id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
-   user:String},
+   operator:{id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },user:String}
 });
-var chainStoresSchema = new Schema({
+/*var chainStoresSchema = new Schema({
    name:{type:String},
    merchantIds:[String]
 
 });
-
-permissionsSchema.index({ permissionGroup: 1 ,subject:1,action:1}, { unique: true,sparse:true });
-rolesSchema.index({ name: 1 ,merchantId:1}, { unique: true,sparse:true });
-usersSchema.index({ userName: 1,merchantIds:1}, { unique: true,sparse:true});
+*/
+permissionsSchema.index({ permissionGroup: 1 ,subject:1,action:1,status:1}, { unique: true,sparse:true });
+rolesSchema.index({ name: 1 ,merchantId:1,status:1}, { unique: true,sparse:true });
+usersSchema.index({ userName: 1,merchantIds:1,status:1}, { unique: true,sparse:true});
 
 module.exports.permissions = mongoose.model('permissions', permissionsSchema);
 module.exports.roles = mongoose.model('roles', rolesSchema);
 module.exports.users = mongoose.model('users', usersSchema);
-module.exports.chainStores = mongoose.model('chainStores', chainStoresSchema);
+/*module.exports.chainStores = mongoose.model('chainStores', chainStoresSchema);*/
 
 /*
 schemaModel.findOne({name:'loong'},function(err,doc){

@@ -135,6 +135,17 @@ module.exports.upload = function(req, res, next) {
      })
 
 }
+exports.exports.randomString = function(len) {
+  var buf = []
+    , chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    , charlen = chars.length;
+
+  for (var i = 0; i < len; ++i) {
+    buf.push(chars[getRandomInt(0, charlen - 1)]);
+  }
+
+  return buf.join('');
+};
 
 module.exports.upload = function(req, res, next,fileName) {
 var fsImpl = new S3FS('amazondb', options);
@@ -175,20 +186,46 @@ fsImpl.exists(flod).then(function(files) {
 }
 
 function getYearMonthDate(dateStr){
-var d=dateStr?new Date(dateStr):new Date();
-var date=d.getDate();
-date=date>=10?date:'0'+date;
-var month=d.getMonth();
-month=month>=10?month:'0'+month;
-var year=d.getFullYear();
-return ''+month+date+year;
+var _ = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09'];
+var now=dateStr?new Date(dateStr):new Date();
+var y=now.getFullYear();
+var m=now.getMonth();
+var d=now.getDate();
+return [_[y] || y, _[m] || m, _[d] || d].join("/");
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 /*   
   PersonModel.update({_id:_id},{$set:{name:'MDragon'}},function(err){});
 Person.findByIdAndUpdate(_id,{$set:{name:'MDragon'}},function(err,person){
       console.log(person.name); //MDragon
-    });
+ /* Fake, in-memory database of remember me tokens *
 
+var tokens = {}
+var uid=tokens[token];
+
+
+ res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 });
+
+var token = utils.randomString(64);
+
+exports.randomString = function(len) {
+  var buf = []
+    , chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    , charlen = chars.length;
+
+  for (var i = 0; i < len; ++i) {
+    buf.push(chars[getRandomInt(0, charlen - 1)]);
+  }
+
+  return buf.join('');
+};
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 PersonSchema.virtual('name.full').set(function(name){
       var split = name.split(' ');
       this.name.first = split[0];
