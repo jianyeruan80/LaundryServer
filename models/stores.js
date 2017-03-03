@@ -3,22 +3,19 @@ var mongoose = require('mongoose'),
     tools = require('../modules/tools');
 
 var addressSchema = new Schema({
-      address1: String,
-      address2: String,
+      address: String,
       city: String,
       state: String,
       zipcode: String,
       description:String,
       loc: {
-      type:{type:String,default:'Point'},
-      coordinates: [Number]
+           type:{type:String,default:'Point'},
+           coordinates: [Number]
       }
-  
 });
 var distanceFeeSchema = new mongoose.Schema({ 
   distance:String,
   fee:Number
-
 })
 var storesSchema = new mongoose.Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
@@ -50,9 +47,8 @@ var storesSchema = new mongoose.Schema({
     operator:{ id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },user:String},
     chainStore:String,
 });
-storesSchema.index({ merchantId: 1,status:1},{unique: true,sparse:true });
-//storesSchema.index({ qrcUrl: 1},{unique: true,sparse:true });
-//addressSchema.index({location: '2dsphere'});
+storesSchema.index({ merchantId: 1,status:1,qrcUrl:1},{unique: true,sparse:true });
+addressSchema.index({loc: '2dsphere'});
 module.exports = mongoose.model('stores', storesSchema);
 
 /*
