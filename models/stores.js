@@ -30,7 +30,7 @@ var storesSchema = new mongoose.Schema({
     about :String,
     createdAt: {type:Date,default:tools.defaultDate},
     updatedAt: Date,
-    picture:String,
+    pictures:[{type:String}],
     fax:String,
     licenseKey:String,
     openTime:String,
