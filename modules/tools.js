@@ -135,9 +135,8 @@ module.exports.upload = function(req, res, next) {
      })
 
 }
-exports.exports.randomString = function(len) {
-  var buf = []
-    , chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+/*exports.exports.randomString = function(len) {
+  var buf = [], chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     , charlen = chars.length;
 
   for (var i = 0; i < len; ++i) {
@@ -145,8 +144,8 @@ exports.exports.randomString = function(len) {
   }
 
   return buf.join('');
-};
-
+}
+*/
 module.exports.upload = function(req, res, next,fileName) {
 var fsImpl = new S3FS('amazondb', options);
 var fold=getYearMonthDate();

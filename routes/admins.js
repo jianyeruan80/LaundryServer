@@ -174,7 +174,7 @@ var password=info.password || "";
 var token=info.token || "";
 var query={
     $and:[
-         { "merchantIds": {$regex:new RegExp("^"+info.merchantId+"$", 'i')}},
+         { "merchantIds": {$regex:new RegExp("^"+info.merchantId+"$", 'i')},"userName":info.userName},
          { $or:[
            {"password":security.encrypt(md5(password))},
            {"token":security.encrypt(md5(token))}
@@ -183,18 +183,19 @@ var query={
 
 };
 
+
+
 users.findOne(query).populate({path:'permissions'}).populate({path:'roles',populate:{ path: 'permissions'}}).
          exec(function (err, data) {
           if (err) return next(err);
- if (!data) return next({"code":"90002"});
+         if (!data) return next({"code":"90002"});
           if(data.status==false) return next({"code":"90004"});
-           var accessToken = jwt.sign({"merchantId":data.merchantId.toLowerCase(),"id":data._id,"user":data.userName},req.app.get("superSecret"), {
+           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":data._id,"user":data.userName},req.app.get("superSecret"), {
           expiresIn: '120m',
           algorithm: 'HS256'
           });
 
-
-          var perms=data.permissions?data.permissions:[];
+         var perms=data.permissions?data.permissions:[];
           var permsTemp=[];                   
             if(!!data.roles){
                 for(var j=0;j<data.roles.length;j++) {

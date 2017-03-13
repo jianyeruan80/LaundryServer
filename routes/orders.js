@@ -652,7 +652,7 @@ if(info.startTime){
             }
 
         } 
-<<<<<<< HEAD
+/*<<<<<<< HEAD*/
 var returnData={
      "grandTotal":0,
       "subTotal": 0,
@@ -664,7 +664,7 @@ var returnData={
      "voidGrandTotal":0,
       "ofVoid":0
 }
-=======
+/*=======
 
 console.log("=================================AA====");
 console.log(info);
@@ -672,7 +672,7 @@ console.log("===CC====================================");
 console.log(query);
 console.log("==BB========================================");
 
->>>>>>> 7691e048ce4b4c4a8b33f47f2d8b2f41992227a7
+>>>>>>> 7691e048ce4b4c4a8b33f47f2d8b2f41992227a7*/
 if(!info.detail){
 async.parallel({
     one: function (done) {

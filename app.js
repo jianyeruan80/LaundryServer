@@ -97,26 +97,30 @@ var  store={};
    res.json(store);
  })
  })
-app.post('/api/uploadPic',security.ensureAuthorized,function(req, res, next) {
+//security.ensureAuthorized
+app.post('/api/uploadPic',function(req, res, next) {
 
-var fold=req.token.merchantId;
+var fold="xxx";//req.token.merchantId;
 var photoPath=path.join(__dirname, 'public')+'/'+fold;
 mkdirp(photoPath, function (err) {
     if (err) console.error(err)
     else console.log('pow!')
 });
 var form = new multiparty.Form({uploadDir:  photoPath});
-    var pic="";
+    var picJson={};
     
     form.parse(req, function(err, fields, files) {
-      
-       if(!!files &&  !!files.picture && files.picture[0].size>0){
-          console.log(files);
-          var path=files.picture[0].path.split("/");
-          pic=path[path.length-1];
-       }
-
-      res.json(pic);
+         if(!!files.file && !!files.file[0] &&  !!files.file[0].path){
+          var path=files.file[0].path.split("/");
+          pic=path[path.length-2]+'/'+path[path.length-1];
+          picJson["key"]=fields.input[0];
+          picJson["value"]=pic
+          
+          //console.log(fields.input[0])
+       } 
+     //  console.log(picJson);
+       
+      res.json(picJson);
  })
  })
 
@@ -173,17 +177,17 @@ app.use(function(err, req, res, next) {
 });
 
 
-var server = app.listen(3003, function () {
+var server = app.listen(3000, function () {
   var host = server.address().address;
   var port = server.address().port;
   console.log('Server is running at http://%s:%s', host, port)
 });
-var client =null;
+/*var client =null;
 function connect() { 
 client = new W3CWebSocket('ws://service520.com:3333/', 'bossreport');  
 client.onerror = function() {
     console.log('Connection Error');
-    /* client.onclose();*/
+    
 };
  
 client.onopen = function() {
@@ -202,23 +206,13 @@ client.onclose = function() {
 client.onmessage = function(e) {
  
 
- // try{
+
    var clientData=JSON.parse(e.data);  
    
 
    if(!!clientData && !!clientData.to){
       var sendData={},dataJson={};
-  
-     /*                 console.log(data);
-                    rest.get("http://service520.com:3003/api/stores",{"headers":"bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjaGFudElkIjoidGFlciIsImlkIjoiNTgwMmRjYTdhYTI4MGIwMDBlMzc0MWI2IiwidXNlciI6ImFkbWluIiwiaWF0IjoxNDgyNzE3MTg0LCJleHAiOjE0ODI3MjQzODR9.bCuewoiS6GKTLfhg_a9RWdZFRfgQafnf-i5xbaT3zsw"}).on('complete', function(data, response) {
-                            if (data instanceof Error)  {
-                              console.log(data);
-                             }*/
-         /* window.setTimeout(function(client){*/
-        
 
-              
-//(function (client,clientData) {
        
                             sendData.from=clientData.to;
                             sendData.to=clientData.from;
@@ -235,10 +229,7 @@ client.onmessage = function(e) {
                             client.send(JSON.stringify(sendData));
                          })    
                 
-      
-   // })(client,data);
-
-   heartCheck.reset(); 
+        heartCheck.reset(); 
  }
 }
 }
@@ -255,7 +246,7 @@ client.onmessage = function(e) {
         }, this.timeout)
     }
 }
-connect();
+connect();*/
   
 /*console.log(util.inspect(result, false, null))
 schemaModel.findOne({name:'loong'},function(err,doc){

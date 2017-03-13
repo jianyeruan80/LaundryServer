@@ -69,9 +69,7 @@ router.post('/active',  function(req, res, next) {
 router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
    
      var query={"merchantId":req.token.merchantId};
-     
-
-       stores.findOne(query, function (err, data) {
+      stores.findOne(query, function (err, data) {
         if (err) return next(err);
         console.log(data);
          res.json(data);
@@ -93,19 +91,25 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
    info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
-
-    
-    if(info.addressInfo && info.addressInfo.location && info.addressInfo.location.coordinates){
-      info.addressInfo.location.coordinates=info.addressInfo.location.coordinates.split(",");
-    }
-/*info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex){}*/
-
-   var arvind = new stores(info);
+var arvind = new stores(info);
    arvind.save(function (err, data) {
    if (err) return next(err);
           res.json(data);
       });
 })
+router.put('/',  security.ensureAuthorized,function(req, res, next) {
+   var info=req.body;
+   info.merchantId=req.token.merchantId; 
+   info.operator={};
+info.operator.id=req.token.id;
+info.operator.user=req.token.user;
+var options = {new: true};
+stores.findOneAndUpdate({"merchantId":info.merchantId},info,options,function (err, data) {
+          if (err) return next(err);
+          res.json(data);
+    });
+})
+
 router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 var id=req.params.id;

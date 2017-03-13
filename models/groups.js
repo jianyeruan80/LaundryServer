@@ -11,7 +11,7 @@ var Schema = mongoose.Schema;
    
 });*/
 
-var optionsGroupsSchema = new mongoose.Schema({ 
+/*var optionsGroupsSchema = new mongoose.Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
     group:{type: "String",default:"Default"},
     description:String,
@@ -21,7 +21,7 @@ var optionsGroupsSchema = new mongoose.Schema({
     options:[optionsSchema],
 
    
-});
+});*/
 var groupsSchema = new mongoose.Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
     name:{type:String},

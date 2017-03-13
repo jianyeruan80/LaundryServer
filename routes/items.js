@@ -156,7 +156,7 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
        groupDao.save(function (err, groupData) {
           if (err) return next(err);
              if(info.categoryName){
-                var categoryDao=new groups({"merchantId":info.merchantId,"name":.groupName,"group":groupData._id});
+                var categoryDao=new groups({"merchantId":info.merchantId,"name":info.groupName,"group":groupData._id});
                    categoryDao.save(function (err, categoryData) {
                       if (err) return next(err);
                         var query={"_id":groupData._id}

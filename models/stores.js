@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     tools = require('../modules/tools');
 
@@ -14,12 +14,18 @@ var addressSchema = new Schema({
       }
 });
 var distanceFeeSchema = new mongoose.Schema({ 
-  distance:String,
+  distance:Number,
   fee:Number
+})
+var openSchema = new mongoose.Schema({ 
+  start:String,
+  end:String,
+  day:Number,//0-6 
 })
 var storesSchema = new mongoose.Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
     name:String,
+    contact:String,
     addressInfo:addressSchema,
     phoneNum1:String,
     phoneNum2:String,
@@ -31,23 +37,23 @@ var storesSchema = new mongoose.Schema({
     createdAt: {type:Date,default:tools.defaultDate},
     updatedAt: Date,
     pictures:[{type:String}],
+    logo:String,
     fax:String,
     licenseKey:String,
-    openTime:String,
+    openTime:[openSchema],
     orderTime:String,
     qrcUrl:{type:String,lowercase:true},
     minPrice:Number,
     waitTime:String,
-    deliveryFee:String,
+    deliveryFee:[distanceFeeSchema],
     maxDistance:Number,
     DiffTimes:{type:Number,default:0},
-    distanceFee:[distanceFeeSchema],
     expires:Date,
     status:{type:String,default:""},
     operator:{ id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },user:String},
     chainStore:String,
 });
-storesSchema.index({ merchantId: 1,status:1,qrcUrl:1},{unique: true,sparse:true });
+storesSchema.index({status:1,qrcUrl:1},{unique: true,sparse:true });
 addressSchema.index({loc: '2dsphere'});
 module.exports = mongoose.model('stores', storesSchema);
 
