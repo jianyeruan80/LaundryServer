@@ -91,6 +91,10 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
    info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
+
+ info.addressInfo.loc={
+      "type":"Point","coordinates":[40.751351,-73.8597127]
+ }
 var arvind = new stores(info);
    arvind.save(function (err, data) {
    if (err) return next(err);
@@ -104,6 +108,9 @@ router.put('/',  security.ensureAuthorized,function(req, res, next) {
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
 var options = {new: true};
+console.log("------xx------");
+console.log(info)
+
 stores.findOneAndUpdate({"merchantId":info.merchantId},info,options,function (err, data) {
           if (err) return next(err);
           res.json(data);

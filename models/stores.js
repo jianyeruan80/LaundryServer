@@ -7,10 +7,10 @@ var addressSchema = new Schema({
       city: String,
       state: String,
       zipcode: String,
-      description:String,
-      loc: {
+      description:{type:String,defualt:"test"},
+      loc: { 
            type:{type:String,default:'Point'},
-           coordinates: [Number]
+           coordinates: [{type:Number,default:40.751351},{type:Number,default:-73.8597127}]
       }
 });
 var distanceFeeSchema = new mongoose.Schema({ 
@@ -20,7 +20,7 @@ var distanceFeeSchema = new mongoose.Schema({
 var openSchema = new mongoose.Schema({ 
   start:String,
   end:String,
-  day:Number,//0-6 
+  day:String,//0-6 
 })
 var storesSchema = new mongoose.Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},

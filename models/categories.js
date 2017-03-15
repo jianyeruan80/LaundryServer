@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+    var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     tools = require('../modules/tools');
 
@@ -24,7 +24,7 @@ var categoriesSchema = new mongoose.Schema({
     name:{type:String},
     group:{ type: mongoose.Schema.Types.ObjectId, ref: 'groups',null: true },
     globalOptions:[{type: mongoose.Schema.Types.ObjectId,ref: 'globalOptionGroups'}],
-    customerOptions:[optionsGroupsSchema],
+   
     description:String,
     status:{type:String,default:""},
     order:{type:Number,default:1},

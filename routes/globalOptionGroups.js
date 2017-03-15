@@ -8,7 +8,7 @@ var express = require('express'),
     
 router.get('/', function(req, res, next) {
      log.debug(req.token);
-       optionGroups.find({}, function (err, data) {
+       optionGroups.find({"status":""}, function (err, data) {
         if (err) return next(err);
           res.json(data);
       });

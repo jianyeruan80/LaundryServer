@@ -8,8 +8,8 @@ var optionsSchema = new mongoose.Schema({
     price:Number,
     picture:String,
     order:{type:Number,default:1},
-    compositions:[{inventoryItem:{type: mongoose.Schema.Types.ObjectId, ref: 'inventoryItems'},qty:Number}],
-    unit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
+    //compositions:[{inventoryItem:{type: mongoose.Schema.Types.ObjectId, ref: 'inventoryItems'},qty:Number}],
+    unit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Piece'},
     
    
 });
@@ -23,22 +23,34 @@ var optionsGroupsSchema = new mongoose.Schema({
     order:{type:Number,default:1},
     options:[optionsSchema]
 });
-
+var pricesSchema = new mongoose.Schema({ 
+    name:String, //price new price member price
+    price:Number
+});
+var globalPricesSchema = new mongoose.Schema({ 
+    id: mongoose.Schema.Types.ObjectId, //price new price member price
+    price:Number
+});
+/*var spicysSchema = new mongoose.Schema({ 
+    id: mongoose.Schema.Types.ObjectId, //price new price member price
+    price:Number
+});*/
 var itemsSchema = new mongoose.Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
     name:{type:String},
     globalOptions:[{type: mongoose.Schema.Types.ObjectId,ref: 'globalOptionGroups'}],
+    globalPrice:[globalPricesSchema],
     customerOptions:[optionsGroupsSchema],
     status:{type:String,default:""},
     category:{ type: mongoose.Schema.Types.ObjectId, ref: 'categories',null: true },
-    price:Number,
+    price:[pricesSchema],
     picture:[{type:String}],
     status:{type:String,default:""},
     description:String,
     order:{type:Number,default:1},
-    oldPrice:Number,
-    unit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Case'},
+    unit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Piece'},
     recommend:{type:Boolean,default:false},
+    spicy:{type:Boolean,default:false},
     properties:[String],
     operator:{
     id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },user:String}

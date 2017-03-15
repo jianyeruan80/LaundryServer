@@ -51,7 +51,7 @@ router.put('/sort/:id', security.ensureAuthorized,function(req, res, next) {
 });
 
 router.get('/', security.ensureAuthorized,function(req, res, next) {
-var query={"merchantId":req.token.merchantId};
+var query={"merchantId":req.token.merchantId,"status":""};
      
        categories.find(query).exec(function(err, data) {
        /*categories.find(query, function (err, data) {*/
@@ -112,13 +112,13 @@ info.operator.id=req.token.id;
 info.operator.user=req.token.user;
    arvind.save(function (err, data) {
    if (err) return next(err);
-            var query={"_id":data.group}
+           /* var query={"_id":data.group}
             var update={ $addToSet: {categories: data._id } };
             groups.findOneAndUpdate(query,update,{},function (err, data2) {
                   if (err) return next(err);
                    res.json(data);
-            });
-           //res.json(data);
+            });*/
+           res.json(data);
       });
 })
 router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
@@ -127,13 +127,14 @@ var info=req.body;
 var id=req.params.id;
 info.updatedAt=tools.defaultDate();
 var query = {"_id": id};
-var options = {new: false};
+var options = {new: true};
    info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
  categories.findOneAndUpdate(query,info,options,function (err, data) {
           if (err) return next(err);
-            var query={"_id":info.group};
+          res.json(data);
+            /*var query={"_id":info.group};
             var update={ $addToSet: {categories: data._id } };
           if(info.group != data.group){
                
@@ -153,7 +154,7 @@ info.operator.user=req.token.user;
 
           }else{
             res.json(data);
-          }
+          }*/
 
 
           

@@ -158,7 +158,7 @@ app.get('/api/ext',function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.error("Error:" + err.message);
-    res.status(err.status || 500).json({
+    res.status(err.status || 200).json({
         success:false,
         code:err.code?err.code:err.status,
         message: customerError[err.code]?customerError[err.code]:err.message,
@@ -170,7 +170,7 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
   
   console.error("Error: " + err);
-  res.status(err.status || 500).json({
+  res.status(err.status || 200).json({
     message: err.message,
     error: {}
   });
