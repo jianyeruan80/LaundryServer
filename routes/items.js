@@ -13,14 +13,28 @@ var express = require('express'),
     returnData={},
     items = require('../models/items');
 
-router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
+/*router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
 
    
 
      var query={"merchantId":req.token.merchantId};
      
        categories.find(query).populate({path:'items', options: { sort: { order: 1 }}}).sort({order:1}).exec(function(err, data) {
-       /*categories.find(query, function (err, data) {*/
+   
+        if (err) return next(err);
+       
+        res.json(data);
+      });
+     
+});*/
+router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
+
+   
+
+     var query={"merchantId":req.token.merchantId};
+     
+       items.find(query).sort({order:1}).exec(function(err, data) {
+   
         if (err) return next(err);
        
         res.json(data);
