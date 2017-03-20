@@ -39,7 +39,7 @@ var itemsSchema = new mongoose.Schema({
     status:{type:String,default:""},
     category:{ type: mongoose.Schema.Types.ObjectId, ref: 'categories' },
     price:Schema.Types.Mixed,//origin,newPrice,member..
-    picture:[{type:String}],
+    picture:String,
     description:String,
     order:{type:Number,default:1},
     unit:{type: String, enum: ['Piece', 'LB', 'Bottle','Case','Gram', 'Liter'],default:'Piece'},

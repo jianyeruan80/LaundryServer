@@ -98,9 +98,9 @@ var  store={};
  })
  })
 //security.ensureAuthorized
-app.post('/api/uploadPic',function(req, res, next) {
+app.post('/api/uploadPic',security.ensureAuthorized,function(req, res, next) {
 
-var fold="xxx";//req.token.merchantId;
+var fold=req.token.merchantId;
 var photoPath=path.join(__dirname, 'public')+'/'+fold;
 mkdirp(photoPath, function (err) {
     if (err) console.error(err)

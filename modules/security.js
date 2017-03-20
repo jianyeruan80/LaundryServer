@@ -37,7 +37,7 @@ module.exports.createApiToken = function() {
 }
 
 module.exports.ensureAuthorized=function(req, res, next) {
-
+       console.log("xxxxxxxxxxxxxxxx")
     var bearerToken;
     var bearerHeader = req.headers["authorization"];
     if (typeof bearerHeader !== 'undefined') {
