@@ -229,7 +229,11 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
        groupDao.save(function (err, groupData) {
           if (err) return next(err);
              if(info.categoryName){
+<<<<<<< HEAD
                 var categoryDao=new groups({"merchantId":info.merchantId,"name":info.groupName,"group":groupData._id});
+=======
+                var categoryDao=new categories({"merchantId":info.merchantId,"name":info.categoryName,"group":groupData._id});
+>>>>>>> origin
                    categoryDao.save(function (err, categoryData) {
                       if (err) return next(err);
                         var query={"_id":groupData._id}
@@ -237,13 +241,29 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
                          groups.findOneAndUpdate(query,update,{},function (err, groupData) {
                               if (err) return next(err);
                                info.category=categoryData._id;
-                               return;
-                        });
+				 var dao = new items(info);
+   dao.save(function (err, data) {
+   if (err) return next(err);
+            var query={"_id":data.category}
+            var update={ $addToSet: {items: data._id } };
+            categories.findOneAndUpdate(query,update,{},function (err, data2) {
+                  if (err) return next(err);
+                   res.json(data);
+            });
+         // res.json(data);
+      });
+                   
+     });
                    })
              }
        })
+<<<<<<< HEAD
    } */
-    console.log(info);
+  //  console.log(info);
+
+   //}else{
+   
+
    var dao = new items(info);
    dao.save(function (err, data) {
    if (err) return next(err);
@@ -255,6 +275,7 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
             });
          // res.json(data);
       });
+  //}
 })
 router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
    

@@ -49,7 +49,9 @@ var itemsSchema = new mongoose.Schema({
     operator:{
     id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },user:String}
 });
+
 itemsSchema.index({ name: 1, merchantId: 1 ,category:1,status:1}, { unique: true,sparse:true});
+
 module.exports = mongoose.model('items', itemsSchema);
 /*{ createdAt: { type: Date, expires: 3600, default: Date.now }}
 OrderList.$.UserName","大叔2015-09-21

@@ -44,7 +44,7 @@ var obj3 = {};
     console.log(timeObject);
     return timeObject;
 }
- module.exports.miniteFromNow=function(date,hour,min,sec){
+ module.exports.setTime=function(date,sec){ //1*24*60*60*1000
     var hour = (hour || -5 ) * 60 * 1000 * 60;
     var min = (min || 0) * 1000 * 60;
     var sec= sec || 0;

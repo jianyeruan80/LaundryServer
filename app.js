@@ -159,10 +159,12 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.error("Error:" + err.message);
     res.status(err.status || 200).json({
+
         success:false,
         code:err.code?err.code:err.status,
         message: customerError[err.code]?customerError[err.code]:err.message,
         error: err
+
     });
   });
 }
@@ -249,6 +251,7 @@ client.onmessage = function(e) {
 connect();*/
   
 /*console.log(util.inspect(result, false, null))
+a:{$literal:1}
 schemaModel.findOne({name:'loong'},function(err,doc){
         doc.set({baseinfo:{age:26}});
         doc.save();
