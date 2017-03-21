@@ -19,7 +19,7 @@ var rolesSchema = new Schema({
    description:String,
    permissions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'permissions' }],
    order:{type:Number,default:1},
-   status:{type:Boolean ,default:true},
+   status:{type:String ,default:""},
    merchantId:{type:String,lowercase: true, trim: true},
    createdAt: {type:Date,default:tools.defaultDate},
    updatedAt: Date,
@@ -54,7 +54,7 @@ var usersSchema = new Schema({
    token:{type:String,default:""},
    type:{type:String,default:""},
    admin:{type:String,default:""},
-   status:{type:Boolean,default:true},
+   status:{type:String,default:""},
    createdAt: {type:Date,default:tools.defaultDate},
    updatedAt: Date,
    storeName:String,
@@ -63,18 +63,19 @@ var usersSchema = new Schema({
    id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
    user:String},
 });
-var chainStoresSchema = new Schema({
+/*var chainStoresSchema = new Schema({
    name:{type:String},
    merchantIds:[String]
 
-});
+});*/
 
 permissionsSchema.index({ permissionGroup: 1 ,subject:1,action:1}, { unique: true,sparse:true });
-rolesSchema.index({ name: 1 ,merchantId:1}, { unique: true,sparse:true });
+rolesSchema.index({ name: 1 ,merchantId:1,status:1}, { unique: true,sparse:true });
+usersSchema.index({ password: 1 ,merchantId:1,status:1}, { unique: true,sparse:true });
 module.exports.permissions = mongoose.model('permissions', permissionsSchema);
 module.exports.roles = mongoose.model('roles', rolesSchema);
 module.exports.users = mongoose.model('users', usersSchema);
-module.exports.chainStores = mongoose.model('chainStores', chainStoresSchema);
+//module.exports.chainStores = mongoose.model('chainStores', chainStoresSchema);
 
 /*
 schemaModel.findOne({name:'loong'},function(err,doc){
