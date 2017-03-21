@@ -49,9 +49,9 @@ var itemsSchema = new mongoose.Schema({
     description:String,
     order:{type:Number,default:1},
     unit:{type: String, enum: ['Case', 'LB', 'Bottle','Piece','Gram', 'Liter'],default:'Piece'},
-    recommend:{type:Boolean,default:false},
-    spicy:{type:Boolean,default:false},
-    properties:[String],
+   // recommend:{type:Boolean,default:false},
+    //spicy:{type:Boolean,default:false},
+    properties:[Schema.Types.Mixed],
     operator:{
     id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },user:String}
 });

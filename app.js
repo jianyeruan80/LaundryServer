@@ -98,9 +98,9 @@ var  store={};
  })
  })
 //security.ensureAuthorized
-app.post('/api/uploadPic',function(req, res, next) {
+app.post('/api/uploadPic',security.ensureAuthorized,function(req, res, next) {
 
-var fold="xxx";//req.token.merchantId;
+var fold=req.token.merchantId;
 var photoPath=path.join(__dirname, 'public')+'/'+fold;
 mkdirp(photoPath, function (err) {
     if (err) console.error(err)
@@ -110,6 +110,8 @@ var form = new multiparty.Form({uploadDir:  photoPath});
     var picJson={};
     
     form.parse(req, function(err, fields, files) {
+ 
+
          if(!!files.file && !!files.file[0] &&  !!files.file[0].path){
           var path=files.file[0].path.split("/");
           pic=path[path.length-2]+'/'+path[path.length-1];

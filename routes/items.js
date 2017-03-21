@@ -151,7 +151,7 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
        info.operator.id=req.token.id;
        info.operator.user=req.token.user;
    
-   if(info.groupName){
+   /*if(info.groupName){
       var groupDao=new groups({"merchantId":info.merchantId,"name":info.groupName});
        groupDao.save(function (err, groupData) {
           if (err) return next(err);
@@ -169,17 +169,18 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
                    })
              }
        })
-   } 
+   } */
+   console.log(info);
    
    var dao = new items(info);
    dao.save(function (err, data) {
    if (err) return next(err);
-            var query={"_id":data.category}
-            var update={ $addToSet: {items: data._id } };
-            categories.findOneAndUpdate(query,update,{},function (err, data2) {
-                  if (err) return next(err);
+           // var query={"_id":data.category}
+           // var update={ $addToSet: {items: data._id } };
+           // categories.findOneAndUpdate(query,update,{},function (err, data2) {
+                //  if (err) return next(err);
                    res.json(data);
-            });
+            //});
          // res.json(data);
       });
 })
