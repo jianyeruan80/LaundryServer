@@ -35,8 +35,8 @@ router.post('/loginBak', function(req, res, next) {
   var token=info.token || "";
   var query={
       $and:[
-         { "merchantIds": {$regex:new RegExp(info.merchantId, 'i')}},
-         { $or:[
+         { "merchantIds": {$regex:new RegExp('^'+info.merchantId+'$', 'i')},"status":true}, 
+	{ $or:[
            {"password":security.encrypt(md5(password))},
            {"token":security.encrypt(md5(token))}
          ]}
@@ -174,7 +174,11 @@ var password=info.password || "";
 var token=info.token || "";
 var query={
     $and:[
+
          { "merchantIds": {$regex:new RegExp("^"+info.merchantId+"$", 'i')},"userName":info.userName},
+
+         //{ "merchantIds": {$regex:new RegExp('^'+info.merchantId+'$', 'i')},"status":true},
+
          { $or:[
            {"password":security.encrypt(md5(password))},
            {"token":security.encrypt(md5(token))}
@@ -421,7 +425,8 @@ var info=req.body;
       
       var query={
             "merchantIds":req.token.merchantId,
-            "password":info.password
+            "password":info.password,
+            "status":true
       }
      
       users.findOne(query).exec(function(err,data){
@@ -473,7 +478,8 @@ try{info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex
  var query={
             "merchantIds":req.token.merchantId,
             "password":info.password,
-            "_id":{$ne:id}
+            "_id":{$ne:id},
+           "status":true
       }
 console.log("------------------------");
 console.log(query);

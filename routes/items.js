@@ -4,6 +4,7 @@ var express = require('express'),
     log = require('../modules/logs'),
     security = require('../modules/security'),
     categories = require('../models/categories'),
+     mongoose = require('mongoose'), 
     async=require('async'),
 
      tools = require('../modules/tools'),
@@ -13,14 +14,28 @@ var express = require('express'),
     returnData={},
     items = require('../models/items');
 
-router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
+/*router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
 
    
 
      var query={"merchantId":req.token.merchantId};
      
        categories.find(query).populate({path:'items', options: { sort: { order: 1 }}}).sort({order:1}).exec(function(err, data) {
-       /*categories.find(query, function (err, data) {*/
+   
+        if (err) return next(err);
+       
+        res.json(data);
+      });
+     
+});*/
+router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
+
+   
+
+     var query={"merchantId":req.token.merchantId};
+     
+       items.find(query).sort({order:1}).exec(function(err, data) {
+   
         if (err) return next(err);
        
         res.json(data);
@@ -28,14 +43,71 @@ router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
      
 });
 router.get('/categories/:id', security.ensureAuthorized,function(req, res, next) {
+   console.log("xxxxxxxxxxxxxxxxxxx");
 
-     var query={"category":req.params.id};
+     var query={"category":req.params.id,"status":""};
      items.find(query).sort( { order: 1 } ).exec(function (err, data) {
         if (err) return next(err);
+           console.log(data); 
           res.json(data);
       });
      
 });
+
+
+router.put('/test123',function(req, res, next) {
+  var outTable="A"+new Date().getTime();
+  console.log(outTable);
+
+//  db.posts.stats()
+  categories.aggregate([
+        { $unwind:"$globalOptions"},
+        {$lookup:
+      {
+    from: "globaloptiongroups",
+    localField: "globalOptions",
+    foreignField: "_id",
+    as: "globaloptiongroups"
+  }
+   },{
+      $unwind:"$globaloptiongroups"
+  }, {
+       $group:
+     {
+     "_id":"$_id", 
+      globaloptiongroups: { $push:  "$globaloptiongroups" }
+       }
+   },{ $out: outTable }
+   ]).exec(function(err,data){
+      if (err) return next(err);
+      categories.aggregate([
+      {$lookup:
+      { from: outTable,
+        localField: "_id",
+        foreignField: "_id",
+        as: "globalOptions"
+      }},
+      {$lookup:
+      { from: "items",
+        localField: "_id",
+        foreignField: "category",
+        as: "items"
+      }},
+      
+        
+        // { $project: { items: { $setUnion: [  "$globalOptions","$items.customerOptions" ] } } }
+      
+      
+
+       ]).exec(function(err,data){
+
+          if (err) return next(err);
+           res.json(data);
+         })
+ })
+  
+})
+
 
 router.put('/sort/:id', security.ensureAuthorized,function(req, res, next) {
  var query={"category":req.params.id};
@@ -144,34 +216,18 @@ router.get('/:id', security.ensureAuthorized,function(req, res, next) {
      
 });
 
+
 router.post('/',  security.ensureAuthorized,function(req, res, next) {
    var info=req.body;
    info.merchantId=req.token.merchantId; 
      info.operator={};
        info.operator.id=req.token.id;
        info.operator.user=req.token.user;
+
    
-   /*if(info.groupName){
-      var groupDao=new groups({"merchantId":info.merchantId,"name":info.groupName});
-       groupDao.save(function (err, groupData) {
-          if (err) return next(err);
-             if(info.categoryName){
-                var categoryDao=new groups({"merchantId":info.merchantId,"name":info.groupName,"group":groupData._id});
-                   categoryDao.save(function (err, categoryData) {
-                      if (err) return next(err);
-                        var query={"_id":groupData._id}
-                        var update={ $addToSet: {categories: categoryData._id } };
-                         groups.findOneAndUpdate(query,update,{},function (err, groupData) {
-                              if (err) return next(err);
-                               info.category=categoryData._id;
-                               return;
-                        });
-                   })
-             }
-       })
-   } */
-   console.log(info);
+
    
+
    var dao = new items(info);
    dao.save(function (err, data) {
    if (err) return next(err);
@@ -183,6 +239,7 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
             //});
          // res.json(data);
       });
+  //}
 })
 router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
    
@@ -193,7 +250,7 @@ info.updatedAt=tools.defaultDate();
        info.operator.id=req.token.id;
        info.operator.user=req.token.user;
 var query = {"_id": id};
-var options = {new: false};
+var options = {new: true};
  items.findOneAndUpdate(query,info,options,function (err, data) {
           if (err) return next(err);
             var query={"_id":info.category};
