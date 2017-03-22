@@ -44,7 +44,7 @@ var customersSchema = new mongoose.Schema({
   	createdAt: {type:Date,default:tools.defaultDate},
     updatedAt: Date,
     description:String,
-    status:{ type: Boolean, default: true },
+    status:{ type: String, default: "default"},
     operator:{
     id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
     user:String
@@ -54,7 +54,7 @@ var customersSchema = new mongoose.Schema({
          description:lauguagesSchema
     },
 });
-//customersSchema.index({ phoneNum1: 1 ,merchantId:1}, { unique: true,sparse:true });
+customersSchema.index({ phoneNum1: 1 ,merchantId:1,status:1}, { unique: true,sparse:true });
 
 module.exports = mongoose.model('customers', customersSchema);
 

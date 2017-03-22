@@ -178,7 +178,7 @@ var password=info.password || "";
 var token=info.token || "";
 var query={
     $and:[
-         { "merchantIds": {$regex:new RegExp('^'+info.merchantId+'$', 'i')},"status":true},
+         { "merchantIds": {$regex:new RegExp('^'+info.merchantId+'$', 'i')}},
          { $or:[
            {"password":security.encrypt(md5(password))},
            {"token":security.encrypt(md5(token))}
@@ -190,8 +190,8 @@ var query={
 users.findOne(query).populate({path:'permissions'}).populate({path:'roles',populate:{ path: 'permissions'}}).
          exec(function (err, data) {
           if (err) return next(err);
- if (!data) return next({"code":"90002"});
-          if(data.status==false) return next({"code":"90004"});
+          if (!data) return next({"code":"90002"});
+          if(data.status !="") return next({"code":"90004"});
            var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":data._id,"user":data.userName},req.app.get("superSecret"), {
           expiresIn: '120m',
           algorithm: 'HS256'
@@ -389,11 +389,9 @@ query._id=req.params.id;
  * @apiSuccess {object} success:true,message:{}
  */
 router.get('/users', security.ensureAuthorized,function(req, res, next) {
-      
-     var query={
+  var query={
              "merchantIds":new RegExp(req.token.merchantId,"i"),
              "type":""
-             // "_id":{$ne:req.token.id}
             }
 
      users.find(query,function (err, data) {
@@ -421,89 +419,48 @@ var info=req.body;
       info.operator.user=req.token.user;
       info.merchantIds=[];
       info.merchantIds[0]=req.token.merchantId;
-      
-      var query={
-            "merchantIds":req.token.merchantId,
-            "password":info.password,
-            "status":true
-      }
-     
-      users.findOne(query).exec(function(err,data){
-         if (err) return next(err);
-         console.log(data);
-         if(!!data) return next({"code":"90009"});
-
-          var arvind = new users(info);
-          arvind.save(function (err, data) {
+      var dao = new users(info);
+          dao.save(function (err, data) {
           if (err) return next(err);
                res.json(data);
-              });
-      })
+      });
+  })
 
-
-   /*   var arvind = new users(info);
-      arvind.save(function (err, data) {
-      if (err) return next(err);
-           
-            res.json(data);
-          });*/
-                        
-  
-})
-/**
- * @api {post} /api/admin/user/:id
- * @apiVersion 0.0.1
- * @apiName  update user
- * @apiGroup admin
- * 
- * @apiParam {Object} user json
- *
- * @apiSuccess {object} success:true,message:{}
- */
 router.put('/users/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 log.debug(info);
 var id=req.params.id;
 info.updatedAt=tools.defaultDate();
-if(!info.password) delete info.password;
-if(!!info.password) info.password=security.encrypt(md5(info.password));
+delete info.password;
 var query = {"_id": id};
 var options = {new: true};
  info.operator={};
  info.operator.id=req.token.id;
  info.operator.user=req.token.user;
 try{info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex){}
-
- var query={
-            "merchantIds":req.token.merchantId,
-            "password":info.password,
-            "_id":{$ne:id},
-           "status":true
-      }
-console.log("------------------------");
-console.log(query);
-console.log("--------------------------");
-
- users.findOne(query).exec(function(err,data){
-         if (err) return next(err);
-         if(!!data) return next({"code":"90009"});
-         users.findByIdAndUpdate(id,info,options,function (err, data) {
-                       if (err) return next(err);
+users.findByIdAndUpdate(id,info,options,function (err, data) {
+              if (err) return next(err);
                         res.json(data);
-                      });
-      })
+});
 })
 router.delete('/users/:id',  security.ensureAuthorized,function(req, res, next) {
-var query={};
-query._id=req.params.id;
-
- users.remove(query,function (err, data) {
-          if (err) return next(err);
-          
-          res.json(data);
-    });
+  var query={};
+  var id=req.params.id;
+  var info={"status":new Date().getTime();}
+  sers.findByIdAndUpdate(id,info,options,function (err, data) {
+              if (err) return next(err);
+                  res.json(data);
+      });
 })
-
+router.delete('/users/resetPwd',  security.ensureAuthorized,function(req, res, next) {
+  var query={};
+  var id=req.params.id;
+  var info={"password":security.encrypt(md5(info.password));}
+  sers.findByIdAndUpdate(id,info,options,function (err, data) {
+              if (err) return next(err);
+                  res.json(data);
+      });
+})
 
 /*router.get('/userstores',function(req, res, next) {
       var info=req.query;

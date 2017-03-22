@@ -14,7 +14,7 @@ var addressSchema = new Schema({
       language:{
          description:lauguagesSchema
     },
-   location: {
+    location: {
     type:{type:String,default:'Point'},
     coordinates: [Number],
     

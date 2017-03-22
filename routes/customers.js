@@ -51,7 +51,7 @@ router.get('/', function(req, res, next) {
      
 });
 router.get('/merchants/id', security.ensureAuthorized, function(req, res, next) {
-     var query={"merchantId":req.token.merchantId};
+     var query={"merchantId":req.token.merchantId,"status":""};
        customers.find(query, function (err, data) {
         if (err) return next(err);
           res.json(data);
@@ -66,7 +66,7 @@ router.get('/query',  security.ensureAuthorized,function(req, res, next) {
 
        var query={
            $and:[
-            {"merchantId":req.token.merchantId},
+            {"merchantId":req.token.merchantId,"status":""},
             {
               $or:[
                       {"email":{$regex:search,$options: "i"}},//'email':new RegExp("^"+req.body.email+"$", 'i'),
@@ -98,12 +98,10 @@ router.get('/:id', security.ensureAuthorized,function(req, res, next) {
 
 router.post('/',  security.ensureAuthorized,function(req, res, next) {
   var info=req.body;
-
-   
-   info.merchantId=req.token.merchantId; 
+      info.merchantId=req.token.merchantId; 
       info.operator={};
-info.operator.id=req.token.id;
-info.operator.user=req.token.user;
+      info.operator.id=req.token.id;
+      info.operator.user=req.token.user;
 
    var arvind = new customers(info);
    arvind.save(function (err, data) {
@@ -127,10 +125,16 @@ info.operator.user=req.token.user;
     });
 })
 router.delete('/:id', security.ensureAuthorized,function(req, res, next) {
-     customers.remove({"_id":req.params.id}, function (err, data) {
-        if (err) return next(err);
+var info=req.body;
+info.updatedAt=tools.defaultDate();
+info.operator={};
+info.operator.id=req.token.id;
+info.operator.user=req.token.user;
+info.status=new Date().getTime();
+ customers.findByIdAndUpdate(req.params.id,info,{new: true},function (err, data) {
+          if (err) return next(err);
           res.json(data);
-      });
+    });
 });
 
 module.exports = router;

@@ -361,9 +361,8 @@ router.get('/:id',  security.ensureAuthorized,function(req, res, next) {
 router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
    var info=req.body;
    log.info("pay",info);
-   var name="orderNo";
    info.merchantId=req.token.merchantId; 
-   var query={"merchantId":info.merchantId,"name":name};
+   var query={"merchantId":info.merchantId,"name":"orderNo"};
    info.operator={};
    info.operator.id=req.token.id;
    info.operator.user=req.token.user;
@@ -422,14 +421,13 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                                orderUpdata.unpaid=unpaid==0?-billData.change:unpaid;
                                   orders.findOneAndUpdate(orderQuery,orderUpdata,{"new":true},function (err, orderData) {
                                              if (err) return next(err);
-                                             console.log("======aa=aaa===========");
+                                           
                                               var returnData=JSON.parse(JSON.stringify(orderData));;
                                               var unpaid=returnData.unpaid>0?returnData.unpaid:0;
                                                        
                                              returnData.paid=(returnData.grandTotal-unpaid || 0);
                                              returnData.receiveTotal=info.receiveTotal;
-                                             console.log(returnData);
-                                            console.log("-------aa----aa-------");
+                                          
                                              res.json(returnData);
                                           })
                    
@@ -456,9 +454,10 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
                           info.order=data._id;
                           info.status="Paid";
                           delete info["_id"];
+
                           var b=new bills(info);
                            b.save(function (err, billData) {
-                              
+                              if (err) return next(err);
                                bills.aggregate([
                                { $match: { "order": billData.order,"status":"Paid" } },
                                {

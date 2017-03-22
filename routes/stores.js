@@ -91,16 +91,12 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
    var info=req.body;
    info.merchantId=req.token.merchantId; 
    info.operator={};
-info.operator.id=req.token.id;
-info.operator.user=req.token.user;
-
-    
-    if(info.addressInfo && info.addressInfo.location && info.addressInfo.location.coordinates){
-      info.addressInfo.location.coordinates=info.addressInfo.location.coordinates.split(",");
-    }
-/*info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex){}*/
-
-   var arvind = new stores(info);
+   info.operator.id=req.token.id;
+   info.operator.user=req.token.user;
+   info.addressInfo.loc={
+      "type":"Point","coordinates":[40.751351,-73.8597127]
+  }
+  var arvind = new stores(info);
    arvind.save(function (err, data) {
    if (err) return next(err);
           res.json(data);
@@ -120,8 +116,8 @@ var query = {"_id": id};
 var options = {new: true};
 delete info["expires"];
 delete info["licenseKey"];
-try{
-  info.addressInfo.location.coordinates=info.addressInfo.location.coordinates?info.addressInfo.location.coordinates.split(","):[];}catch(ex){}
+//try{
+  //info.addressInfo.location.coordinates=info.addressInfo.location.coordinates?info.addressInfo.location.coordinates.split(","):[];}catch(ex){}
  stores.findOneAndUpdate(query,info,options,function (err, data) {
           if (err) return next(err);
           res.json(data);

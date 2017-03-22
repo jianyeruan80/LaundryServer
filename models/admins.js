@@ -52,7 +52,7 @@ var usersSchema = new Schema({
    birthday: Date, 
    address:addressSchema,
    token:{type:String,default:""},
-   type:{type:String,default:""},
+   type:{type:String,default:""},//super
    admin:{type:String,default:""},
    status:{type:String,default:""},
    createdAt: {type:Date,default:tools.defaultDate},
@@ -66,6 +66,7 @@ var usersSchema = new Schema({
 /*var chainStoresSchema = new Schema({
    name:{type:String},
    merchantIds:[String]
+   upesr
 
 });*/
 
