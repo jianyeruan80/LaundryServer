@@ -367,7 +367,7 @@ router.post('/pay',  security.ensureAuthorized,function(req, res, next) {
    info.operator.id=req.token.id;
    info.operator.user=req.token.user;
    info.createdBy=info.operator;
-  
+   if(!!info.customer){delete info.customer};
    info.updatedAt=tools.defaultDate();
    info.status="Unpaid"; //paid ,void
    if(info.pickUpTime){

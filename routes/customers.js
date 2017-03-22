@@ -78,11 +78,7 @@ router.get('/query',  security.ensureAuthorized,function(req, res, next) {
             }
            ]
        }       
-
-       //var query={"merchantId":req.token.merchantId};   
-        //'email':new RegExp("^"+req.body.email+"$", 'i'),
-
-       customers.find(query, function (err, data) {
+customers.find(query, function (err, data) {
         if (err) return next(err);
          res.json(data);
       });
