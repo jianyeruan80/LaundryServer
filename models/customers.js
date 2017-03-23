@@ -44,7 +44,7 @@ var customersSchema = new mongoose.Schema({
   	createdAt: {type:Date,default:tools.defaultDate},
     updatedAt: Date,
     description:String,
-    status:{ type: String, default: "default"},
+    status:{ type: String, default: "true"},
     operator:{
     id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
     user:String

@@ -40,7 +40,7 @@ router.get('/users', security.ensureAuthorized,function(req, res, next) {
       if(req.token.type=="SUPER"){
        users.find(query ,{}, {sort: {"_id": -1}}, function (err, data) {
         if (err) return next(err);
-
+         console.log(users);
          res.json(data);
       });
      }

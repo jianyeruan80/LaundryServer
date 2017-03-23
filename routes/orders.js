@@ -11,9 +11,13 @@ var express = require('express'),
     bills = require('../models/bills'),
     async=require('async'), //http://yijiebuyi.com/blog/be234394cd350de16479c583f6f6bcb6.html
     stores = require('../models/stores');
+//    router.post('/bills',function(req, res, next) {
+  //  res.json({"OK":"OK"});
+//})
     router.post('/query',  security.ensureAuthorized,function(req, res, next) {
          var info=req.body;
          log.info('orders',info);
+          console.log(info);
          var query={"merchantId":req.token.merchantId}
          if(info.invoiceNo){query.invoiceNo={$regex:query.invoiceNo,$options: "i"}};
          if(info.pickUpTime){
@@ -26,7 +30,16 @@ var express = require('express'),
               endtDate=new Date(endtDate.getUTCFullYear(), endtDate.getMonth(), endtDate.getDate(), 23, 59, 59, 999);
               query.pickUpTime={"$lte":endtDate};
          }   
-         if(info.status){query.status=info.status;}
+        // if(info.status){query.status=info.status;}
+            var statusChange={
+           "!Paid":{$ne:"Paid"},
+           "!Semi-Paid":{$ne:"Semi-Paid"},
+           "!unpaid":{$ne:"unpaid"},
+         }
+         if(info.status){
+          query.status=statusChange[info.status]?statusChange[info.status]:info.status;
+        }
+         
          
          if(info.startDate){
             var startDate=new Date(info.startDate);
@@ -46,8 +59,10 @@ var express = require('express'),
          }else{
         	queryArray.push({});  
          }
+  console.log("================");
   console.log(queryArray);
-
+  console.log(query);
+console.log("================");
     orders.aggregate([
 
     {
@@ -245,6 +260,17 @@ res.json(data);
         if (err) return next(err);
          res.json(data);
       });*/
+})
+router.post('/bills',function(req, res, next) {
+       var info=req.body;
+       log.info("bills",info);
+        var query={"merchantId":"00ct"};
+        if(info.status){query.status=info.status;}
+       if(info.orderId){query.order=info.orderId};
+        bills.find(query).sort({orderNo: 1, _id:1 }).exec(function(err,data){
+           if (err) return next(err);
+          res.json(data);
+        })
 })
 router.get('/bills',  security.ensureAuthorized,function(req, res, next) {
         var info=req.query;

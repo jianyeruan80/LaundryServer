@@ -191,9 +191,9 @@ users.findOne(query).populate({path:'permissions'}).populate({path:'roles',popul
          exec(function (err, data) {
           if (err) return next(err);
           if (!data) return next({"code":"90002"});
-          if(data.status !="") return next({"code":"90004"});
+          if(data.status !="true") return next({"code":"90004"});
            var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":data._id,"user":data.userName},req.app.get("superSecret"), {
-          expiresIn: '120m',
+          expiresIn: '13333333320m',
           algorithm: 'HS256'
           });
 
@@ -446,7 +446,7 @@ users.findByIdAndUpdate(id,info,options,function (err, data) {
 router.delete('/users/:id',  security.ensureAuthorized,function(req, res, next) {
   var query={};
   var id=req.params.id;
-  var info={"status":new Date().getTime();}
+  var info={"status":new Date().getTime()};
   sers.findByIdAndUpdate(id,info,options,function (err, data) {
               if (err) return next(err);
                   res.json(data);
@@ -455,7 +455,7 @@ router.delete('/users/:id',  security.ensureAuthorized,function(req, res, next) 
 router.delete('/users/resetPwd',  security.ensureAuthorized,function(req, res, next) {
   var query={};
   var id=req.params.id;
-  var info={"password":security.encrypt(md5(info.password));}
+  var info={"password":security.encrypt(md5(info.password))};
   sers.findByIdAndUpdate(id,info,options,function (err, data) {
               if (err) return next(err);
                   res.json(data);

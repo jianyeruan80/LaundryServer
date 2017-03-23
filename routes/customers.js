@@ -51,7 +51,7 @@ router.get('/', function(req, res, next) {
      
 });
 router.get('/merchants/id', security.ensureAuthorized, function(req, res, next) {
-     var query={"merchantId":req.token.merchantId,"status":""};
+     var query={"merchantId":req.token.merchantId,"status":"true"};
        customers.find(query, function (err, data) {
         if (err) return next(err);
           res.json(data);
@@ -66,7 +66,7 @@ router.get('/query',  security.ensureAuthorized,function(req, res, next) {
 
        var query={
            $and:[
-            {"merchantId":req.token.merchantId,"status":""},
+            {"merchantId":req.token.merchantId,"status":"true"},
             {
               $or:[
                       {"email":{$regex:search,$options: "i"}},//'email':new RegExp("^"+req.body.email+"$", 'i'),

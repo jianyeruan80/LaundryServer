@@ -54,7 +54,7 @@ var usersSchema = new Schema({
    token:{type:String,default:""},
    type:{type:String,default:""},//super
    admin:{type:String,default:""},
-   status:{type:String,default:""},
+   status:{type:String,default:"true"},
    createdAt: {type:Date,default:tools.defaultDate},
    updatedAt: Date,
    storeName:String,
