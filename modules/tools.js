@@ -38,9 +38,9 @@ var obj3 = {};
     for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
     return obj3;
 }
- module.exports.defaultDate=function(date){
-  var timeObject= date || new Date();
-    timeObject.setTime(timeObject.getTime() + -5 * 60 * 60 *1000);
+ module.exports.defaultDate=function(n=-4){
+  var timeObject= new Date();
+    timeObject.setTime(timeObject.getTime() + n * 60 * 60 *1000);
     console.log(timeObject);
     return timeObject;
 }
