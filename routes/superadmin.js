@@ -13,15 +13,17 @@ var express = require('express'),
 var permissions=admins.permissions; 
 var roles=admins.roles; 
 var users=admins.users; 
-var chainStores=admins.chainStores; 
+
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Server is Running' });
 })
 router.post('/login', function(req, res, next) {
-  log.debug(req.body);
-   var query=req.body;
-   query.password=security.encrypt(md5(query.password));
-    users.findOne(query ,function (err, data) {
+  var info=req.body;
+   var query={"userName":info.userName};
+   query.password=security.encrypt(md5(info.password));
+
+    
+    users.findOne(query,function (err, data) {
     if (err) return next(err);
     if (!data) return next({"code":"90002"});
      var json={};
@@ -33,10 +35,7 @@ router.post('/login', function(req, res, next) {
   });
 });
 router.get('/users', security.ensureAuthorized,function(req, res, next) {
-      log.debug(req.token);
-      var query=req.query;
-       console.log(query);
-   
+      var query={type:"ADMIN"};
       if(req.token.type=="SUPER"){
        users.find(query ,{}, {sort: {"_id": -1}}, function (err, data) {
         if (err) return next(err);
@@ -56,11 +55,11 @@ router.get('/seqs', security.ensureAuthorized,function(req, res, next) {
 router.post('/seqs', security.ensureAuthorized,function(req, res, next) {
    var  info=req.body;
         info.updatedAt=tools.defaultDate(); 
-         var arvind = new seqs(info);
-         arvind.save(function (err, data) {
+         var dao = new seqs(info);
+         dao.save(function (err, data) {
          if (err) return next(err);
                 res.json(data);
-            });
+        });
 
 
  });
@@ -96,36 +95,32 @@ router.get('/perms', security.ensureAuthorized,function(req, res, next) {
 
 router.post('/users',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
-log.debug(info);
+
 if(req.token.type=="SUPER"){
     info.password=security.encrypt(md5(info.password));
-   try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
-    var arvind = new users(info);
-      arvind.save(function (err, data) {
+    var dao = new users(info);
+      dao.save(function (err, data) {
       if (err) return next(err);
            res.json(data);
-                    });
+    });
                         
   } 
 })
 
 router.put('/users/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
-log.debug(info);
+
 if(req.token.type=="SUPER"){
-var options={"upsert":false,"multi":false};
-       var id=req.params.id;
-                     info.updatedAt=tools.defaultDate();
-                     if(!info.password) delete info.password;
-                     if(!!info.password) info.password=security.encrypt(md5(info.password));
-                       try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
-var query = {"_id": id};
-var options = {new: true};
-         users.findOneAndUpdate(query,info,options,function (err, data) {
-                          if (err) return next(err);
-                         
-                             res.json(data);
-                      });
+info.updatedAt=tools.defaultDate();
+ if(info.password.length<15){
+  info.password=security.encrypt(md5(info.password)); 
+ }else{
+  delete info.password;
+ }
+ users.findByIdAndUpdate(req.params.id,info,{new: true},function (err, data) {
+        if (err) return next(err);
+            res.json(data);
+        });
                         
   } 
 })
@@ -135,11 +130,9 @@ var options = {new: true};
 
 router.post('/perms', security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
-log.debug(info);
 if(req.token.type=="SUPER"){
- try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
- var arvind = new permissions(info);
-            arvind.save(function (err, data) {
+var dao = new permissions(info);
+            dao.save(function (err, data) {
             if (err) return next(err);
                     res.json(data);
               });
@@ -152,7 +145,7 @@ var info=req.body;
 log.debug(info);
 if(req.token.type=="SUPER"){
         var id=req.params.id;
-        try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}
+        
         var options={"upsert":false,"multi":false};
                    info.updatedAt=tools.defaultDate();
                    permissions.update({"_id":id},info,options,function (err, data) {
@@ -168,7 +161,7 @@ if(req.token.type=="SUPER"){
 
 router.put('/users/:id/perms', security.ensureAuthorized, function(req, res, next) {
      var info=req.body;
-     log.debug(info);
+     
 
      if(req.token.type=="SUPER"){
        var options={"upsert":false,"multi":false};

@@ -35,6 +35,7 @@ var timerID=0;
 var apiToken={};
 var returnData={};
 returnData.success=true;
+var startNow=Date.now();
 var app = express();
 app.use(compress());
 
@@ -150,117 +151,36 @@ app.get('/api/ext',function(req, res, next) {
 
  })
 
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+ if(Date.now()-startNow>500){
+     startNow=Date.now();
+    next(err);
+ }
+});
 
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.error("Error:" + err.message);
+
     res.status(err.status || 200).json({
-      success:false,
+      code:err.code,
       message: customerError[err.code]?customerError[err.code]:err.message,
-      error: err
-    });
+     });
   });
 }
 
 app.use(function(err, req, res, next) {
   
   console.error("Error: " + err);
-  res.status(err.status || 200).json({
-    message: err.message,
-    error: {}
-  });
+   res.status(err.status || 200).json({
+      code:err.code,
+      message: customerError[err.code]?customerError[err.code]:err.message,
+     });
 });
-
-
-var server = app.listen(3003, function () {
+var server = app.listen(3000, function () {
   var host = server.address().address;
   var port = server.address().port;
   console.log('Server is running at http://%s:%s', host, port)
 });
-var client =null;
-function connect() { 
-client = new W3CWebSocket('ws://service520.com:3333/', 'bossreport');  
-client.onerror = function() {
-    console.log('Connection Error');
-    /* client.onclose();*/
-};
- 
-client.onopen = function() {
-    console.log('WebSocket Client Connected');
-     heartCheck.start();
-     client.send('{"user":"M01"}');
-};
- 
-client.onclose = function() {
-    console.log('echo-protocol Client Closed');
-       setTimeout(function() {
-      connect();
-    }, 4000)
-};
- 
-client.onmessage = function(e) {
- 
-
- // try{
-   var clientData=JSON.parse(e.data);  
-   
-
-   if(!!clientData && !!clientData.to){
-      var sendData={},dataJson={};
-  
-     /*                 console.log(data);
-                    rest.get("http://service520.com:3003/api/stores",{"headers":"bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjaGFudElkIjoidGFlciIsImlkIjoiNTgwMmRjYTdhYTI4MGIwMDBlMzc0MWI2IiwidXNlciI6ImFkbWluIiwiaWF0IjoxNDgyNzE3MTg0LCJleHAiOjE0ODI3MjQzODR9.bCuewoiS6GKTLfhg_a9RWdZFRfgQafnf-i5xbaT3zsw"}).on('complete', function(data, response) {
-                            if (data instanceof Error)  {
-                              console.log(data);
-                             }*/
-         /* window.setTimeout(function(client){*/
-        
-
-              
-//(function (client,clientData) {
-       
-                            sendData.from=clientData.to;
-                            sendData.to=clientData.from;
-                            sendData.error="";
-                          console.log(clientData)
-                
-         rest.get(clientData.action,
-          {"headers":"bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjaGFudElkIjoidGFlciIsImlkIjoiNTgwMmRjYTdhYTI4MGIwMDBlMzc0MWI2IiwidXNlciI6ImFkbWluIiwiaWF0IjoxNDgyNzE3MTg0LCJleHAiOjE0ODI3MjQzODR9.bCuewoiS6GKTLfhg_a9RWdZFRfgQafnf-i5xbaT3zsw"}).
-         on('complete', function(data, response) {
-                            if (data instanceof Error) return next(data);
-                      
-                        
-                            sendData.data=data;
-                            client.send(JSON.stringify(sendData));
-                         })    
-                
-      
-   // })(client,data);
-
-   heartCheck.reset(); 
- }
-}
-}
- var heartCheck = {
-    timeout: 60000,
-    timeoutObj: null,
-    reset: function(){
-        clearTimeout(this.timeoutObj);
-　　　　 this.start();
-    },
-    start: function(){
-        this.timeoutObj = setTimeout(function(){
-            client.send("HeartBeat", "beat");
-        }, this.timeout)
-    }
-}
-connect();
-  
-/*console.log(util.inspect(result, false, null))
-a:{$literal:1}
-schemaModel.findOne({name:'loong'},function(err,doc){
-        doc.set({baseinfo:{age:26}});
-        doc.save();
-    });
-*/
-

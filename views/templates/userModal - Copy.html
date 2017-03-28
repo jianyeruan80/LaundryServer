@@ -6,27 +6,22 @@
       </ion-header-bar>
       <ion-content>
  <form  ng-submit="userUpdate()">
-     <div class = "row item"  style="text-align:center;"><div class = "col col-50">
-
-     <ion-checkbox ng-model="userData.status"   ng-true-value="true" ng-false-value="false" >Status</ion-checkbox> </div>
+     <div class = "row item"  style="text-align:center;"><div class = "col col-50"><ion-checkbox ng-model="userData.status"   ng-true-value="true" ng-false-value="false" >Status</ion-checkbox> </div>
      
     </div>
  
     
-  
+   <div class = "row item"  style="text-align:center;">
+   <div class = "col col-50"><input   placeholder="storeName"  ng-model="userData.storeName"  style="width:90%" required/><span style="color:red">*</span></div>
+   <div class = "col col-50"><input   placeholder="merchantIds" ng-model="userData.merchantIds"  style="width:90%"  required/><span style="color:red">*</span></div>
+   </div>
 
 
    <div class = "row item"  style="text-align:center;">
-   <div class = "col col-33"><input   placeholder="merchantId" ng-model="userData.merchantId"  style="width:90%"  required/><span style="color:red">*</span></div>
-   <div class = "col col-33"><input   placeholder="username"  ng-model="userData.userName"  style="width:90%" required/><span style="color:red">*</span></div>
-   <div class = "col col-33"><input   placeholder="password" ng-model="userData.password"  style="width:90%"  required/><span style="color:red">*</span></div>
+   <div class = "col col-50"><input   placeholder="username"  ng-model="userData.userName"  style="width:90%" required/><span style="color:red">*</span></div>
+   <div class = "col col-50"><input   placeholder="password" ng-model="userData.password"  style="width:90%"  required/><span style="color:red">*</span></div>
    </div>
- <div class = "row item"  style="text-align:center;">
-   <div class = "col col-50"><input   placeholder="storeName"  ng-model="userData.storeName"  style="width:90%" required/><span style="color:red">*</span> </div>
-    <div class = "col col-50"><input   placeholder="qrcUrl"  ng-model="userData.qrcUrl"  style="width:90%" required/><span style="color:red">*</span>
-   </div>
-   
-   </div>
+
 
    <div class = "row item"  style="text-align:center;">
    <div class = "col col-50"><input   placeholder="firstName" ng-model="userData.firstName"   style="width:90%"/></div>

@@ -7,6 +7,7 @@ angular.module('server.services', [])
               $ionicLoading.show();
               data=data || {};
               params=params || {};
+              alert(currentUrl)
               var contentType= contentType || { 'Content-Type': 'application/json; charset=UTF-8'};
               contentType["Authorization"]= "Bearer "+CONFIG.info.accessToken;
               $http({

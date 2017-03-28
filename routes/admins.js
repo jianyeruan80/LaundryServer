@@ -4,10 +4,11 @@ var express = require('express'),
     admins = require('../models/admins'),
     authorizations = require('../models/authorizations'),
     security = require('../modules/security'),
-     userRequest = require('../models/userRequest'),
+    userRequest = require('../models/userRequest'),
     mailer = require('../modules/mailer'),
-     tools = require('../modules/tools'),
+    tools = require('../modules/tools'),
     md5 = require('md5'),
+     stores = require('../models/stores'),
     util = require('util'),
 
     jwt = require('jsonwebtoken'),
@@ -32,7 +33,7 @@ var users=admins.users;
 
  * @apiSuccess {object} success:true,message:{}
  */
-
+/*
 router.post('/loginBak', function(req, res, next) {
   var info=req.body;
   var password=info.password || "";
@@ -122,7 +123,7 @@ for(var i =0; i< perms.length; i++){
   }); 
         
    });
-});
+});*/
 router.post('/authorization',security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 var password=info.password || "";
@@ -172,13 +173,14 @@ users.findOne(query).populate([{path:'permissions',select:'action',match:perm},{
              
   }); 
 });
+
 router.post('/login', function(req, res, next) {
 var info=req.body;
 var password=info.password || "";
 var token=info.token || "";
 var query={
     $and:[
-         { "merchantIds": {$regex:new RegExp('^'+info.merchantId+'$', 'i')}},
+         { "merchantIds": {$regex:new RegExp('^'+info.merchantId+'$', 'i'),"userName":info.userName}},
          { $or:[
            {"password":security.encrypt(md5(password))},
            {"token":security.encrypt(md5(token))}
@@ -288,21 +290,11 @@ log.debug(req.body);
 router.get('/roles',security.ensureAuthorized, function(req, res, next) {
    var info=req.body;
    log.debug(info);
-
-     var merchantId=req.token.merchantId;
-
-     var select={"name":1,"description":1,"permissions":1,"order":1,"status":1,"key":"$status"};
-    roles.aggregate(  
-                     [  
-                      
-                       { $match: {"merchantId":merchantId} },
-                         { $project : select }
-
-                     ]
-                   ).exec(function(err, data){
-                      if (err) return next(err);
-                    res.json(data);
-                   })
+   var merchantId=req.token.merchantId;
+   roles.aggregate([{ $match: {"merchantId":merchantId}},info]).exec(function(err, data){
+    if (err) return next(err);
+    res.json(data);
+  })
 });
 
 router.get('/roles/:id', security.ensureAuthorized, function(req, res, next) {
@@ -326,19 +318,16 @@ router.get('/roles/:id', security.ensureAuthorized, function(req, res, next) {
  */
 router.post('/roles',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
-
 log.debug(info);
 info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
-    info.merchantId=req.token.merchantId;
-    var arvind = new roles(info);
-      arvind.save(function (err, data) {
+ info.merchantId=req.token.merchantId;
+    var dao = new roles(info);
+      dao.save(function (err, data) {
       if (err) return next(err);
             res.json(data);
-                    });
-                        
-  
+      });
 })
 /**
  * @api {post} /api/roles/:id
@@ -417,12 +406,11 @@ var info=req.body;
       info.operator={};
       info.operator.id=req.token.id;
       info.operator.user=req.token.user;
-      info.merchantIds=[];
-      info.merchantIds[0]=req.token.merchantId;
+      info.hideName=info.userName;
       var dao = new users(info);
           dao.save(function (err, data) {
           if (err) return next(err);
-               res.json(data);
+             res.json(data);
       });
   })
 
@@ -437,6 +425,7 @@ var options = {new: true};
  info.operator={};
  info.operator.id=req.token.id;
  info.operator.user=req.token.user;
+ info.hideName=info.userName;
 try{info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex){}
 users.findByIdAndUpdate(id,info,options,function (err, data) {
               if (err) return next(err);
@@ -445,18 +434,20 @@ users.findByIdAndUpdate(id,info,options,function (err, data) {
 })
 router.delete('/users/:id',  security.ensureAuthorized,function(req, res, next) {
   var query={};
-  var id=req.params.id;
-  var info={"status":new Date().getTime()};
-  sers.findByIdAndUpdate(id,info,options,function (err, data) {
+  var info={"status":Date.now()};
+      info.operator={};
+      info.operator.id=req.token.id;
+      info.operator.user=req.token.user;
+
+  users.findByIdAndUpdate(req.params.id,info,{new:true},function (err, data) {
               if (err) return next(err);
                   res.json(data);
       });
 })
 router.delete('/users/resetPwd',  security.ensureAuthorized,function(req, res, next) {
   var query={};
-  var id=req.params.id;
   var info={"password":security.encrypt(md5(info.password))};
-  sers.findByIdAndUpdate(id,info,options,function (err, data) {
+  users.findByIdAndUpdate(req.params.id,info,options,function (err, data) {
               if (err) return next(err);
                   res.json(data);
       });
@@ -487,26 +478,16 @@ router.delete('/users/resetPwd',  security.ensureAuthorized,function(req, res, n
  * @apiSuccess {object} success:true,message:{}
  */
 router.put('/users/:id/perms', security.ensureAuthorized, function(req, res, next) {
-     var info=req.body;
-     
-       log.info(info);
-       log.info(req.params.id);
-       var id=req.params.id;
-       
-       var options = {new: true};
+    var info=req.body;
+    var options = {new: true};
        info.operator={};
        info.operator.id=req.token.id;
        info.operator.user=req.token.user;
-        users.findOneAndUpdate({"_id":id},{"permissions":info.permissions,"roles":info.roles},options,function (err, data) {
-                          if (err) return next(err);
-                            
-                            res.json(data);
-                      });
-        
-      
- 
-
-})
+       users.findByIdAndUpdate(req.params.id,{"permissions":info.permissions,"roles":info.roles},options,function (err, data) {
+          if (err) return next(err);
+                res.json(data);
+           });
+      })
 
 /**
  * @api {post} /api/admin/roles/:id/perms
@@ -519,30 +500,17 @@ router.put('/users/:id/perms', security.ensureAuthorized, function(req, res, nex
  * @apiSuccess {object} success:true,message:{}
  */
 router.put('/roles/:id/perms', security.ensureAuthorized, function(req, res, next) {
-     var info=req.body;
-     var id=req.params.id;
-       var options = {new: true};
+    var info=req.body;
+    var options = {new: true};
         info.operator={};
         info.operator.id=req.token.id;
         info.operator.user=req.token.user;
-        roles.findOneAndUpdate({"_id":id},{"permissions":info.permissions},options,function (err, data) {
-                          if (err) return next(err);
-                          
-                             
-                             res.json(data);
-                      });
+        roles.findByIdAndUpdate(req.params.id,{"permissions":info.permissions},options,function (err, data) {
+          if(err) return next(err);
+              res.json(data);
+          });
         
-      
- 
-
 })
-
-
-
-
-   
-                    
-
 module.exports = router;
 /*function uniqueArr(array,key) {
     var r = [];

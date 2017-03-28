@@ -287,10 +287,7 @@
 
               $scope.userData.type = "ADMIN";
 
-              if ($scope.userDataPwd == $scope.userData.password) {
-                  $scope.userData.password = "";
-              }
-
+              
               services.request(method, currentUrl, $scope.userData).then(function(data) {
                   $scope.closeUserModal();
                   $scope.reflesh(data, $scope.returnData.adminList, $scope.userData._id);
@@ -361,9 +358,11 @@
       })
       .controller('LoginCtrl', function($scope, $stateParams, $http, $location, $ionicPopup, CONFIG) {
           $scope.loginData = {};
-          $scope.loginData.admin = "admin";
+          $scope.loginData.userName = "admin";
           $scope.loginData.password = "admin";
           var currentUrl = CONFIG.url + "login";
+
+          console.log($scope.loginData);
           $scope.doLogin = function() {
               $scope.loginData.type = "SUPER";
               $http({
@@ -374,9 +373,14 @@
                   },
                   data: $scope.loginData
               }).success(function(data) {
-                  console.log(data)
-                  CONFIG.info = data;
+                 if(data.message){
+                   $scope.error(data.message);
+                 }else{
+                   CONFIG.info = data; 
                   $location.path("app/manager");
+                 }
+                 
+                 
               }).error(function(err) {
                   $scope.error(err.message);
               });

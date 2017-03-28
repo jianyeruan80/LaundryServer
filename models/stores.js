@@ -63,7 +63,7 @@ var storesSchema = new mongoose.Schema({
 
 },
 });
-storesSchema.index({ merchantId: 1},{unique: true,sparse:true });
+storesSchema.index({ merchantId: 1,qrcUrl:1},{unique: true,sparse:true });
 //storesSchema.index({ qrcUrl: 1},{unique: true,sparse:true });
 //addressSchema.index({location: '2dsphere'});
 module.exports = mongoose.model('stores', storesSchema);

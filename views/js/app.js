@@ -1,6 +1,6 @@
 
 angular.module('server', ['ionic', 'server.services','server.controllers'])
-.constant('CONFIG', {'url':'http://service520.com:3003/superadmin/','info':{},'header':{}})
+.constant('CONFIG', {'url':'http://192.168.1.100:3000/superadmin/','info':{},'header':{}})
 .run(function($ionicPlatform,$rootScope,CONFIG,$location) {
     $rootScope.$on('$locationChangeStart', function() {
             //console.log("$locationChangeStart", arguments);
@@ -41,12 +41,12 @@ angular.module('server', ['ionic', 'server.services','server.controllers'])
         }
       }
     })
-    .state('logs', {
+/*    .state('logs', {
     url: '/logs',
         templateUrl: 'templates/logs.html',
         controller: 'LogsCtrl'
    
-  })
+  })*/
   .state('login', {
     url: '/login',
         templateUrl: 'templates/login.html',
