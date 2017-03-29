@@ -36,10 +36,11 @@ var addressSchema = new Schema({
 });
 var usersSchema = new Schema({
    userName:{type:String,lowercase: true, trim: true},
-   hideName:{type:String,lowercase: true, trim: true},
+  
    password:String,
    description:String,
    merchantId:{type:String,lowercase: true, trim: true},
+   merchantIds:{type:String,lowercase: true, trim: true},//一用户看多店
    permissions:[{type: Schema.Types.ObjectId, ref: 'permissions' }],
    roles:[{ type:Schema.Types.ObjectId, ref: 'roles' }],
    defaultPerm:{type:Number,default:1},
@@ -64,7 +65,7 @@ var usersSchema = new Schema({
 });
 permissionsSchema.index({ permissionGroup: 1 ,subject:1,action:1}, { unique: true,sparse:true });
 rolesSchema.index({ name: 1 ,merchantId:1,status:1}, { unique: true,sparse:true });
-usersSchema.index({hideName: 1 ,merchantId:1,status:1,type:1}, { unique: true,sparse:true });
+usersSchema.index({userName: 1 ,merchantId:1,status:1,type:1}, { unique: true,sparse:true });
 module.exports.permissions = mongoose.model('permissions', permissionsSchema);
 module.exports.roles = mongoose.model('roles', rolesSchema);
 module.exports.users = mongoose.model('users', usersSchema);

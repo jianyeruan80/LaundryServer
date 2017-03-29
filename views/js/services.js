@@ -7,7 +7,7 @@ angular.module('server.services', [])
               $ionicLoading.show();
               data=data || {};
               params=params || {};
-              alert(currentUrl)
+              
               var contentType= contentType || { 'Content-Type': 'application/json; charset=UTF-8'};
               contentType["Authorization"]= "Bearer "+CONFIG.info.accessToken;
               $http({
@@ -17,7 +17,15 @@ angular.module('server.services', [])
                       data:data,
                       params:params,
                   }).success(function(data){
-                    deferred.resolve(data);
+                     if(data.message){
+                       $ionicPopup.alert({
+                                 title:'<b>Alert Info</b>',
+                                 template: '<div style="color:red;font-weight:600;text-align:center;font-size:25px">'+data.message+'</div>' });
+                     }else{
+                      deferred.resolve(data);
+                     }
+
+                    
                   }).error(function(err){
                            deferred.reject();
 

@@ -8,6 +8,7 @@
           $scope.returnData = {}; //
           $scope.config = {};
           $scope.userData = {};
+          $scope.userData.users_doc={};
           $scope.permData = {};
           $scope.loginData = {};
           $scope.userDataPwd = "";
@@ -174,7 +175,8 @@
 
 
 
-          $scope.getUserPerm = function() {
+          $scope.getUserPerm = function(e) {
+             $scope.stop(e);
               var userPermStr = "";
               for (var i = 0; i < $scope.returnData.adminList.length; i++) {
                   if ($scope.returnData.adminList[i]._id == $scope.config.isChedkedAdmin) {
@@ -263,6 +265,9 @@
               services.request("GET", currentUrl, {}, {
                   "type": "ADMIN"
               }).then(function(data) {
+                 console.log("xxxxxxxxxxxxxxxxxxxx")
+                 console.log(data)
+                  console.log("xxxxxxxxxxxxxxxxxxxx")
                   $scope.returnData.adminList = data;
 
               })
@@ -289,8 +294,8 @@
 
               
               services.request(method, currentUrl, $scope.userData).then(function(data) {
-                  $scope.closeUserModal();
-                  $scope.reflesh(data, $scope.returnData.adminList, $scope.userData._id);
+                  $scope.closeUserModal(); $scope.getUsers();
+                  //$scope.reflesh(data, $scope.returnData.adminList, $scope.userData._id);
 
               })
 
@@ -345,7 +350,7 @@
               })
 
           }
-          $scope.getChainStores();
+         // $scope.getChainStores();
       })
       .controller('LogsCtrl', function($scope, $stateParams, $http, $location, $ionicPopup, CONFIG) {
           alert("OK")

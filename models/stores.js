@@ -53,6 +53,7 @@ var storesSchema = new mongoose.Schema({
     expires:Date,
     reportStartTime:Date,
     reportEndTime:Date,
+    status:{type:String,default:"true"},
     language:{
          name:lauguagesSchema,
          description:lauguagesSchema
@@ -63,11 +64,7 @@ var storesSchema = new mongoose.Schema({
 
 },
 });
-storesSchema.index({ merchantId: 1,qrcUrl:1},{unique: true,sparse:true });
-//storesSchema.index({ qrcUrl: 1},{unique: true,sparse:true });
-//addressSchema.index({location: '2dsphere'});
+storesSchema.index({qrcUrl:1},{unique: true,sparse:true });
+storesSchema.index({merchantId:1},{unique: true,sparse:true });
 module.exports = mongoose.model('stores', storesSchema);
 
-/*{ createdAt: { type: Date, expires: 3600, default: tools.defaultDate }}
-OrderList.$.UserName","大叔2015-09-21
-*/
