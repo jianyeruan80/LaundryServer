@@ -21,8 +21,19 @@ router.post('/login', function(req, res, next) {
   var info=req.body;
    var query={"userName":info.userName};
    query.type="SUPER";
-   query.password=security.encrypt(md5(info.password));
+    query.password=security.encrypt(md5(info.password));
     users.findOne(query,function (err, data) {
+       /*stores.aggregate([{
+         $lookup:{
+                from: data,
+               localField: "merchantId",
+                foreignField: "merchantId",
+                as: "users_doc"
+         }
+       }]).exec(function(err,data){
+            console.log(data)
+       })*/
+
     if (err) return next(err);
     if (!data) return next({"code":"90002"});
      var json={};
@@ -42,7 +53,7 @@ router.get('/users', security.ensureAuthorized,function(req, res, next) {
         },{
           $lookup:{
                 from: "stores",
-               localField: "merchantId",
+                localField: "merchantId",
                 foreignField: "merchantId",
                 as: "users_doc"
           }
@@ -100,16 +111,13 @@ info.updatedAt=tools.defaultDate();
                         
   } 
 })
-
-
 router.get('/seqs', security.ensureAuthorized,function(req, res, next) {
    var  info=req.body;
         seqs.find({},function (err, data) {
                if (err) return next(err);
                  res.json(data) ;
         })
-
- });
+});
 router.post('/seqs', security.ensureAuthorized,function(req, res, next) {
    var  info=req.body;
         info.updatedAt=tools.defaultDate(); 
@@ -139,7 +147,7 @@ router.get('/perms', security.ensureAuthorized,function(req, res, next) {
            [ { $group : {_id : "$permissionGroup",  order: { $min: "$order" },
            perms:{$push:{"subject":"$subject","action":"$action",
            "perm":"$perm","status":"$status","value":"$_id","key":
-           "$perm","order":"$order","merchantIds":"$merchantIds"} } }
+           "$perm","order":"$order"} } }
             }
         ]
         ).sort({"order" : 1}).exec(function(err,data){

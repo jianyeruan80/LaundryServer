@@ -48,7 +48,7 @@ var obj3 = {};
     var hour = (hour || -5 ) * 60 * 1000 * 60;
     var min = (min || 0) * 1000 * 60;
     var sec= sec || 0;
-    console.log("xxxxxxxxxxxxx");
+    
     var minSec=hour+min+sec;
  console.log(minSec);
     var timeObject = date || new Date();

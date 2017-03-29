@@ -58,6 +58,8 @@ var storesSchema = new mongoose.Schema({
          name:lauguagesSchema,
          description:lauguagesSchema
     },
+    zoneInfo:{type:Number,default:0},
+    chains:String,
     operator:{
   id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
   user:String,

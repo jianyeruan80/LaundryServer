@@ -42,7 +42,7 @@
           $scope.openUserModal = function() {
               $scope.userModal.show();
               $scope.userData = {};
-              $scope.userData.status = true;
+              $scope.userData.status ="true";
               $scope.userDataPwd = "";
           };
           $scope.closeUserModal = function() {

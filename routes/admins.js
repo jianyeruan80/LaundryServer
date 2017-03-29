@@ -179,16 +179,21 @@ var info=req.body;
 var password=info.password || "";
 var token=info.token || "";
 var query={
-    $and:[
-         { "merchantIds": {$regex:new RegExp('^'+info.merchantId+'$', 'i'),"userName":info.userName}},
-         { $or:[
-           {"password":security.encrypt(md5(password))},
-           {"token":security.encrypt(md5(token))}
-         ]}
+    $and:[{"userName":info.userName},
+          { $or:[
+               {"password":security.encrypt(md5(password)),"userName":info.userName},
+               {"token":{ $all:[info.token]}}
+               ]
+            },
+            { $or:
+              [
+               {"merchantId": {$regex:new RegExp('^'+info.merchantId+'$', 'i')}},
+               {"merchantIds": {$regex:new RegExp('^'+info.merchantId+'$', 'i')}}
+               ]
+             }
         ]
 
 };
-
 users.findOne(query).populate({path:'permissions'}).populate({path:'roles',populate:{ path: 'permissions'}}).
          exec(function (err, data) {
           if (err) return next(err);
@@ -198,8 +203,6 @@ users.findOne(query).populate({path:'permissions'}).populate({path:'roles',popul
           expiresIn: '13333333320m',
           algorithm: 'HS256'
           });
-
-
           var perms=data.permissions?data.permissions:[];
           var permsTemp=[];                   
             if(!!data.roles){
@@ -234,24 +237,15 @@ router.get('/perms', security.ensureAuthorized,function(req, res, next) {
      var merchantId=req.token.merchantId;
       var merchant=new RegExp(merchantId,"i");
        var query= {"$and":
-                  [    {"status":true,perm:{$gt:1}},
-                       { "$or" : [
-                                    {"merchantIds": {$size: 0}},
-
-                                    {"merchantIds":{$regex:merchant}}
-                                 ]
-                      }
-                   ]
+                  [{"status":"true",perm:{$gt:1}}]
                  };
 
       permissions.aggregate(
            [ {$match:query},
-        
-         {$sort:{order:1}},
+          {$sort:{order:1}},
           { $group : {_id : "$permissionGroup",  order: { $min: "$order" },
-             perms:{$push:{"subject":"$subject","action":"$action","perm":"$perm","status":"$status","value":"$_id","key":"$perm","order":"$order","merchantIds":"$merchantIds"} } 
-
-            }}
+             perms:{$push:{"subject":"$subject","action":"$action","perm":"$perm","status":"$status","value":"$_id","key":"$perm","order":"$order"} } 
+           }}
         ]
         ).sort({"order" : 1}).exec(function(err,data){
             if (err) return next(err);

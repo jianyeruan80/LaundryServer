@@ -36,7 +36,6 @@ var addressSchema = new Schema({
 });
 var usersSchema = new Schema({
    userName:{type:String,lowercase: true, trim: true},
-  
    password:String,
    description:String,
    merchantId:{type:String,lowercase: true, trim: true},
@@ -52,7 +51,7 @@ var usersSchema = new Schema({
    phoneNum2:String,
    birthday: Date, 
    address:addressSchema,
-   token:{type:String,default:""},
+   token:[{type:String}], //2支拉二三个记住密码
    type:{type:String,default:""},//super,admin,"normal"
    status:{type:String,default:"true"},
    createdAt: {type:Date,default:tools.defaultDate},
