@@ -131,8 +131,12 @@ var query={
     $and:[
          { "merchantIds": {$regex:new RegExp(req.token.merchantId, 'i')}},
          {"password":security.encrypt(md5(password))},
-         
-        ]
+        /* {
+          $or:[
+              ""
+           ]
+         }*/
+         ]
 
 };
 var perm={
@@ -173,57 +177,100 @@ users.findOne(query).populate([{path:'permissions',select:'action',match:perm},{
              
   }); 
 });
-
 router.post('/login', function(req, res, next) {
 var info=req.body;
 var password=info.password || "";
 var token=info.token || "";
 var query={
-    $and:[{"userName":info.userName,"password":security.encrypt(md5(password))},
-        /*  { $or:[
-               {},
-               {"token":{ $all:[info.token]}}
+    $and:[{"userName":info.userName},
+          { $or:[
+               {"password":security.encrypt(md5(password))},
+               {"token":{ $all:[token]}}
                ]
-            },*/
-            /*{ $or:
+            },
+            { $or:
               [
                {"merchantId": {$regex:new RegExp('^'+info.merchantId+'$', 'i')}},
                {"merchantIds": {$regex:new RegExp('^'+info.merchantId+'$', 'i')}}
                ]
-             }*/
+             }
         ]
 
 };
-console.log(util.inspect(query, false, null));
-users.findOne(query).populate({path:'permissions'}).populate({path:'roles',populate:{ path: 'permissions'}}).
-         exec(function (err, data) {
+ users.aggregate([
+      { $match: query},
+      { $lookup: {from: 'permissions', localField: 'defaultPerm', foreignField: 'perm', as: 'perms'} },
+      ]
+      
+       ).exec( function (err, result) {
+        if (err) return next(err);
+          if (!result || result.length<1) return next({"code":"90002"});
+          if(result[0].status!="true") return next({"code":"90004"});
+          users.populate(result,[
+         { path:'roles',populate:{ path: 'permissions'}},
+         { path:'permissions'}],
+          function (err, datas) {
           if (err) return next(err);
-          if (!data) return next({"code":"90002"});
-          if(data.status !="true") return next({"code":"90004"});
-           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":data._id,"user":data.userName},req.app.get("superSecret"), {
-          expiresIn: '13333333320m',
+
+           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":datas[0]._id,"user":datas[0].userName},req.app.get("superSecret"), {
+          expiresIn: '120m',
           algorithm: 'HS256'
           });
+          var data=datas[0];
           var perms=data.permissions?data.permissions:[];
-          var permsTemp=[];                   
+                     
             if(!!data.roles){
                 for(var j=0;j<data.roles.length;j++) {
                   perms = perms.concat(data.roles[j].permissions);
                 }
             }
-          perms=tools.unique5(perms,"_id");
-          var permsLength=perms.length-1;
-           for(var k=permsLength;k>=0;k--){
-           	if(perms[k].perm<4){}else{
-                	permsTemp.push(perms[k].action); 
-                }
-	   }
-        var returnData=JSON.parse(JSON.stringify(data));
-        returnData.permissions=permsTemp;
+            if(!!data.perms){
+              for(var j=0;j<data.perms.length;j++) {
+                  perms = perms.concat(data.perms[j]);
+              }
+            }
+       
+          var cloneOfA = JSON.parse(JSON.stringify(perms));
+perms=tools.unique5(cloneOfA,"_id");
+var jobsSortObject = {}; 
+  for(var i =0; i< perms.length; i++){
+   var job = perms[i],
+   mark = job.permissionGroup+'-'+job.subject,
+   jobItem = jobsSortObject[mark];
 
-returnData.accessToken=accessToken;
-res.json(returnData);
-  }); 
+  if(jobItem){
+    
+   jobsSortObject[mark]=jobItem+job.perm;
+  }else{
+   jobsSortObject[mark] = job.perm;
+  }
+}
+
+var jobsSortObjectList = {}; 
+for(var i =0; i< perms.length; i++){
+   var job = perms[i],
+   mark = job.permissionGroup,
+   jobItem = jobsSortObjectList[mark];
+  if(jobItem){
+    if(job.perm<=2){
+      jobsSortObjectList[mark].push(job);
+    }
+     
+  }else if(job.perm<=2){
+     jobsSortObjectList[mark] = [job];
+  }
+}
+         var returnData={};
+
+          returnData.perms=jobsSortObject;
+          returnData.permsList=jobsSortObjectList;
+          returnData.username=data.userName;
+          returnData.storeName=data.storeName;
+          returnData.merchantId=info.merchantId;
+          returnData.accessToken=accessToken;
+
+          res.json(returnData);
+  })  })
 });
 
 /**
