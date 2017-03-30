@@ -179,21 +179,22 @@ var info=req.body;
 var password=info.password || "";
 var token=info.token || "";
 var query={
-    $and:[{"userName":info.userName},
-          { $or:[
-               {"password":security.encrypt(md5(password)),"userName":info.userName},
+    $and:[{"userName":info.userName,"password":security.encrypt(md5(password))},
+        /*  { $or:[
+               {},
                {"token":{ $all:[info.token]}}
                ]
-            },
-            { $or:
+            },*/
+            /*{ $or:
               [
                {"merchantId": {$regex:new RegExp('^'+info.merchantId+'$', 'i')}},
                {"merchantIds": {$regex:new RegExp('^'+info.merchantId+'$', 'i')}}
                ]
-             }
+             }*/
         ]
 
 };
+console.log(util.inspect(query, false, null));
 users.findOne(query).populate({path:'permissions'}).populate({path:'roles',populate:{ path: 'permissions'}}).
          exec(function (err, data) {
           if (err) return next(err);

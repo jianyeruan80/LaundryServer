@@ -261,10 +261,25 @@ res.json(data);
          res.json(data);
       });*/
 })
-router.post('/bills',function(req, res, next) {
+router.post('/refund/:id',security.ensureAuthorized,function(req, res, next) {
+       var info=req.body;
+           info.merchantId=req.token.merchantId;
+           info.status="Refund";
+           info.createAt=tools.defaultDate();
+           info.updatedAt=tools.defaultDate();
+           info.operator={};
+           info.operator.id=req.token.id;
+           info.operator.user=req.token.user;
+           var dao=new bills(info);
+           dao.save(function (err, data) {
+                 if (err) return next(err);
+                  res.json(data);
+            })
+})
+router.post('/bills',security.ensureAuthorized,function(req, res, next) {
        var info=req.body;
        log.info("bills",info);
-        var query={"merchantId":"00ct"};
+        var query={"merchantId":req.token.merchantId};
         if(info.status){query.status=info.status;}
        if(info.orderId){query.order=info.orderId};
         bills.find(query).sort({orderNo: 1, _id:1 }).exec(function(err,data){
@@ -293,7 +308,7 @@ router.put('/void/:id',  security.ensureAuthorized,function(req, res, next) {
                if (err) return next(err);
                query={"order":req.params.id};
                info={"status":"Void"};
-               bills.findOneAndUpdate(query,info,{},function (err, billData) {
+               bills.update(query,info,{multi:true},function (err, billData) {
                 if (err) return next(err);
                  res.json(data);
                 })
@@ -305,11 +320,7 @@ router.put('/billvoid/:id',  security.ensureAuthorized,function(req, res, next) 
         var info={status:"Void"}
         bills.findOneAndUpdate(query,info,{},function (err, billData) {
                if (err) return next(err);
-          /*   var billData=billData;
-                             console.log("1111111111111111111111111111");
-                     console.log(billData);
-                     console.log("3333333333333333333333333333333333333");*/
-                        bills.aggregate([
+               bills.aggregate([
                                { $match: { "order": billData.order,"status":"Paid" } },
                                {
                                 $project:
@@ -330,7 +341,7 @@ router.put('/billvoid/:id',  security.ensureAuthorized,function(req, res, next) 
                              
                            ]).exec(function(err,billResult){
                               if (err) return next(err);
-                                     console.log("444444444444444444444444");
+                                    
                      console.log(billResult);
 
 /*                     console.log("6666666666666666666666666666666666666666666666");*/
