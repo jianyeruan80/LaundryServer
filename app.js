@@ -81,7 +81,7 @@ app.use('/api/settings',settings);
 
 
 app.post('/api/upload',security.ensureAuthorized,function(req, res, next) {
-console.log(req.token.merchantId);
+/*console.log(req.token.merchantId);
 var fold=req.token.merchantId;
 var photoPath=path.join(__dirname, 'public')+'/'+fold;
 mkdirp(photoPath, function (err) {
@@ -96,31 +96,38 @@ var  store={};
     store.message=files;
 
    res.json(store);
+ })*/
  })
- })
-app.post('/api/uploadPic',security.ensureAuthorized,function(req, res, next) {
+app.post('/api/uploadPic/:id',function(req, res, next) {
+var fold=req.params.id;
+if(fold){
+    var photoPath=path.join(__dirname, 'public')+'/'+fold;
+    console.log(photoPath);
+    mkdirp(photoPath, function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+    var form = new multiparty.Form({uploadDir:  photoPath});
+        var picJson={};
+        
+        form.parse(req, function(err, fields, files) {
+         console.log(fields);
+         console.log(files);
 
-var fold=req.token.merchantId;
-var photoPath=path.join(__dirname, 'public')+'/'+fold;
-mkdirp(photoPath, function (err) {
-    if (err) console.error(err)
-    else console.log('pow!')
-});
-var form = new multiparty.Form({uploadDir:  photoPath});
-    var pic="";
-    
-    form.parse(req, function(err, fields, files) {
-      
-       if(!!files &&  !!files.picture && files.picture[0].size>0){
-          console.log(files);
-          var path=files.picture[0].path.split("/");
-          pic=path[path.length-1];
-       }
-
-      res.json(pic);
+             if(!!files.file && !!files.file[0] &&  !!files.file[0].path){
+              var path=files.file[0].path.split("/");
+              pic=path[path.length-2]+'/'+path[path.length-1];
+              picJson["key"]=fields.input[0];
+              picJson["value"]=pic
+              
+             
+           } 
+          res.json(picJson);
+     })
+  }else{
+    return next({"code":"90001"});
+  }
  })
- })
-
  var customerError={
          "11000":"Item already exists !",
          "90001":"token not match !",

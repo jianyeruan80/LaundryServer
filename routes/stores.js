@@ -65,7 +65,15 @@ router.post('/active',  function(req, res, next) {
     }
     );
 })
-
+router.get('/qrc/:id',function(req, res, next) {
+      var query={"qrcUrl":req.params.id};
+     stores.findOne(query, function (err, data) {
+        if (err) return next(err);
+        console.log(data);
+         res.json(data);
+      });
+     
+});
 router.get('/merchants/id', security.ensureAuthorized,function(req, res, next) {
    
      var query={"merchantId":req.token.merchantId};
@@ -102,20 +110,14 @@ router.post('/',  security.ensureAuthorized,function(req, res, next) {
           res.json(data);
       });
 })
-router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
+router.put('/',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
-var id=req.params.id;
-console.log("xxxxxxxxxxxxxxxxx");
 info.updatedAt=tools.defaultDate();
-console.log("yyyyyyyyyyyyyyyyyyyyy");
 info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
- 
-var query = {"_id": id};
+var query = {"merchantId": req.token.merchantId};
 var options = {new: true};
-delete info["expires"];
-delete info["licenseKey"];
 //try{
   //info.addressInfo.40.7623381,-73.8474097 location.coordinates=info.addressInfo.location.coordinates?info.addressInfo.location.coordinates.split(","):[];}catch(ex){}
  stores.findOneAndUpdate(query,info,options,function (err, data) {

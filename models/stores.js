@@ -28,6 +28,7 @@ var distanceFeeSchema = new mongoose.Schema({
 var storesSchema = new mongoose.Schema({ 
     merchantId:{type:String,lowercase: true, trim: true},
     name:String,
+    contact:String,
     addressInfo:addressSchema,
     phoneNum1:String,
     phoneNum2:String,
@@ -38,7 +39,7 @@ var storesSchema = new mongoose.Schema({
     about :String,
     createdAt: {type:Date,default:tools.defaultDate},
     updatedAt: Date,
-    picture:String,
+    logo:String,
     fax:String,
     licenseKey:String,
     openTime:String,
