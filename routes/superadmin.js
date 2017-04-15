@@ -23,16 +23,6 @@ router.post('/login', function(req, res, next) {
    query.type="SUPER";
     query.password=security.encrypt(md5(info.password));
     users.findOne(query,function (err, data) {
-       /*stores.aggregate([{
-         $lookup:{
-                from: data,
-               localField: "merchantId",
-                foreignField: "merchantId",
-                as: "users_doc"
-         }
-       }]).exec(function(err,data){
-            console.log(data)
-       })*/
 
     if (err) return next(err);
     if (!data) return next({"code":"90002"});
@@ -72,7 +62,7 @@ router.get('/users', security.ensureAuthorized,function(req, res, next) {
 });
 router.post('/users',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
-    console.log(info)
+    
 if(req.token.type=="SUPER"){
     info.password=security.encrypt(md5(info.password));
   var dao = new users(info);
@@ -94,16 +84,16 @@ router.put('/users/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 if(req.token.type=="SUPER"){
 info.updatedAt=Date.now();
- if(info.password.length<15){
+ if(info.password.length<=15){
   info.password=security.encrypt(md5(info.password)); 
  }else{
   delete info.password;
  }
  users.findByIdAndUpdate(req.params.id,info,{new: true},function (err, data) {
         if (err) return next(err);
-                var storeJson=info.users_doc;
+               var storeJson=info.users_doc;
                storeJson.merchantId=info.merchantId;
-               stores.findOneAndUpdate({"merchantId":info.merchantId},storeJson,{new: true},function (err, data) {
+               stores.findByIdAndUpdate({"merchantId":info.merchantId},storeJson,{new: true},function (err, data) {
                 if (err) return next(err);
                       res.json(data);
                 });
@@ -178,10 +168,8 @@ var info=req.body;
 log.debug(info);
 if(req.token.type=="SUPER"){
         var id=req.params.id;
-        
-        var options={"upsert":false,"multi":false};
-                   info.updatedAt=Date.now();
-                   permissions.update({"_id":id},info,options,function (err, data) {
+                  info.updatedAt=Date.now();
+                   permissions.update({"_id":id},info,{},function (err, data) {
                         if (err) return next(err);
                             
                             res.json(data);

@@ -10,7 +10,8 @@ var settingsSchema = new mongoose.Schema({
  updatedAt:Date,
  merchantId:{type:String,lowercase: true, trim: true},
  group:String,
- settingInfo:Schema.Types.Mixed,
+ value:Schema.Types.Mixed,
+ status:{type:String,default:"true"},
  operator:{
   id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
   user:String

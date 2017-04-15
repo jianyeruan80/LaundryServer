@@ -20,110 +20,6 @@ var roles=admins.roles;
 var users=admins.users; 
 
 
-
-/**
- * @api {post} /api/admin/login
- * @apiVersion 0.0.1
- * @apiName LOGIN
- * @apiGroup admin
- * 
- * @apiParam {String} loginType   1
- * @apiParam {String} password    123456
- * @apiParam {String} merchantId  U001001
-
- * @apiSuccess {object} success:true,message:{}
- */
-/*
-router.post('/loginBak', function(req, res, next) {
-  var info=req.body;
-  var password=info.password || "";
-  var token=info.token || "";
-  var query={
-      $and:[
-         { "merchantIds": {$regex:new RegExp('^'+info.merchantId+'$', 'i')},"status":true}, 
-	{ $or:[
-           {"password":security.encrypt(md5(password))},
-           {"token":security.encrypt(md5(token))}
-         ]}
-        ]
-
-        
-     
-   };
-      users.aggregate([
-      { $match: query},
-      { $lookup: {from: 'permissions', localField: 'defaultPerm', foreignField: 'perm', as: 'perms'} },
-      ]
-      
-       ).exec( function (err, result) {
-        if (err) return next(err);
-          if (!result || result.length<1) return next({"code":"90002"});
-          if(result[0].status==false) return next({"code":"90004"});
-          users.populate(result,[
-         { path:'roles',populate:{ path: 'permissions'}},
-         { path:'permissions'}],
-          function (err, datas) {
-          if (err) return next(err);
-
-           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":datas[0]._id,"user":datas[0].userName},req.app.get("superSecret"), {
-          expiresIn: '120m',
-          algorithm: 'HS256'
-          });
-          var data=datas[0];
-          var perms=data.permissions?data.permissions:[];
-                     
-            if(!!data.roles){
-                for(var j=0;j<data.roles.length;j++) {
-                  perms = perms.concat(data.roles[j].permissions);
-                }
-            }
-            if(!!data.perms){
-              for(var j=0;j<data.perms.length;j++) {
-                  perms = perms.concat(data.perms[j]);
-              }
-            }
-       
-          var cloneOfA = JSON.parse(JSON.stringify(perms));
-perms=tools.unique5(cloneOfA,"_id");
-var jobsSortObject = {}; 
-  for(var i =0; i< perms.length; i++){
-   var job = perms[i],
-   mark = job.permissionGroup+'-'+job.subject,
-   jobItem = jobsSortObject[mark];
-
-  if(jobItem){
-    
-   jobsSortObject[mark]=jobItem+job.perm;
-  }else{
-   jobsSortObject[mark] = job.perm;
-  }
-}
-
-var jobsSortObjectList = {}; 
-for(var i =0; i< perms.length; i++){
-   var job = perms[i],
-   mark = job.permissionGroup,
-   jobItem = jobsSortObjectList[mark];
-  if(jobItem){
-   jobsSortObjectList[mark].push(job);
-  }else{
-   jobsSortObjectList[mark] = [job];
-  }
-}
-         var returnData={};
-
-          returnData.perms=jobsSortObject;
-          returnData.permsList=jobsSortObjectList;
-          returnData.username=data.userName;
-          returnData.storeName=data.storeName;
-          returnData.merchantId=info.merchantId;
-          returnData.accessToken=accessToken;
-
-          res.json(returnData);
-  }); 
-        
-   });
-});*/
 router.post('/authorization',security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 var password=info.password || "";
@@ -131,11 +27,7 @@ var query={
     $and:[
          { "merchantIds": {$regex:new RegExp(req.token.merchantId, 'i')}},
          {"password":security.encrypt(md5(password))},
-        /* {
-          $or:[
-              ""
-           ]
-         }*/
+       
          ]
 
 };
@@ -443,12 +335,12 @@ router.get('/users', security.ensureAuthorized,function(req, res, next) {
  * @apiSuccess {object} success:true,message:{}
  */
 router.post('/users',  security.ensureAuthorized,function(req, res, next) {
-var info=req.body;
+      var info=req.body;
       info.password=security.encrypt(md5(info.password));
       info.operator={};
       info.operator.id=req.token.id;
       info.operator.user=req.token.user;
-      info.hideName=info.userName;
+      try{info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex){}
       var dao = new users(info);
           dao.save(function (err, data) {
           if (err) return next(err);
@@ -460,16 +352,13 @@ router.put('/users/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 log.debug(info);
 var id=req.params.id;
-info.updatedAt=Date.now();
-delete info.password;
-var query = {"_id": id};
-var options = {new: true};
+ info.updatedAt=Date.now();
  info.operator={};
  info.operator.id=req.token.id;
  info.operator.user=req.token.user;
- info.hideName=info.userName;
+ 
 try{info.merchantIds=!!info.merchantIds?info.merchantIds.split(","):[];}catch(ex){}
-users.findByIdAndUpdate(id,info,options,function (err, data) {
+users.findByIdAndUpdate(req.params.id,info,{new:true},function (err, data) {
               if (err) return next(err);
                         res.json(data);
 });
@@ -480,16 +369,15 @@ router.delete('/users/:id',  security.ensureAuthorized,function(req, res, next) 
       info.operator={};
       info.operator.id=req.token.id;
       info.operator.user=req.token.user;
-
-  users.findByIdAndUpdate(req.params.id,info,{new:true},function (err, data) {
+ users.findByIdAndUpdate(req.params.id,info,{new:true},function (err, data) {
               if (err) return next(err);
                   res.json(data);
       });
 })
-router.delete('/users/resetPwd',  security.ensureAuthorized,function(req, res, next) {
+router.post('/users/resetPwd',  security.ensureAuthorized,function(req, res, next) {
   var query={};
   var info={"password":security.encrypt(md5(info.password))};
-  users.findByIdAndUpdate(req.params.id,info,options,function (err, data) {
+  users.findByIdAndUpdate(req.params.id,info,{new:true},function (err, data) {
               if (err) return next(err);
                   res.json(data);
       });
@@ -521,11 +409,10 @@ router.delete('/users/resetPwd',  security.ensureAuthorized,function(req, res, n
  */
 router.put('/users/:id/perms', security.ensureAuthorized, function(req, res, next) {
     var info=req.body;
-    var options = {new: true};
-       info.operator={};
-       info.operator.id=req.token.id;
-       info.operator.user=req.token.user;
-       users.findByIdAndUpdate(req.params.id,{"permissions":info.permissions,"roles":info.roles},options,function (err, data) {
+        info.operator={};
+        info.operator.id=req.token.id;
+        info.operator.user=req.token.user;
+        users.findByIdAndUpdate(req.params.id,{"permissions":info.permissions,"roles":info.roles},{new: true},function (err, data) {
           if (err) return next(err);
                 res.json(data);
            });
@@ -543,11 +430,10 @@ router.put('/users/:id/perms', security.ensureAuthorized, function(req, res, nex
  */
 router.put('/roles/:id/perms', security.ensureAuthorized, function(req, res, next) {
     var info=req.body;
-    var options = {new: true};
         info.operator={};
         info.operator.id=req.token.id;
         info.operator.user=req.token.user;
-        roles.findByIdAndUpdate(req.params.id,{"permissions":info.permissions},options,function (err, data) {
+        roles.findByIdAndUpdate(req.params.id,{"permissions":info.permissions},{new: true},function (err, data) {
           if(err) return next(err);
               res.json(data);
           });

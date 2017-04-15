@@ -30,17 +30,17 @@ charge:Number,
 chargeRate:Number,
 taxRate:Number,
 tax:Number,
-orderType:{type:String,default:"Laundry"},
+orderType:{type:String},
 tip:Number,
 tipTotal:Number,
 orderDetails:[orderDetailsSchema],
-
 discountRate:Number,//-
 discount:Number,//-
-
 grandTotal:Number,
 unpaid:Number,
+refund:Number,
 reason:String,
+paid:Number,
 status:{type:String,default:"Unpaid",index:true},//uppaid,paid,close
 createdAt: {type:Date,default:Date.now(),index:true},
 updatedAt: Date,
