@@ -74,7 +74,7 @@ var info=req.body;
 info.operator={};
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
-info.updatedAt=tools.defaultDate();
+info.updatedAt=Date.now();
 var query = {"_id": req.params.id};
 var options = {new: true};
 

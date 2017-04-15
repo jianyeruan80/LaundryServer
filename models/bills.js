@@ -18,7 +18,7 @@ grandTotal:Number,
 type:{type:String,default:"Cash"},
 receiveTotal:Number,
 change:Number,
-createdAt: {type:Date,default:tools.defaultDate},
+createdAt: {type:Date,default:Date.now()},
 updatedAt: Date,
 status:{type:String,default:"Paid"}, //paid,void
 operator:{

@@ -32,7 +32,7 @@ var suppliersSchema = new mongoose.Schema({
     webSite:String,
     email:String,
     about :String,
-    createdAt: {type:Date,default:tools.defaultDate},
+    createdAt: {type:Date,default:Date.now()},
     updatedAt: Date,
     picture:String,
     language:{

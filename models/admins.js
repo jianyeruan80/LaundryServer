@@ -10,7 +10,7 @@ var permissionsSchema = new Schema({
   url:String,
   status:{type:String ,default:"true"},
   description:String,
-  createdAt: {type:Date,default:tools.defaultDate},
+  createdAt: {type:Date,default:Date.now()},
   updatedAt: Date
 });
 var rolesSchema = new Schema({
@@ -20,7 +20,7 @@ var rolesSchema = new Schema({
    order:{type:Number,default:1},
    status:{type:String ,default:"true"},
    merchantId:{type:String,lowercase: true, trim: true},
-   createdAt: {type:Date,default:tools.defaultDate},
+   createdAt: {type:Date,default:Date.now()},
    updatedAt: Date,
   operator:{
   id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
@@ -54,7 +54,7 @@ var usersSchema = new Schema({
    token:[{type:String}], //2支拉二三个记住密码
    type:{type:String,default:""},//super,admin,"normal"
    status:{type:String,default:"true"},
-   createdAt: {type:Date,default:tools.defaultDate},
+   createdAt: {type:Date,default:Date.now()},
    updatedAt: Date,
    storeName:String,
    token:String,

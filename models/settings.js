@@ -6,7 +6,7 @@ var lauguagesSchema = new Schema({
   "third":String
 })
 var settingsSchema = new mongoose.Schema({ 
- createdAt:{type:Date,default:tools.defaultDate},
+ createdAt:{type:Date,default:Date.now()},
  updatedAt:Date,
  merchantId:{type:String,lowercase: true, trim: true},
  group:String,

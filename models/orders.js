@@ -42,7 +42,7 @@ grandTotal:Number,
 unpaid:Number,
 reason:String,
 status:{type:String,default:"Unpaid",index:true},//uppaid,paid,close
-createdAt: {type:Date,default:tools.defaultDate,index:true},
+createdAt: {type:Date,default:Date.now(),index:true},
 updatedAt: Date,
 createdBy:{
 	id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },

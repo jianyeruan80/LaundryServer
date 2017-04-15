@@ -51,7 +51,7 @@ var info=req.body;
 info.operator.id=req.token.id;
 info.operator.user=req.token.user;
 var id=req.params.id;
-info.updatedAt=tools.defaultDate();
+info.updatedAt=Date.now();
 var query = {"_id": id};
 var options = {new: true};
  optionGroups.findOneAndUpdate(query,info,options,function (err, data) {

@@ -93,7 +93,7 @@ if(req.token.type=="SUPER"){
 router.put('/users/:id',  security.ensureAuthorized,function(req, res, next) {
 var info=req.body;
 if(req.token.type=="SUPER"){
-info.updatedAt=tools.defaultDate();
+info.updatedAt=Date.now();
  if(info.password.length<15){
   info.password=security.encrypt(md5(info.password)); 
  }else{
@@ -120,7 +120,7 @@ router.get('/seqs', security.ensureAuthorized,function(req, res, next) {
 });
 router.post('/seqs', security.ensureAuthorized,function(req, res, next) {
    var  info=req.body;
-        info.updatedAt=tools.defaultDate(); 
+        info.updatedAt=Date.now(); 
          var dao = new seqs(info);
          dao.save(function (err, data) {
          if (err) return next(err);
@@ -131,7 +131,7 @@ router.post('/seqs', security.ensureAuthorized,function(req, res, next) {
  });
 router.put('/seqs/:id', security.ensureAuthorized,function(req, res, next) {
    var  info=req.body;
-        info.updatedAt=tools.defaultDate(); 
+        info.updatedAt=Date.now(); 
         var query = {"_id": req.params.id};
         var options = {new: true};
    seqs.findOneAndUpdate(query,info,options,function (err, data) {
@@ -180,7 +180,7 @@ if(req.token.type=="SUPER"){
         var id=req.params.id;
         
         var options={"upsert":false,"multi":false};
-                   info.updatedAt=tools.defaultDate();
+                   info.updatedAt=Date.now();
                    permissions.update({"_id":id},info,options,function (err, data) {
                         if (err) return next(err);
                             
@@ -249,7 +249,7 @@ router.put('/chainStores/:id',  security.ensureAuthorized,function(req, res, nex
 var info=req.body;
 log.debug(info);
 var id=req.params.id;
-info.updatedAt=tools.defaultDate();
+info.updatedAt=Date.now();
 var query = {"_id": id};
 var options = {new: true};
  try{info.merchantIds=info.merchantIds?info.merchantIds.split(","):[]}catch(ex){}

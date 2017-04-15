@@ -41,7 +41,7 @@ var customersSchema = new mongoose.Schema({
 	  twitter:String,
 	  password:String,
     fax:String,
-  	createdAt: {type:Date,default:tools.defaultDate},
+  	createdAt: {type:Date,default:Date.now()},
     updatedAt: Date,
     description:String,
     status:{ type: String, default: "true"},

@@ -37,7 +37,7 @@ var storesSchema = new mongoose.Schema({
     password:String,
     tax:Number,
     about :String,
-    createdAt: {type:Date,default:tools.defaultDate},
+    createdAt: {type:Date,default:Date.now()},
     updatedAt: Date,
     logo:String,
     fax:String,

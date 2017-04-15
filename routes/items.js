@@ -199,7 +199,7 @@ router.put('/:id',  security.ensureAuthorized,function(req, res, next) {
    
 var info=req.body;
 var id=req.params.id;
-info.updatedAt=tools.defaultDate();
+info.updatedAt=Date.now();
   info.operator={};
        info.operator.id=req.token.id;
        info.operator.user=req.token.user;
