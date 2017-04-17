@@ -93,8 +93,7 @@ var query={
       { $match: query},
       { $lookup: {from: 'permissions', localField: 'defaultPerm', foreignField: 'perm', as: 'perms'} },
       ]
-      
-       ).exec( function (err, result) {
+      ).exec( function (err, result) {
         if (err) return next(err);
           if (!result || result.length<1) return next({"code":"90002"});
           if(result[0].status!="true") return next({"code":"90004"});
@@ -103,11 +102,13 @@ var query={
          { path:'permissions'}],
           function (err, datas) {
           if (err) return next(err);
-
-           var accessToken = jwt.sign({"merchantId":info.merchantId.toLowerCase(),"id":datas[0]._id,"user":datas[0].userName},req.app.get("superSecret"), {
+           var zoneInfo=info.zoneInfo || 0;
+           var accessToken = jwt.sign(
+            {"merchantId":info.merchantId.toLowerCase(),"zoneInfo":zoneInfo,"id":datas[0]._id,"user":datas[0].userName},req.app.get("superSecret"), {
           expiresIn: '120m',
           algorithm: 'HS256'
           });
+           
           var data=datas[0];
           var perms=data.permissions?data.permissions:[];
                      
@@ -122,8 +123,12 @@ var query={
               }
             }
        
-          var cloneOfA = JSON.parse(JSON.stringify(perms));
+var cloneOfA = JSON.parse(JSON.stringify(perms));
+cloneOfA.sort(function(a,b){
+  return a.order-b.order;
+}); 
 perms=tools.unique5(cloneOfA,"_id");
+
 var jobsSortObject = {}; 
   for(var i =0; i< perms.length; i++){
    var job = perms[i],
@@ -139,29 +144,33 @@ var jobsSortObject = {};
 }
 
 var jobsSortObjectList = {}; 
+var jobsSortObjectArray = [];
 for(var i =0; i< perms.length; i++){
-   var job = perms[i],
-   mark = job.permissionGroup,
-   jobItem = jobsSortObjectList[mark];
-  if(jobItem){
-    if(job.perm<=2){
-      jobsSortObjectList[mark].push(job);
-    }
-     
-  }else if(job.perm<=2){
-     jobsSortObjectList[mark] = [job];
-  }
+   var job = perms[i];
+    
+      if(job.perm<=2){
+        var mark = job.permissionGroup;
+         jobItem = jobsSortObjectList[mark];
+          //console.log(jobItem)
+         if(jobItem){
+            jobsSortObjectList[mark].push(job);
+         }else{
+          jobsSortObjectList[mark] = [job];
+          jobsSortObjectArray.push({"key":mark,value:jobsSortObjectList[mark]});
+         }
+      }
+
 }
          var returnData={};
+         
 
           returnData.perms=jobsSortObject;
-          returnData.permsList=jobsSortObjectList;
+          returnData.permsList=jobsSortObjectArray;
           returnData.username=data.userName;
           returnData.storeName=data.storeName;
           returnData.merchantId=info.merchantId;
           returnData.accessToken=accessToken;
-
-          res.json(returnData);
+         res.json(returnData);
   })  })
 });
 
