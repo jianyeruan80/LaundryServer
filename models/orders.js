@@ -39,6 +39,7 @@ discount:Number,//-
 grandTotal:Number,
 unpaid:Number,
 refund:Number,
+receiveTotal:Number,
 reason:String,
 paid:Number,
 status:{type:String,default:"Unpaid",index:true},//uppaid,paid,close

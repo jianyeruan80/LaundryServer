@@ -62,7 +62,7 @@ var usersSchema = new Schema({
    id:{type: mongoose.Schema.Types.ObjectId, ref: 'users' },
    user:String},
 });
-permissionsSchema.index({ permissionGroup: 1 ,subject:1,action:1，status:1}, { unique: true,sparse:true });
+permissionsSchema.index({ permissionGroup: 1 ,subject:1,action:1,status:1}, { unique: true,sparse:true });
 rolesSchema.index({ name: 1 ,merchantId:1,status:1}, { unique: true,sparse:true });
 usersSchema.index({userName:1,merchantId:1,status:1}, { unique: true,sparse:true });
 module.exports.permissions = mongoose.model('permissions', permissionsSchema);
