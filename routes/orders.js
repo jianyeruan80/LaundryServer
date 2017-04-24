@@ -282,7 +282,7 @@ router.post('/bills',security.ensureAuthorized,function(req, res, next) {
        var info=req.body;
        log.info("bills",info);
         var query={"merchantId":req.token.merchantId};
-        if(info.status){query.status=info.status;}
+        if(info.status){query.status={"$ne":"Refund"}}
        if(info.orderId){query.order=info.orderId};
         bills.find(query).sort({orderNo: 1, _id:1 }).exec(function(err,data){
            if (err) return next(err);
