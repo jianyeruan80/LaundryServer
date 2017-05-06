@@ -1,0 +1,1048 @@
+events.js:163
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::3200
+    at Object.exports._errnoException (util.js:1033:11)
+    at exports._exceptionWithHostPort (util.js:1056:20)
+    at Server._listen2 (net.js:1270:14)
+    at listen (net.js:1306:10)
+    at Server.listen (net.js:1397:7)
+    at Object.<anonymous> (D:\OMNI\LaundryServer\app.js:187:18)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+    at Module.runMain (module.js:605:10)
+    at run (bootstrap_node.js:425:7)
+    at startup (bootstrap_node.js:146:9)
+    at bootstrap_node.js:540:3
+events.js:163
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::3200
+    at Object.exports._errnoException (util.js:1033:11)
+    at exports._exceptionWithHostPort (util.js:1056:20)
+    at Server._listen2 (net.js:1270:14)
+    at listen (net.js:1306:10)
+    at Server.listen (net.js:1397:7)
+    at Object.<anonymous> (D:\OMNI\LaundryServer\app.js:187:18)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+    at Module.runMain (module.js:605:10)
+    at run (bootstrap_node.js:425:7)
+    at startup (bootstrap_node.js:146:9)
+    at bootstrap_node.js:540:3
+events.js:163
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::3200
+    at Object.exports._errnoException (util.js:1033:11)
+    at exports._exceptionWithHostPort (util.js:1056:20)
+    at Server._listen2 (net.js:1270:14)
+    at listen (net.js:1306:10)
+    at Server.listen (net.js:1397:7)
+    at Object.<anonymous> (D:\OMNI\LaundryServer\app.js:187:18)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+    at Module.runMain (module.js:605:10)
+    at run (bootstrap_node.js:425:7)
+    at startup (bootstrap_node.js:146:9)
+    at bootstrap_node.js:540:3
+D:\OMNI\LaundryServer\node_modules\node-windows\lib\wrapper.js:177
+    child.send('shutdown');
+         ^
+
+TypeError: Cannot read property 'send' of null
+    at process.killkid (D:\OMNI\LaundryServer\node_modules\node-windows\lib\wrapper.js:177:10)
+    at emitOne (events.js:96:13)
+    at process.emit (events.js:191:7)
+    at process.exit (internal/process.js:162:15)
+    at monitor (D:\OMNI\LaundryServer\node_modules\node-windows\lib\wrapper.js:99:17)
+    at ChildProcess.<anonymous> (D:\OMNI\LaundryServer\node_modules\node-windows\lib\wrapper.js:170:5)
+    at emitTwo (events.js:106:13)
+    at ChildProcess.emit (events.js:194:7)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:215:12)
+(node:6104) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+(node:3008) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+Error:upDate is not defined
+Error:upDate is not defined
+Error:upDate is not defined
+(node:1876) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+(node:1064) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+Error:undefined
+Error:undefined
+Error:undefined
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\node_modules\node-windows\lib\wrapper.js:177
+    child.send('shutdown');
+         ^
+
+TypeError: Cannot read property 'send' of null
+    at process.killkid (D:\OMNI\LaundryServer\node_modules\node-windows\lib\wrapper.js:177:10)
+    at emitNone (events.js:86:13)
+    at process.emit (events.js:188:7)
+    at Signal.wrap.onsignal (internal/process.js:215:44)
+(node:2100) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+Error:undefined
+Error:undefined
+Error:undefined
+Error:undefined
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+Error:undefined
+(node:1512) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+Error:undefined
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+(node:2912) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+Error:undefined
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+D:\OMNI\LaundryServer\app.js:200
+   if (err) return next(err);
+                   ^
+
+ReferenceError: next is not defined
+    at D:\OMNI\LaundryServer\app.js:200:20
+    at D:\OMNI\LaundryServer\node_modules\ngrok\index.js:120:11
+    at Request._callback (D:\OMNI\LaundryServer\node_modules\ngrok\index.js:144:7)
+    at Request.self.callback (D:\OMNI\LaundryServer\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:194:7)
+    at Request.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:191:7)
+    at IncomingMessage.<anonymous> (D:\OMNI\LaundryServer\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:293:19)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:188:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:80:11)
+    at process._tickCallback (internal/process/next_tick.js:104:9)

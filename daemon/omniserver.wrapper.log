@@ -1,0 +1,67 @@
+2017-04-18 23:28:26 - SIGINT to 900 failed - Killing as fallback
+2017-04-18 23:28:26 - Stopping process 6104
+2017-04-18 23:28:26 - Send SIGINT 6104
+2017-04-18 23:28:26 - SIGINT to 6104 failed - Killing as fallback
+2017-04-18 23:28:26 - Stopping process 4844
+2017-04-18 23:28:26 - Send SIGINT 4844
+2017-04-18 23:28:26 - SIGINT to 4844 failed - Killing as fallback
+2017-04-18 23:28:26 - Finished omniserver.exe
+2017-04-18 23:29:27 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\OMNI\LaundryServer\node_modules\node-windows\lib\wrapper.js --file D:\OMNI\LaundryServer\app.js --log "Omniserver wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2017-04-18 23:29:27 - Started 3824
+2017-04-19 09:54:16 - Stopping omniserver.exe
+2017-04-19 09:54:16 - ProcessKill 3824
+2017-04-19 09:54:17 - Found child process: 3008 Name: node.exe
+2017-04-19 09:54:17 - Found child process: 4448 Name: ngrok.exe
+2017-04-19 09:54:17 - Stopping process 4448
+2017-04-19 09:54:17 - Send SIGINT 4448
+2017-04-19 09:54:47 - SIGINT to 4448 failed - Killing as fallback
+2017-04-19 09:54:47 - Stopping process 3008
+2017-04-19 09:54:47 - Send SIGINT 3008
+2017-04-19 09:54:47 - SIGINT to 3008 failed - Killing as fallback
+2017-04-19 09:54:47 - Stopping process 3824
+2017-04-19 09:54:47 - Send SIGINT 3824
+2017-04-19 09:54:47 - SIGINT to 3824 failed - Killing as fallback
+2017-04-19 09:54:47 - Finished omniserver.exe
+2017-04-28 20:28:49 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\OMNI\LaundryServer\node_modules\node-windows\lib\wrapper.js --file D:\OMNI\LaundryServer\app.js --log "Omniserver wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2017-04-28 20:28:49 - Started 3056
+2017-04-28 23:07:55 - Stopping omniserver.exe
+2017-04-28 23:07:55 - ProcessKill 3056
+2017-04-28 23:07:56 - Shutdown exception
+Message:A system shutdown is in progress. (Exception from HRESULT: 0x8007045B)
+Stacktrace:   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at winsw.WrapperService.GetChildPids(Int32 pid)
+   at winsw.WrapperService.StopProcessAndChildren(Int32 pid)
+   at winsw.WrapperService.StopIt()
+   at winsw.WrapperService.OnShutdown()
+2017-05-02 21:57:52 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\OMNI\LaundryServer\node_modules\node-windows\lib\wrapper.js --file D:\OMNI\LaundryServer\app.js --log "Omniserver wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2017-05-02 21:57:52 - Started 2152
+2017-05-02 22:20:08 - Stopping omniserver.exe
+2017-05-02 22:20:08 - ProcessKill 2152
+2017-05-02 22:20:08 - Stopping process 2152
+2017-05-02 22:20:08 - Send SIGINT 2152
+2017-05-02 22:20:08 - SIGINT to2152 successful
+2017-05-02 22:20:08 - Finished omniserver.exe
+2017-05-02 22:20:11 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\OMNI\LaundryServer\node_modules\node-windows\lib\wrapper.js --file D:\OMNI\LaundryServer\app.js --log "Omniserver wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2017-05-02 22:20:11 - Started 208
+2017-05-02 22:34:03 - Stopping omniserver.exe
+2017-05-02 22:34:03 - ProcessKill 208
+2017-05-02 22:34:03 - Found child process: 2264 Name: node.exe
+2017-05-02 22:34:03 - Found child process: 236 Name: ngrok.exe
+2017-05-02 22:34:03 - Stopping process 236
+2017-05-02 22:34:03 - Send SIGINT 236
+2017-05-02 22:34:05 - SIGINT to236 successful
+2017-05-02 22:34:05 - Stopping process 2264
+2017-05-02 22:34:05 - Send SIGINT 2264
+2017-05-02 22:34:05 - SIGINT to 2264 failed - Killing as fallback
+2017-05-02 22:34:05 - Stop exception
+Message:Access is denied
+Stacktrace:   at System.Diagnostics.Process.Kill()
+   at winsw.WrapperService.StopProcess(Int32 pid)
+   at winsw.WrapperService.StopProcessAndChildren(Int32 pid)
+   at winsw.WrapperService.StopProcessAndChildren(Int32 pid)
+   at winsw.WrapperService.StopIt()
+   at winsw.WrapperService.OnStop()

@@ -1,0 +1,4506 @@
+2017-04-18T23:24:46.073Z
+2017-04-18T23:24:48.163Z
+2017-04-18T23:24:50.421Z
+2017-04-18T23:25:41.348Z
+Server is running at http://:::3200
+{ key: '00000003', value: 'https://c469f284.ngrok.io' }
+[0mGET /api/settings/merchant/id?type=!Device [36m304 [0m13.401 ms - -[0m
+[0mGET /api/settings/merchant/id?type=!Device [36m304 [0m27.427 ms - -[0m
+[0mGET /api/settings/merchant/id?type=!Device [36m304 [0m10.422 ms - -[0m
+[0mGET /api/settings/merchant/id?type=!Device [36m304 [0m3.438 ms - -[0m
+2017-04-18T23:29:28.627Z
+Server is running at http://:::3200
+{ key: '00000003', value: 'https://28069989.ngrok.io' }
+[0mGET /api/stores [32m200 [0m28.827 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m41.939 ms - 16[0m
+{ merchantId: '00000003', password: '1234' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m83.995 ms - 868[0m
+[0mGET /api/stores [32m200 [0m9.534 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m6.206 ms - 16[0m
+{ merchantId: '00000003', password: '9999' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m27.202 ms - 904[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mPOST /api/orders/query [32m200 [0m27.649 ms - 2091[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mPOST /api/orders/bills [32m200 [0m15.100 ms - 1259[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mPUT /api/orders/void/58f6d04990d97e1b0cbd8392 [32m200 [0m4.383 ms - 35[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mPOST /api/orders/query [32m200 [0m13.564 ms - 2091[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mPOST /api/orders/query [32m200 [0m24.536 ms - 17[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+2017-04-18T23:39:24.444Z
+[0mPOST /api/orders/query [32m200 [0m21.334 ms - 421[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/items/menus [32m200 [0m28.403 ms - 1873[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+2017-04-18T23:39:29.163Z
+[0mPOST /api/orders/query [32m200 [0m12.875 ms - 421[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/items/menus [32m200 [0m28.177 ms - 1873[0m
+[0mGET /api/stores [32m200 [0m5.965 ms - 689[0m
+[0mGET /api/settings/merchant/id?type=!Device [32m200 [0m22.964 ms - -[0m
+[0mGET /api/settings/merchant/id?type=!Device [36m304 [0m10.039 ms - -[0m
+[0mGET /api/stores [32m200 [0m5.745 ms - 689[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/admin/users [32m200 [0m10.987 ms - 1940[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/admin/perms [32m200 [0m12.386 ms - 3226[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/admin/roles [32m200 [0m2.101 ms - 2[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/items/menus [32m200 [0m19.899 ms - 1873[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/items/menus [32m200 [0m21.573 ms - 1873[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/items/menus [32m200 [0m30.948 ms - 1873[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/items/menus [32m200 [0m25.519 ms - 1873[0m
+[0mGET /api/settings/merchant/id?type=!Device [36m304 [0m7.097 ms - -[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/items/menus [32m200 [0m22.728 ms - 1873[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/items/menus [32m200 [0m19.551 ms - 1873[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mPOST /api/admin/authorization [32m200 [0m6.579 ms - 5[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/admin/users [32m200 [0m6.238 ms - 1940[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/admin/perms [32m200 [0m6.663 ms - 3226[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573092,
+  exp: 801492572292 }
+[0mGET /api/admin/roles [32m200 [0m9.152 ms - 2[0m
+[0mGET /api/stores [32m200 [0m5.195 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m11.151 ms - 16[0m
+{ merchantId: '00000003', password: '9999' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m26.367 ms - 904[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mPOST /api/orders/query [32m200 [0m9.097 ms - 2091[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mPOST /api/orders/query [32m200 [0m10.202 ms - 17[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mPOST /api/orders/query [32m200 [0m11.955 ms - 5772[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+367=================367
+888888888888888888888888888888
+[ { _id: 58f3f9e5296a190924b4da5c,
+    grandTotal: 12.1,
+    receiveTotal: 12.1,
+    change: 0,
+    refund: 0,
+    bill: null,
+    tax: 1.1,
+    tip: 0,
+    charge: 0,
+    orderNo: '6',
+    invoiceNo: '416176',
+    notes: null,
+    pickUpTime: null,
+    timer: null,
+    merchantId: '00000003',
+    subTotal: 11,
+    orderType: 'Merchandise',
+    orderDetails: [ [Object] ],
+    customer: null,
+    reason: null,
+    discount: 0,
+    unpaid: 0,
+    status: 'Paid' } ]
+888888888888888888888888888888
+===11222222222222222222222222222222222221====
+{ refund: 0,
+  status: 'Paid',
+  unpaid: 0,
+  receiveTotal: 12.1,
+  paid: 12.1 }
+===2224444444444444444444444442====
+===333====
+{ _id: 58f3f9e5296a190924b4da5c,
+  subTotal: 11,
+  tax: 1.1,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  receiveTotal: 12.1,
+  merchantId: '00000003',
+  updatedAt: 2017-04-19T03:42:14.687Z,
+  unpaid: 0,
+  orderNo: '6',
+  invoiceNo: '416176',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-16T22:50:27.456Z,
+  status: 'Paid',
+  paid: 12.1,
+  grandTotal: 12.1,
+  orderDetails: 
+   [ { _id: 58f03f0147860d1ba0891c39,
+       category: '58eeedbec3c2a1d6743bf615',
+       name: 'aaaa',
+       price: 11,
+       merchantId: '00000003',
+       qty: 1,
+       currentPrice: 11,
+       properties: [],
+       options: [] } ],
+  orderType: 'Merchandise' }
+==4444=====
+=======
+{ _id: 58f3f9e5296a190924b4da5c,
+  subTotal: 11,
+  tax: 1.1,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  receiveTotal: 12.1,
+  merchantId: '00000003',
+  updatedAt: 2017-04-19T03:42:14.687Z,
+  unpaid: 0,
+  orderNo: '6',
+  invoiceNo: '416176',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-16T22:50:27.456Z,
+  status: 'Paid',
+  paid: 12.1,
+  grandTotal: 12.1,
+  orderDetails: 
+   [ { _id: 58f03f0147860d1ba0891c39,
+       category: '58eeedbec3c2a1d6743bf615',
+       name: 'aaaa',
+       price: 11,
+       merchantId: '00000003',
+       qty: 1,
+       currentPrice: 11,
+       properties: [],
+       options: [] } ],
+  orderType: 'Merchandise' }
+=======
+[0mPOST /api/orders/pay [32m200 [0m65.679 ms - 695[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mPOST /api/orders/query [32m200 [0m8.025 ms - 6185[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+367=================367
+888888888888888888888888888888
+[ { _id: 58f3f3afac1bc10d68954f64,
+    grandTotal: 12.1,
+    receiveTotal: 12.1,
+    change: 0,
+    refund: 0,
+    bill: null,
+    tax: 1.1,
+    tip: 0,
+    charge: 0,
+    orderNo: '4',
+    invoiceNo: '416174',
+    notes: null,
+    pickUpTime: null,
+    timer: null,
+    merchantId: '00000003',
+    subTotal: 11,
+    orderType: 'Merchandise',
+    orderDetails: [ [Object] ],
+    customer: null,
+    reason: null,
+    discount: 0,
+    unpaid: 0,
+    status: 'Paid' } ]
+888888888888888888888888888888
+===11222222222222222222222222222222222221====
+{ refund: 0,
+  status: 'Paid',
+  unpaid: 0,
+  receiveTotal: 12.1,
+  paid: 12.1 }
+===2224444444444444444444444442====
+===333====
+{ _id: 58f3f3afac1bc10d68954f64,
+  subTotal: 11,
+  tax: 1.1,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  receiveTotal: 12.1,
+  merchantId: '00000003',
+  updatedAt: 2017-04-19T03:42:41.602Z,
+  unpaid: 0,
+  orderNo: '4',
+  invoiceNo: '416174',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-16T22:38:40.923Z,
+  status: 'Paid',
+  paid: 12.1,
+  grandTotal: 12.1,
+  orderDetails: 
+   [ { _id: 58f03f0147860d1ba0891c39,
+       category: '58eeedbec3c2a1d6743bf615',
+       name: 'aaaa',
+       price: 11,
+       merchantId: '00000003',
+       qty: 1,
+       currentPrice: 11,
+       properties: [],
+       options: [] } ],
+  orderType: 'Merchandise' }
+==4444=====
+=======
+{ _id: 58f3f3afac1bc10d68954f64,
+  subTotal: 11,
+  tax: 1.1,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  receiveTotal: 12.1,
+  merchantId: '00000003',
+  updatedAt: 2017-04-19T03:42:41.602Z,
+  unpaid: 0,
+  orderNo: '4',
+  invoiceNo: '416174',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-16T22:38:40.923Z,
+  status: 'Paid',
+  paid: 12.1,
+  grandTotal: 12.1,
+  orderDetails: 
+   [ { _id: 58f03f0147860d1ba0891c39,
+       category: '58eeedbec3c2a1d6743bf615',
+       name: 'aaaa',
+       price: 11,
+       merchantId: '00000003',
+       qty: 1,
+       currentPrice: 11,
+       properties: [],
+       options: [] } ],
+  orderType: 'Merchandise' }
+=======
+[0mPOST /api/orders/pay [32m200 [0m50.634 ms - 695[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mPOST /api/orders/query [32m200 [0m4.692 ms - 6600[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mPOST /api/orders/bills [32m200 [0m10.516 ms - 1259[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+======A+===
+58f6d05190d97e1b0cbd8394
+======A+===
+===========
+888888888888888888888888888888
+[ { _id: 58f6d04990d97e1b0cbd8392,
+    grandTotal: 24.2,
+    receiveTotal: 20,
+    change: 0,
+    refund: 0,
+    bill: null,
+    tax: 2.2,
+    tip: 0,
+    charge: 0,
+    orderNo: '1',
+    invoiceNo: '418171',
+    notes: null,
+    pickUpTime: null,
+    timer: null,
+    merchantId: '00000003',
+    subTotal: 22,
+    orderType: 'Merchandise',
+    orderDetails: [ [Object], [Object] ],
+    customer: null,
+    reason: null,
+    discount: 0,
+    unpaid: 4.199999999999999,
+    status: 'Semi-Paid' } ]
+888888888888888888888888888888
+===11222222222222222222222222222222222221====
+{ refund: 0,
+  status: 'Semi-Paid',
+  unpaid: 4.199999999999999,
+  receiveTotal: 20,
+  paid: 20 }
+===2224444444444444444444444442====
+===333====
+{ _id: 58f6d04990d97e1b0cbd8392,
+  subTotal: 22,
+  tax: 2.2,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  receiveTotal: 20,
+  merchantId: '00000003',
+  updatedAt: 2017-04-19T02:50:05.014Z,
+  unpaid: 4.199999999999999,
+  orderNo: '1',
+  invoiceNo: '418171',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-18T14:37:21.840Z,
+  status: 'Semi-Paid',
+  paid: 20,
+  grandTotal: 24.2,
+  orderDetails: 
+   [ { _id: 58f03f0147860d1ba0891c39,
+       category: '58eeedbec3c2a1d6743bf615',
+       name: 'aaaa',
+       price: 11,
+       merchantId: '00000003',
+       qty: 1,
+       currentPrice: 11,
+       properties: [],
+       options: [] },
+     { _id: 58f03f0147860d1ba0891c39,
+       category: '58eeedbec3c2a1d6743bf615',
+       name: 'aaaa',
+       price: 11,
+       merchantId: '00000003',
+       qty: 1,
+       currentPrice: 11,
+       properties: [],
+       options: [] } ],
+  orderType: 'Merchandise' }
+==4444=====
+=======
+{ _id: 58f6d04990d97e1b0cbd8392,
+  subTotal: 22,
+  tax: 2.2,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  receiveTotal: 20,
+  merchantId: '00000003',
+  updatedAt: 2017-04-19T02:50:05.014Z,
+  unpaid: 4.199999999999999,
+  orderNo: '1',
+  invoiceNo: '418171',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-18T14:37:21.840Z,
+  status: 'Semi-Paid',
+  paid: 20,
+  grandTotal: 24.2,
+  orderDetails: 
+   [ { _id: 58f03f0147860d1ba0891c39,
+       category: '58eeedbec3c2a1d6743bf615',
+       name: 'aaaa',
+       price: 11,
+       merchantId: '00000003',
+       qty: 1,
+       currentPrice: 11,
+       properties: [],
+       options: [] },
+     { _id: 58f03f0147860d1ba0891c39,
+       category: '58eeedbec3c2a1d6743bf615',
+       name: 'aaaa',
+       price: 11,
+       merchantId: '00000003',
+       qty: 1,
+       currentPrice: 11,
+       properties: [],
+       options: [] } ],
+  orderType: 'Merchandise' }
+=======
+[0mPUT /api/orders/billvoid/58f6d05190d97e1b0cbd8394 [32m200 [0m41.893 ms - 889[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mPOST /api/orders/bills [32m200 [0m14.154 ms - 1259[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mPOST /api/orders/query [32m200 [0m23.610 ms - 6621[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mPOST /api/orders/bills [32m200 [0m13.317 ms - 839[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+======A+===
+58f6dc96e4b90c0bc042232f
+======A+===
+===========
+888888888888888888888888888888
+[ { _id: 58f3f9e5296a190924b4da5c,
+    grandTotal: 12.1,
+    receiveTotal: 2,
+    change: 0,
+    refund: 0,
+    bill: null,
+    tax: 1.1,
+    tip: 0,
+    charge: 0,
+    orderNo: '6',
+    invoiceNo: '416176',
+    notes: null,
+    pickUpTime: null,
+    timer: null,
+    merchantId: '00000003',
+    subTotal: 11,
+    orderType: 'Merchandise',
+    orderDetails: [ [Object] ],
+    customer: null,
+    reason: null,
+    discount: 0,
+    unpaid: 10.1,
+    status: 'Semi-Paid' } ]
+888888888888888888888888888888
+===11222222222222222222222222222222222221====
+{ refund: 0,
+  status: 'Semi-Paid',
+  unpaid: 10.1,
+  receiveTotal: 2,
+  paid: 2 }
+===2224444444444444444444444442====
+===333====
+{ _id: 58f3f9e5296a190924b4da5c,
+  subTotal: 11,
+  tax: 1.1,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  receiveTotal: 2,
+  merchantId: '00000003',
+  updatedAt: 2017-04-19T03:42:14.687Z,
+  unpaid: 10.1,
+  orderNo: '6',
+  invoiceNo: '416176',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-16T22:50:27.456Z,
+  status: 'Semi-Paid',
+  paid: 2,
+  grandTotal: 12.1,
+  orderDetails: 
+   [ { _id: 58f03f0147860d1ba0891c39,
+       category: '58eeedbec3c2a1d6743bf615',
+       name: 'aaaa',
+       price: 11,
+       merchantId: '00000003',
+       qty: 1,
+       currentPrice: 11,
+       properties: [],
+       options: [] } ],
+  orderType: 'Merchandise' }
+==4444=====
+=======
+{ _id: 58f3f9e5296a190924b4da5c,
+  subTotal: 11,
+  tax: 1.1,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  receiveTotal: 2,
+  merchantId: '00000003',
+  updatedAt: 2017-04-19T03:42:14.687Z,
+  unpaid: 10.1,
+  orderNo: '6',
+  invoiceNo: '416176',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-16T22:50:27.456Z,
+  status: 'Semi-Paid',
+  paid: 2,
+  grandTotal: 12.1,
+  orderDetails: 
+   [ { _id: 58f03f0147860d1ba0891c39,
+       category: '58eeedbec3c2a1d6743bf615',
+       name: 'aaaa',
+       price: 11,
+       merchantId: '00000003',
+       qty: 1,
+       currentPrice: 11,
+       properties: [],
+       options: [] } ],
+  orderType: 'Merchandise' }
+=======
+[0mPUT /api/orders/billvoid/58f6dc96e4b90c0bc042232f [32m200 [0m18.218 ms - 697[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mPOST /api/orders/bills [32m200 [0m21.160 ms - 839[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mPOST /api/orders/query [32m200 [0m11.841 ms - 6629[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+2017-04-18T23:43:16.092Z
+[0mPOST /api/orders/query [32m200 [0m13.363 ms - 421[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mGET /api/items/menus [32m200 [0m20.584 ms - 1873[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+2017-04-18T23:43:21.495Z
+[0mPOST /api/orders/query [32m200 [0m12.833 ms - 421[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492573312,
+  exp: 801492572512 }
+[0mGET /api/items/menus [32m200 [0m19.737 ms - 1873[0m
+[0mGET /api/stores [32m200 [0m7.167 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m6.594 ms - 16[0m
+{ merchantId: '00000003', password: '1234' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m33.265 ms - 868[0m
+[0mGET /api/stores [32m200 [0m5.208 ms - 689[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+2017-04-18T23:45:51.043Z
+2017-04-18T23:45:51.045Z
+[0mGET /api/customers/merchants/id [32m200 [0m8.162 ms - 804[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.667 ms - 1873[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m27.893 ms - 1873[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.731 ms - 1873[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+============
+{ name: 'bbb',
+  price: '22',
+  category: '58eeedbec3c2a1d6743bf615',
+  customerOptions: [],
+  globalOptions: [],
+  status: 'true',
+  merchantId: '00000003',
+  operator: { id: '58eda4dfb3e16c109484e7bf', user: 'admin' } }
+============
+[0mPOST /api/items [32m200 [0m19.588 ms - 296[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+============
+{ name: 'ccc',
+  price: '12',
+  category: '58eeedbec3c2a1d6743bf615',
+  customerOptions: [],
+  globalOptions: [],
+  status: 'true',
+  merchantId: '00000003',
+  operator: { id: '58eda4dfb3e16c109484e7bf', user: 'admin' } }
+============
+[0mPOST /api/items [32m200 [0m12.085 ms - 296[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.919 ms - 2467[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+============
+{ name: 'wejkr',
+  price: '1',
+  category: '58eeedadc3c2a1d6743bf614',
+  customerOptions: [],
+  globalOptions: [],
+  status: 'true',
+  merchantId: '00000003',
+  operator: { id: '58eda4dfb3e16c109484e7bf', user: 'admin' } }
+============
+[0mPOST /api/items [32m200 [0m10.671 ms - 297[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+============
+{ name: 'gasdf',
+  price: '1',
+  category: '58eeedadc3c2a1d6743bf614',
+  customerOptions: [],
+  globalOptions: [],
+  status: 'true',
+  merchantId: '00000003',
+  operator: { id: '58eda4dfb3e16c109484e7bf', user: 'admin' } }
+============
+[0mPOST /api/items [32m200 [0m13.528 ms - 297[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+============
+{ name: 'gsxsdf',
+  price: '2',
+  category: '58eeedadc3c2a1d6743bf614',
+  customerOptions: [],
+  globalOptions: [],
+  status: 'true',
+  merchantId: '00000003',
+  operator: { id: '58eda4dfb3e16c109484e7bf', user: 'admin' } }
+============
+[0mPOST /api/items [32m200 [0m11.776 ms - 298[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+============
+{ name: 'gsafdsf',
+  price: '3',
+  category: '58eeedadc3c2a1d6743bf614',
+  customerOptions: [],
+  globalOptions: [],
+  status: 'true',
+  merchantId: '00000003',
+  operator: { id: '58eda4dfb3e16c109484e7bf', user: 'admin' } }
+============
+[0mPOST /api/items [32m200 [0m6.408 ms - 299[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+============
+{ name: 'ghrteer',
+  price: '4',
+  category: '58eeedadc3c2a1d6743bf614',
+  customerOptions: [],
+  globalOptions: [],
+  status: 'true',
+  merchantId: '00000003',
+  operator: { id: '58eda4dfb3e16c109484e7bf', user: 'admin' } }
+============
+[0mPOST /api/items [32m200 [0m7.500 ms - 299[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+============
+{ name: 'iii',
+  price: '5',
+  category: '58eeedadc3c2a1d6743bf614',
+  customerOptions: [],
+  globalOptions: [],
+  status: 'true',
+  merchantId: '00000003',
+  operator: { id: '58eda4dfb3e16c109484e7bf', user: 'admin' } }
+============
+[0mPOST /api/items [32m200 [0m7.440 ms - 295[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m25.512 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m27.565 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+2017-04-18T23:46:56.099Z
+[0mPOST /api/orders/query [32m200 [0m20.300 ms - 421[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m37.769 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+=====================================
+===xxx==
+{ merchantId: '00000003', name: 'orderNo' }
+{ _id: 587ad6e70727c2000b917175,
+  name: 'orderNo',
+  seq: 1,
+  seqStart: 1,
+  seqEnd: 6,
+  daySign: true,
+  date: '20170419',
+  dateFormat: '20170419' }
+[0mPOST /api/orders [32m200 [0m48.053 ms - 1265[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mPOST /api/orders/query [32m200 [0m7.870 ms - 3730[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mPOST /api/orders/query [32m200 [0m19.229 ms - 3730[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mPOST /api/orders/query [32m200 [0m11.198 ms - 3730[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m39.941 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m43.641 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m37.656 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.726 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.119 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.851 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m27.225 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.605 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.670 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.840 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.722 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.298 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.734 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.059 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.176 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m21.015 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m24.248 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.978 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m27.751 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.123 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.418 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.534 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.727 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.120 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.939 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.895 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.461 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.690 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.147 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m25.540 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.606 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.433 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.033 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.720 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m22.755 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.484 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.978 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.582 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.026 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m21.901 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m29.252 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.346 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.192 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.164 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.900 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m23.339 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.761 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.113 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m37.934 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.704 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.895 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.627 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.692 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.121 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m19.096 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.842 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.196 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.582 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.455 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.922 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.300 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.381 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.048 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.918 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.173 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.642 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.733 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.104 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.042 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.120 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m21.134 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.000 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m28.236 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.089 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.663 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.252 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.017 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.866 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.294 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.202 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.076 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.516 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.224 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.033 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.427 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m31.012 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.062 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.088 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.558 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.986 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m27.673 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.625 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m29.210 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.558 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m19.289 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.505 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.304 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.833 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.106 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.199 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.689 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m19.448 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.557 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.704 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.444 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.283 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.258 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.601 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.544 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.572 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.714 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.842 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m19.437 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.365 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.767 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.365 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.757 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.505 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.900 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.610 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.941 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.766 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.903 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.966 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.146 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.234 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.034 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.792 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.116 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m24.742 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.190 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.241 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.815 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.663 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.927 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.629 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.598 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.865 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.353 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.552 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.710 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.943 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.870 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.767 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.995 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.647 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.648 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.090 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.442 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.569 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.113 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.361 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.765 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.707 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.746 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.251 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.985 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.128 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.003 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.774 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.717 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.381 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.220 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.510 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.659 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.962 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.771 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.764 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.093 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.889 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.269 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.766 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.901 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.449 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.168 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.665 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.288 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.840 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.920 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.171 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.673 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.459 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.021 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.717 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.951 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.540 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.703 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.066 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.589 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.574 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.876 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.579 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.809 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.549 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.578 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.544 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.843 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.401 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.266 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.515 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.562 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.238 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.490 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.512 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.166 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.954 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.032 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m4.996 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.790 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.114 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.025 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m19.125 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.647 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.208 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.110 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.099 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.669 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.840 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.959 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.644 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.927 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.740 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.304 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.882 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.608 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.641 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.409 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.045 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.647 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.296 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.820 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.680 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.165 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.802 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.863 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.740 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.836 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.585 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.635 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.499 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.832 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.778 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.887 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.913 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.576 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.235 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.029 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.700 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.767 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.037 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.827 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.649 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m4.374 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.347 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.278 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.964 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.890 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.672 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.838 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.627 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.588 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.845 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.127 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.756 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.957 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.647 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.606 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.747 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.987 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.894 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.934 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.871 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.636 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.895 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.923 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.932 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.276 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.253 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.317 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.155 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.210 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m27.662 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.151 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.400 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.403 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.397 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.024 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.958 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.658 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.051 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.660 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.415 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.710 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m4.635 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m4.618 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m19.134 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.937 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.424 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.736 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.733 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.409 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.256 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.847 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.711 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.032 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.098 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.391 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.731 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.621 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.874 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.669 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.689 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.551 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.665 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.817 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.959 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m4.498 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.681 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m4.590 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m4.434 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m4.289 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m6.044 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mPOST /api/orders/query [32m200 [0m11.235 ms - 1619[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m23.930 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m25.688 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.652 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.368 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.992 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.975 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.264 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.210 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.694 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m19.528 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.836 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.929 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.572 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.048 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.807 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.411 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.965 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.353 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.910 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.360 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.656 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.807 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.040 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.804 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.520 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.103 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.806 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m22.532 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.695 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.241 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m20.506 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.811 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.888 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.455 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.168 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.879 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.762 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.063 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m8.484 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.374 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m19.559 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.794 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.189 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.246 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.368 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.234 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m24.987 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.744 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.764 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.306 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.941 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.480 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.693 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m23.096 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.994 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m21.867 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.964 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m7.829 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.894 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.559 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.933 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.719 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.552 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.655 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.517 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m12.633 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m13.597 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m14.462 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m5.934 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.899 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.880 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.527 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.945 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.085 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.239 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.370 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m16.442 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.487 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.231 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m22.944 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m11.650 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.535 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.271 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.594 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m15.676 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m18.206 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m9.928 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m10.882 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58eda4dfb3e16c109484e7bf',
+  user: 'admin',
+  iat: 1492573540,
+  exp: 801492572740 }
+[0mGET /api/items/menus [32m200 [0m17.621 ms - 4258[0m
+[0mGET /api/stores [32m200 [0m13.161 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m10.578 ms - 16[0m
+{ merchantId: '00000003', password: '9999' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m37.951 ms - 904[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/query [32m200 [0m11.204 ms - 17[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/query [32m200 [0m10.961 ms - 3730[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+367=================367
+888888888888888888888888888888
+[ { _id: 58f6d04990d97e1b0cbd8392,
+    grandTotal: 24.2,
+    receiveTotal: 24.2,
+    change: 0,
+    refund: 0,
+    bill: null,
+    tax: 2.2,
+    tip: 0,
+    charge: 0,
+    orderNo: '1',
+    invoiceNo: '418171',
+    notes: null,
+    pickUpTime: null,
+    timer: null,
+    merchantId: '00000003',
+    subTotal: 22,
+    orderType: 'Merchandise',
+    orderDetails: [ [Object], [Object] ],
+    customer: null,
+    reason: null,
+    discount: 0,
+    unpaid: 0,
+    status: 'Paid' } ]
+888888888888888888888888888888
+===11222222222222222222222222222222222221====
+{ refund: 0,
+  status: 'Paid',
+  unpaid: 0,
+  receiveTotal: 24.2,
+  paid: 24.2 }
+===2224444444444444444444444442====
+===333====
+{ _id: 58f6d04990d97e1b0cbd8392,
+  subTotal: 22,
+  tax: 2.2,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  receiveTotal: 24.2,
+  merchantId: '00000003',
+  updatedAt: 2017-04-19T04:28:53.250Z,
+  unpaid: 0,
+  orderNo: '1',
+  invoiceNo: '418171',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-18T14:37:21.840Z,
+  status: 'Paid',
+  paid: 24.2,
+  grandTotal: 24.2,
+  orderDetails: 
+   [ { currentPrice: 11,
+       qty: 1,
+       merchantId: '00000003',
+       price: 11,
+       name: 'aaaa',
+       category: '58eeedbec3c2a1d6743bf615',
+       _id: 58f03f0147860d1ba0891c39,
+       properties: [],
+       options: [] },
+     { currentPrice: 11,
+       qty: 1,
+       merchantId: '00000003',
+       price: 11,
+       name: 'aaaa',
+       category: '58eeedbec3c2a1d6743bf615',
+       _id: 58f03f0147860d1ba0891c39,
+       properties: [],
+       options: [] } ],
+  orderType: 'Merchandise' }
+==4444=====
+=======
+{ _id: 58f6d04990d97e1b0cbd8392,
+  subTotal: 22,
+  tax: 2.2,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  receiveTotal: 24.2,
+  merchantId: '00000003',
+  updatedAt: 2017-04-19T04:28:53.250Z,
+  unpaid: 0,
+  orderNo: '1',
+  invoiceNo: '418171',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'leolin', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-18T14:37:21.840Z,
+  status: 'Paid',
+  paid: 24.2,
+  grandTotal: 24.2,
+  orderDetails: 
+   [ { currentPrice: 11,
+       qty: 1,
+       merchantId: '00000003',
+       price: 11,
+       name: 'aaaa',
+       category: '58eeedbec3c2a1d6743bf615',
+       _id: 58f03f0147860d1ba0891c39,
+       properties: [],
+       options: [] },
+     { currentPrice: 11,
+       qty: 1,
+       merchantId: '00000003',
+       price: 11,
+       name: 'aaaa',
+       category: '58eeedbec3c2a1d6743bf615',
+       _id: 58f03f0147860d1ba0891c39,
+       properties: [],
+       options: [] } ],
+  orderType: 'Merchandise' }
+=======
+[0mPOST /api/orders/pay [32m200 [0m62.819 ms - 872[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/query [32m200 [0m4.147 ms - 4129[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/bills [32m200 [0m10.733 ms - 1679[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPUT /api/orders/void/58f6d04990d97e1b0cbd8392 [32m200 [0m6.733 ms - 35[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/query [32m200 [0m8.441 ms - 4129[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/bills [32m200 [0m12.227 ms - 1679[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPUT /api/orders/void/58f6d04990d97e1b0cbd8392 [32m200 [0m2.034 ms - 35[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/query [32m200 [0m8.937 ms - 4129[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/query [32m200 [0m8.982 ms - 4129[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/query [32m200 [0m8.134 ms - 1619[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mGET /api/items/menus [32m200 [0m38.376 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+==========================
+58f6ddb4e4b90c0bc0422339
+===============
+[0mPUT /api/orders/58f6ddb4e4b90c0bc0422339 [32m200 [0m26.679 ms - 1411[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/query [32m200 [0m8.483 ms - 17[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/query [32m200 [0m7.994 ms - 17[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mPOST /api/orders/query [32m200 [0m8.884 ms - 1765[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576118,
+  exp: 801492575318 }
+[0mGET /api/items/menus [32m200 [0m29.254 ms - 4258[0m
+[0mGET /api/stores [32m200 [0m4.581 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m4.960 ms - 16[0m
+{ merchantId: '00000003', password: '9999' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m35.616 ms - 904[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576313,
+  exp: 801492575513 }
+[0mPOST /api/orders/query [32m200 [0m10.589 ms - 1765[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576313,
+  exp: 801492575513 }
+[0mGET /api/items/menus [32m200 [0m24.159 ms - 4258[0m
+[0mGET /api/stores [32m200 [0m4.699 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m4.725 ms - 16[0m
+{ merchantId: '00000003', password: '9999' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m26.436 ms - 904[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576395,
+  exp: 801492575595 }
+[0mPOST /api/orders/query [32m200 [0m8.708 ms - 1765[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576395,
+  exp: 801492575595 }
+[0mGET /api/items/menus [32m200 [0m26.076 ms - 4258[0m
+[0mGET /api/stores [32m200 [0m4.859 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m4.856 ms - 16[0m
+{ merchantId: '00000003', password: '9999' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m21.171 ms - 904[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mPOST /api/orders/query [32m200 [0m6.168 ms - 1765[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m24.729 ms - 4258[0m
+[0mGET /api/stores [32m200 [0m5.013 ms - 689[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m20.482 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m21.799 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+============
+{ name: 'wash & fold',
+  price: '1',
+  category: '58eeedadc3c2a1d6743bf614',
+  customerOptions: [],
+  globalOptions: [],
+  status: 'true',
+  merchantId: '00000003',
+  operator: { id: '58f045f307bfec1288825cc0', user: 'leolin' } }
+============
+[0mPOST /api/items [32m200 [0m17.319 ms - 304[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mPOST /api/orders/query [32m200 [0m10.515 ms - 1765[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m25.991 ms - 4563[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+==========================
+58f6ddb4e4b90c0bc0422339
+===============
+[0mPUT /api/orders/58f6ddb4e4b90c0bc0422339 [32m200 [0m28.700 ms - 1791[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m36.179 ms - 4563[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m20.837 ms - 4563[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mDELETE /api/items/58f6e91ee4b90c0bc042233d [32m200 [0m6.389 ms - 313[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mPOST /api/orders/query [32m200 [0m8.403 ms - 2145[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m22.247 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mPOST /api/orders/query [32m200 [0m8.638 ms - 2145[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m21.780 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m23.370 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m44.678 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m19.904 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mPOST /api/orders/query [32m200 [0m9.837 ms - 2145[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576514,
+  exp: 801492575714 }
+[0mGET /api/items/menus [32m200 [0m20.799 ms - 4258[0m
+{ merchantId: '00000003', password: '1234' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m26.617 ms - 868[0m
+[0mGET /api/stores [32m200 [0m3.957 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m10.607 ms - 16[0m
+{ merchantId: '00000003', password: '9999' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m18.809 ms - 904[0m
+[0mGET /api/stores [32m200 [0m6.828 ms - 689[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576705,
+  exp: 801492575905 }
+[0mGET /api/items/menus [32m200 [0m19.831 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576705,
+  exp: 801492575905 }
+[0mGET /api/items/menus [32m200 [0m21.073 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576705,
+  exp: 801492575905 }
+[0mPOST /api/orders/query [32m200 [0m7.540 ms - 2145[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576705,
+  exp: 801492575905 }
+[0mGET /api/items/menus [32m200 [0m22.594 ms - 4258[0m
+[0mGET /api/stores [32m200 [0m5.178 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m5.635 ms - 16[0m
+{ merchantId: '00000003', password: '9999' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m25.646 ms - 904[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576789,
+  exp: 801492575989 }
+[0mPOST /api/orders/query [32m200 [0m8.171 ms - 2145[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576789,
+  exp: 801492575989 }
+[0mGET /api/items/menus [32m200 [0m20.502 ms - 4258[0m
+[0mGET /api/stores [32m200 [0m5.827 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m7.921 ms - 16[0m
+{ merchantId: '00000003', password: '9999' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m28.196 ms - 904[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576913,
+  exp: 801492576113 }
+[0mPOST /api/orders/query [32m200 [0m8.067 ms - 2145[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576913,
+  exp: 801492576113 }
+[0mGET /api/items/menus [32m200 [0m21.798 ms - 4258[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576913,
+  exp: 801492576113 }
+==========================
+58f6ddb4e4b90c0bc0422339
+===============
+[0mPUT /api/orders/58f6ddb4e4b90c0bc0422339 [32m200 [0m27.204 ms - 1791[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576913,
+  exp: 801492576113 }
+[0mPOST /api/orders/query [32m200 [0m8.693 ms - 2145[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492576913,
+  exp: 801492576113 }
+[0mGET /api/items/menus [32m200 [0m19.834 ms - 4258[0m
+{ merchantId: '00000003', password: '1234' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m19.827 ms - 868[0m
+[0mGET /api/stores [32m200 [0m5.077 ms - 689[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m5.769 ms - 16[0m
+{ merchantId: '00000003', password: '9999' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m21.898 ms - 904[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492577307,
+  exp: 801492576507 }
+[0mPOST /api/orders/query [32m200 [0m9.813 ms - 2145[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'leolin',
+  iat: 1492577307,
+  exp: 801492576507 }
+[0mGET /api/items/menus [32m200 [0m23.661 ms - 4258[0m
+{ merchantId: '00000003', password: '1234' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m17.651 ms - 868[0m
+2017-04-28T20:28:51.239Z
+Server is running at http://:::3200
+{ key: '00000003', value: 'https://e20e17ae.ngrok.io' }
+[0mGET /api/stores [32m200 [0m65.623 ms - 683[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m84.236 ms - 16[0m
+{ merchantId: '00000003', password: '5555' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m158.818 ms - 953[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493425759,
+  exp: 801493424959 }
+[0mGET /api/items/menus [32m200 [0m77.164 ms - 4851[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493425759,
+  exp: 801493424959 }
+[0mGET /api/items/menus [32m200 [0m26.793 ms - 4851[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493425759,
+  exp: 801493424959 }
+=====================================
+===xxx==
+{ merchantId: '00000003', name: 'orderNo' }
+{ _id: 587ad6e70727c2000b917175,
+  name: 'orderNo',
+  seq: 4,
+  seqStart: null,
+  seqEnd: null,
+  daySign: true,
+  date: '20170428',
+  dateFormat: '20170429' }
+[0mPOST /api/orders [32m200 [0m301.209 ms - 678[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493425759,
+  exp: 801493424959 }
+367=================367
+888888888888888888888888888888
+[ { _id: 5903de63860f3c0754eb4106,
+    grandTotal: 11,
+    receiveTotal: 11,
+    change: 0,
+    refund: 0,
+    bill: null,
+    tax: 0,
+    tip: 0,
+    charge: 0,
+    orderNo: 'null',
+    invoiceNo: '42817null',
+    notes: null,
+    pickUpTime: null,
+    timer: null,
+    merchantId: '00000003',
+    subTotal: 11,
+    orderType: 'Merchandise',
+    orderDetails: [ [Object] ],
+    customer: null,
+    reason: null,
+    discount: 0,
+    unpaid: 0,
+    status: 'Paid' } ]
+888888888888888888888888888888
+===11222222222222222222222222222222222221====
+{ refund: 0,
+  status: 'Paid',
+  unpaid: 0,
+  receiveTotal: 11,
+  paid: 11 }
+===2224444444444444444444444442====
+===333====
+{ _id: 5903de63860f3c0754eb4106,
+  subTotal: 11,
+  tax: 0,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  merchantId: '00000003',
+  updatedAt: 2017-04-29T00:29:47.005Z,
+  unpaid: 0,
+  orderNo: 'null',
+  invoiceNo: '42817null',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'hello', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'hello', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-29T00:28:51.264Z,
+  status: 'Paid',
+  paid: 11,
+  grandTotal: 11,
+  orderDetails: 
+   [ { currentPrice: 11,
+       qty: 1,
+       merchantId: '00000003',
+       price: 11,
+       name: 'aaaa',
+       category: '58eeedbec3c2a1d6743bf615',
+       _id: 58f03f0147860d1ba0891c39,
+       properties: [],
+       options: [],
+       unit: 'Case' } ],
+  orderType: 'Merchandise' }
+==4444=====
+=======
+{ _id: 5903de63860f3c0754eb4106,
+  subTotal: 11,
+  tax: 0,
+  taxRate: 0,
+  tip: 0,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  merchantId: '00000003',
+  updatedAt: 2017-04-29T00:29:47.005Z,
+  unpaid: 0,
+  orderNo: 'null',
+  invoiceNo: '42817null',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'hello', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'hello', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-29T00:28:51.264Z,
+  status: 'Paid',
+  paid: 11,
+  grandTotal: 11,
+  orderDetails: 
+   [ { currentPrice: 11,
+       qty: 1,
+       merchantId: '00000003',
+       price: 11,
+       name: 'aaaa',
+       category: '58eeedbec3c2a1d6743bf615',
+       _id: 58f03f0147860d1ba0891c39,
+       properties: [],
+       options: [],
+       unit: 'Case' } ],
+  orderType: 'Merchandise' }
+=======
+[0mPOST /api/orders/pay [32m200 [0m257.044 ms - 687[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493425759,
+  exp: 801493424959 }
+[0mGET /api/items/menus [32m200 [0m25.797 ms - 4851[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493425759,
+  exp: 801493424959 }
+[0mPOST /api/orders/query [32m200 [0m47.326 ms - 1324[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493425759,
+  exp: 801493424959 }
+---------
+[ { _id: 5903de7b860f3c0754eb4107,
+    refund: 0,
+    merchantId: '00000003',
+    refundDoc: [ {} ],
+    orderNo: 'null',
+    customer: null,
+    order: 5903de63860f3c0754eb4106,
+    receiveTotal: 11,
+    subTotal: 11,
+    grandTotal: 11,
+    type: 'Credit',
+    status: 'Paid',
+    infos: 
+     { cardNumber: '4003447714007780',
+       cardHolder: 'ZHIHUI LIN',
+       authCode: '592050',
+       refNum: '122513845',
+       avs: 'Address: Match & 5 Digit Zip: Match',
+       cvv: 'Not Processed',
+       invoiceNum: '42817null',
+       orderId: '5903de63860f3c0754eb4106' },
+    paid: 11 } ]
+---------
+[0mPOST /api/orders/bills [32m200 [0m11.797 ms - 483[0m
+[0mGET /api/stores [32m200 [0m5.924 ms - 683[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m7.669 ms - 16[0m
+{ merchantId: '00000003', password: '5555' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m26.714 ms - 953[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493426612,
+  exp: 801493425812 }
+[0mPOST /api/orders/query [32m200 [0m7.788 ms - 1324[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493426612,
+  exp: 801493425812 }
+---------
+[ { _id: 5903de7b860f3c0754eb4107,
+    refund: 0,
+    merchantId: '00000003',
+    refundDoc: [ {} ],
+    orderNo: 'null',
+    customer: null,
+    order: 5903de63860f3c0754eb4106,
+    receiveTotal: 11,
+    subTotal: 11,
+    grandTotal: 11,
+    type: 'Credit',
+    status: 'Paid',
+    infos: 
+     { cardNumber: '4003447714007780',
+       cardHolder: 'ZHIHUI LIN',
+       authCode: '592050',
+       refNum: '122513845',
+       avs: 'Address: Match & 5 Digit Zip: Match',
+       cvv: 'Not Processed',
+       invoiceNum: '42817null',
+       orderId: '5903de63860f3c0754eb4106' },
+    paid: 11 } ]
+---------
+[0mPOST /api/orders/bills [32m200 [0m6.521 ms - 483[0m
+[0mGET /api/stores [32m200 [0m5.643 ms - 683[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m6.320 ms - 16[0m
+{ merchantId: '00000003', password: '5555' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m20.998 ms - 953[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493430374,
+  exp: 801493429574 }
+[0mPOST /api/orders/query [32m200 [0m12.387 ms - 1324[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493430374,
+  exp: 801493429574 }
+---------
+[ { _id: 5903de7b860f3c0754eb4107,
+    refund: 0,
+    merchantId: '00000003',
+    refundDoc: [ {} ],
+    orderNo: 'null',
+    customer: null,
+    order: 5903de63860f3c0754eb4106,
+    receiveTotal: 11,
+    subTotal: 11,
+    grandTotal: 11,
+    type: 'Credit',
+    status: 'Paid',
+    infos: 
+     { cardNumber: '4003447714007780',
+       cardHolder: 'ZHIHUI LIN',
+       authCode: '592050',
+       refNum: '122513845',
+       avs: 'Address: Match & 5 Digit Zip: Match',
+       cvv: 'Not Processed',
+       invoiceNum: '42817null',
+       orderId: '5903de63860f3c0754eb4106' },
+    paid: 11 } ]
+---------
+[0mPOST /api/orders/bills [32m200 [0m9.217 ms - 483[0m
+[0mGET /api/stores [32m200 [0m5.679 ms - 683[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m7.196 ms - 16[0m
+{ merchantId: '00000003', password: '5555' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m27.565 ms - 953[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493430781,
+  exp: 801493429981 }
+[0mGET /api/items/menus [32m200 [0m26.519 ms - 4851[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493430781,
+  exp: 801493429981 }
+[0mGET /api/items/menus [32m200 [0m26.538 ms - 4851[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493430781,
+  exp: 801493429981 }
+=====================================
+===xxx==
+{ merchantId: '00000003', name: 'orderNo' }
+{ _id: 587ad6e70727c2000b917175,
+  name: 'orderNo',
+  seq: null,
+  seqStart: null,
+  seqEnd: null,
+  daySign: true,
+  date: '20170429',
+  dateFormat: '20170429' }
+[0mPOST /api/orders [32m200 [0m21.563 ms - 671[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493430781,
+  exp: 801493429981 }
+367=================367
+888888888888888888888888888888
+[ { _id: 5903f201860f3c0754eb4108,
+    grandTotal: 12,
+    receiveTotal: 12,
+    change: 0,
+    refund: 0,
+    bill: null,
+    tax: 0,
+    tip: 1,
+    charge: 0,
+    orderNo: '1',
+    invoiceNo: '428171',
+    notes: null,
+    pickUpTime: null,
+    timer: null,
+    merchantId: '00000003',
+    subTotal: 12,
+    orderType: 'Merchandise',
+    orderDetails: [ [Object] ],
+    customer: null,
+    reason: null,
+    discount: 0,
+    unpaid: 0,
+    status: 'Paid' } ]
+888888888888888888888888888888
+===11222222222222222222222222222222222221====
+{ refund: 0,
+  status: 'Paid',
+  unpaid: 0,
+  receiveTotal: 12,
+  paid: 12 }
+===2224444444444444444444444442====
+===333====
+{ _id: 5903f201860f3c0754eb4108,
+  subTotal: 12,
+  tax: 0,
+  taxRate: 0,
+  tip: 1,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  merchantId: '00000003',
+  updatedAt: 2017-04-29T01:53:27.999Z,
+  unpaid: 0,
+  orderNo: '1',
+  invoiceNo: '428171',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'hello', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'hello', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-29T00:28:51.264Z,
+  status: 'Paid',
+  paid: 12,
+  grandTotal: 12,
+  orderDetails: 
+   [ { currentPrice: 12,
+       qty: 1,
+       merchantId: '00000003',
+       price: 12,
+       name: 'ccc',
+       category: '58eeedbec3c2a1d6743bf615',
+       _id: 58f6dd83e4b90c0bc0422332,
+       properties: [],
+       options: [],
+       unit: 'Case' } ],
+  orderType: 'Merchandise' }
+==4444=====
+=======
+{ _id: 5903f201860f3c0754eb4108,
+  subTotal: 12,
+  tax: 0,
+  taxRate: 0,
+  tip: 1,
+  discount: 0,
+  discountRate: 0,
+  charge: 0,
+  merchantId: '00000003',
+  updatedAt: 2017-04-29T01:53:27.999Z,
+  unpaid: 0,
+  orderNo: '1',
+  invoiceNo: '428171',
+  __v: 0,
+  refund: 0,
+  operator: { user: 'hello', id: 58f045f307bfec1288825cc0 },
+  createdBy: { user: 'hello', id: 58f045f307bfec1288825cc0 },
+  createdAt: 2017-04-29T00:28:51.264Z,
+  status: 'Paid',
+  paid: 12,
+  grandTotal: 12,
+  orderDetails: 
+   [ { currentPrice: 12,
+       qty: 1,
+       merchantId: '00000003',
+       price: 12,
+       name: 'ccc',
+       category: '58eeedbec3c2a1d6743bf615',
+       _id: 58f6dd83e4b90c0bc0422332,
+       properties: [],
+       options: [],
+       unit: 'Case' } ],
+  orderType: 'Merchandise' }
+=======
+[0mPOST /api/orders/pay [32m200 [0m32.064 ms - 680[0m
+{ merchantId: '00000003',
+  id: '58f045f307bfec1288825cc0',
+  user: 'hello',
+  iat: 1493430781,
+  exp: 801493429981 }
+[0mGET /api/items/menus [32m200 [0m16.184 ms - 4851[0m
+2017-05-02T21:57:53.474Z
+Server is running at http://:::3200
+2017-05-02T21:58:18.527Z
+Server is running at http://:::3200
+2017-05-02T21:58:41.418Z
+Server is running at http://:::3200
+2017-05-02T21:59:06.962Z
+Server is running at http://:::3200
+2017-05-02T21:59:30.481Z
+Server is running at http://:::3200
+2017-05-02T21:59:56.903Z
+Server is running at http://:::3200
+2017-05-02T22:00:21.561Z
+Server is running at http://:::3200
+2017-05-02T22:00:49.220Z
+Server is running at http://:::3200
+2017-05-02T22:01:15.562Z
+Server is running at http://:::3200
+2017-05-02T22:01:45.395Z
+Server is running at http://:::3200
+2017-05-02T22:02:14.512Z
+Server is running at http://:::3200
+2017-05-02T22:02:47.736Z
+Server is running at http://:::3200
+2017-05-02T22:03:23.265Z
+Server is running at http://:::3200
+2017-05-02T22:04:01.663Z
+Server is running at http://:::3200
+2017-05-02T22:04:43.753Z
+Server is running at http://:::3200
+2017-05-02T22:05:30.392Z
+Server is running at http://:::3200
+2017-05-02T22:06:22.743Z
+Server is running at http://:::3200
+2017-05-02T22:07:22.183Z
+Server is running at http://:::3200
+2017-05-02T22:08:30.452Z
+Server is running at http://:::3200
+2017-05-02T22:09:49.865Z
+Server is running at http://:::3200
+2017-05-02T22:11:23.228Z
+Server is running at http://:::3200
+2017-05-02T22:13:13.879Z
+Server is running at http://:::3200
+2017-05-02T22:15:26.222Z
+Server is running at http://:::3200
+2017-05-02T22:18:05.722Z
+Server is running at http://:::3200
+[0mPOST /api/stores/checkedKey [32m200 [0m55.743 ms - 16[0m
+{ merchantId: '', password: '1234' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m37.113 ms - 57[0m
+{ merchantId: '', password: '1234' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m7.928 ms - 57[0m
+{ merchantId: '', password: '5555' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m5.434 ms - 57[0m
+2017-05-02T22:20:12.321Z
+Server is running at http://:::3200
+[0mPOST /api/stores/checkedKey [32m200 [0m43.460 ms - 16[0m
+{ merchantId: '', password: '5555' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m49.391 ms - 57[0m
+{ merchantId: '', password: '1234' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m6.286 ms - 57[0m
+{ merchantId: '', password: '0000' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m18.220 ms - 57[0m
+{ merchantId: '', password: '1234' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m11.583 ms - 57[0m
+2017-05-02T22:20:37.296Z
+Server is running at http://:::3200
+2017-05-02T22:21:00.148Z
+Server is running at http://:::3200
+[0mPOST /api/stores/checkedKey [32m200 [0m48.111 ms - 55[0m
+[0mPOST /api/stores/checkedKey [32m200 [0m9.276 ms - 16[0m
+{ merchantId: '', password: '5555' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m27.753 ms - 57[0m
+2017-05-02T22:21:25.632Z
+Server is running at http://:::3200
+2017-05-02T22:21:49.212Z
+Server is running at http://:::3200
+2017-05-02T22:22:15.630Z
+Server is running at http://:::3200
+2017-05-02T22:22:40.334Z
+Server is running at http://:::3200
+2017-05-02T22:23:08.045Z
+Server is running at http://:::3200
+2017-05-02T22:23:34.506Z
+Server is running at http://:::3200
+2017-05-02T22:24:04.304Z
+Server is running at http://:::3200
+2017-05-02T22:24:33.418Z
+Server is running at http://:::3200
+2017-05-02T22:25:06.555Z
+Server is running at http://:::3200
+2017-05-02T22:25:42.067Z
+Server is running at http://:::3200
+2017-05-02T22:26:20.512Z
+Server is running at http://:::3200
+2017-05-02T22:27:02.669Z
+Server is running at http://:::3200
+{ merchantId: '', password: '5555' }
+==============
+==============
+[0mPOST /api/admin/login [32m200 [0m46.061 ms - 57[0m
+2017-05-02T22:27:49.269Z
+Server is running at http://:::3200
+2017-05-02T22:28:41.587Z
+Server is running at http://:::3200
+2017-05-02T22:29:41.054Z
+Server is running at http://:::3200
+2017-05-02T22:30:49.312Z
+Server is running at http://:::3200
+2017-05-02T22:32:08.707Z
+Server is running at http://:::3200
+2017-05-02T22:33:41.964Z
+Server is running at http://:::3200
